@@ -6,6 +6,9 @@ class ProductType(models.Model):
 class PetType(models.Model):
     name = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.name
+
 class Product(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)

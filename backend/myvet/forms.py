@@ -10,7 +10,7 @@ class PetForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PetForm, self).__init__(*args, **kwargs)
-        if self.instance and self.instance.type:
+        if self.instance and hasattr(self.instance, 'type') and self.instance.type:
             self.fields['pet_type_name'].initial = self.instance.type.name
 
     def save(self, commit=True):
