@@ -1,10 +1,10 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Products
+from .models import Product
 
 @api_view(['GET'])
 def homepage(request):
-    data = Products.objects.all().values()
+    data = Product.objects.all().values()
     print(data)
     return Response(data)
 
