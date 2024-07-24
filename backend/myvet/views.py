@@ -12,3 +12,4 @@ def homepage(request):
 def hola(request):
     data = {'message': 'Hola'}
     return Response(data)
+
