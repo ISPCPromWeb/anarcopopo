@@ -1,7 +1,9 @@
+import { Header } from "@/components/Header";
+
 const Layout = ({ children }: any) => {
     return (
         <>
-        <header>Header Lala</header>
+        <Header/>
             {children}
         <footer>Footer</footer>
         </>
