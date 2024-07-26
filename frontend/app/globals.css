@@ -19,3 +19,9 @@ h1 {
   letter-spacing: 3px;
   color: var(--colorFB) !important;
 }
+body{
+  font-family: var(--fuenteBase);
+  font-weight: 300;
+  color: var(--colorFB);
+  background-color:var(--bcolorB);
+}

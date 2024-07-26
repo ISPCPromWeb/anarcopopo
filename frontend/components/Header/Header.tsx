@@ -12,11 +12,14 @@ export const Header =()=>{
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav ms-auto mb-1 mb-lg-0">
-                    <li className="nav-item">
-                        <a className={`${styles.vincnav} nav-link active fw-bold me-4`} aria-current="page" href="#">Ingreso para Veterinarias</a>
+                <li className="nav-item">
+                        <a className={`${styles.vincnav} nav-link active fw-bold me-4`} href="#" aria-current="page">Sign In</a>
                     </li>
                     <li className="nav-item">
-                        <a className={`${styles.vincnav} nav-link active fw-bold me-4`} href="#" aria-current="page">Ingreso para Dueñas/os de Mascotas</a>
+                        <a className={`${styles.vincnav} nav-link active fw-bold me-4`} aria-current="page" href="#">Login Veterinarias</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className={`${styles.vincnav} nav-link active fw-bold me-4`} href="#" aria-current="page">Login Dueñas/os de Mascotas</a>
                     </li>
                     <li className="nav-item">
                         <a className={`${styles.vincnav} nav-link active`} href="#">Contacto</a>

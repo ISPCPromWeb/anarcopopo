@@ -10,7 +10,7 @@ const Home = async () => {
   // console.log(data)
 
   return (
-    <main id="main" className={styles.main} >
+    <main id="main" className={styles.main}>
         <section className="px-5 text-left d-flex" id="hero"> 
             <div className="container">
                 <div className="row">

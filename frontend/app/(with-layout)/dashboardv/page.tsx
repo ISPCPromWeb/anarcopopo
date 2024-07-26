@@ -2,10 +2,10 @@ import Image from "next/image";
 import styles from "./page.module.css";
 
 
-const AboutUs = () => {
+const Dashboardv = () => {
   return (
-    <h1>About Us</h1>
+    <h1>Panel de control</h1>
   );
 }
 
-export default AboutUs;
+export default Dashboardv;

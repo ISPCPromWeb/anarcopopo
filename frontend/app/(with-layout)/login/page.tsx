@@ -1,0 +1,155 @@
+import Image from "next/image";
+import styles from "./page.module.css";
+
+
+const Login = () => {
+  return (
+    <body>
+    <section className="">
+      <div className="row g-0">
+        <!--Carrusel-->
+        <div className="col-lg-7 d-none d-lg-block">
+          <div
+            id="carouselExampleCaptions"
+            className="carousel slide min-vh-100"
+            data-bs-ride="carousel"
+          >
+            <div className="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="0"
+                className="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+            </div>
+            <div className="carousel-inner">
+              <div className="carousel-item min-vh-100 active img-1">
+                <div className="carousel-caption d-none d-md-block">
+                  <h5>La mejor atención</h5>
+                  <p></p>
+                </div>
+              </div>
+              <div className="carousel-item min-vh-100 img-2">
+                <div className="carousel-caption d-none d-md-block">
+                  <h5>Protección tu Mascotas. Tranquilidad para ti</h5>
+                  <p></p>
+                </div>
+              </div>
+              <div className="carousel-item min-vh-100 img-3">
+                <div className="carousel-caption d-none d-md-block">
+                  <h5>Comprometidos con el bienestar de tu Mascota</h5>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+            <button
+              className="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide="prev"
+            >
+              <span
+                className="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Previous</span>
+            </button>
+            <button
+              className="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide="next"
+            >
+              <span
+                className="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Formulario Derecho */}
+        <div className="col-lg-5 d-flex flex-column align-items-end min-vh-100">
+          <div className="px-lg-5 pt-lg-4 pb-lg-3 w-100 mb-auto">
+          
+            <h1 className="fw-bold text-center">My Pet</h1>
+          </div>
+          <div className="px-lg-5 py-lg-4 px-5 w-100 mt-auto">
+            <h1>Bienvenido</h1>
+            <form action="/store" method="post" encType="multipart/form-data">
+              <div className="mb-4">
+                <label for="exampleInputEmail1" className="form-label fw-bold">Email:</label>
+                <input
+                  type="email"
+                  name="txtEmail"
+                  className="form-control border-0 mb-2"
+                  placeholder="Ingresa tu Email"
+                  id="txtEmail"
+                  aria-describedby="emailHelp"
+                />
+
+                <div className="mb-4">
+                  <label for="exampleInputPassword1" className="form-label fw-bold"
+                    >Contraseña:</label>
+                  <input
+                    type="password"
+                    name="txtPass"
+                    className="form-control border-0 mb-2"
+                    placeholder="Ingresa tu Contraseña"
+                    id="txtPass"
+                  />
+                  <a
+                    href="#"
+                    id="emailHelp"
+                    className="form-text text-decoration-none"
+                    >Has olvidado tu Contraseña?
+                  </a>
+                  {% block content %}
+                    {% if errorUsuario %}
+                      <h4 id="mensajeError">Email o Contraseña Incorrecta. Vuelve a intentarlo</h4>
+                    {% else %} 
+                      
+                    {% endif %}
+                  {% endblock content %}
+                </div>
+              </div>
+              <form action="/layout">
+                <button type="submit" className="btn vincnav w-100">
+                  Iniciar Sesión
+                </button>
+              </form>
+            </form>
+          </div>
+          <div className="text-center px-lg-5 pt-lg-3 pb-lg-4 p-4 w-100 mt-auto">
+            <p className="d-inline-block nb-0"></p>
+            <a href="#" className="text-decoration-none fw-bold"></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossOrigin="anonymous"
+    ></script>
+  </body>
+  );
+}
+
+export default Login;
