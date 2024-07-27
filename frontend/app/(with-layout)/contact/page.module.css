@@ -1,4 +1,6 @@
-
+#contacto{
+    border-top: 1px solid #45B6CC; 
+}
 .h2{
 color: var(--colorFB);
 font-weight: 700;

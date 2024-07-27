@@ -1,0 +1,12 @@
+.btn{
+    background-color: var(--bcolorNyV);
+    color: var(--colorFVR);
+    }
+
+
+
+.row{
+    text-align: left; 
+    flex-wrap: wrap;
+    display:flex;
+}

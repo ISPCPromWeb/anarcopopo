@@ -1,0 +1,22 @@
+.btn{
+    background-color: var(--bcolorNyV);
+    color: var(--colorFVR);
+    }
+    
+        
+.row{
+    text-align: left; 
+    flex-wrap: wrap;
+    display:flex;
+}
+.p{
+    font-size:medium
+}
+.vincnav{
+    color: var(--colorFVR);
+}
+
+.fondoCarrusel{
+    background-color: var(--colorFB);
+    max-height: 50%;
+}

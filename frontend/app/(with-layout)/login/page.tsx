@@ -4,11 +4,12 @@ import styles from "./page.module.css";
 
 const Login = () => {
   return (
-    <body>
+    <>
+    <main>
     <section className="">
-      <div className="row g-0">
-        <!--Carrusel-->
-        <div className="col-lg-7 d-none d-lg-block">
+      <div className={`${styles.row} g-0`}>
+        {/* <!--Carrusel--> */}
+        <div className={`${styles.fondoCarrusel} col-lg-7 d-none d-lg-block`}>
           <div
             id="carouselExampleCaptions"
             className="carousel slide min-vh-100"
@@ -87,29 +88,29 @@ const Login = () => {
         <div className="col-lg-5 d-flex flex-column align-items-end min-vh-100">
           <div className="px-lg-5 pt-lg-4 pb-lg-3 w-100 mb-auto">
           
-            <h1 className="fw-bold text-center">My Pet</h1>
+            <h1 className={`${styles.h1} fw-bold text-center`}>My Pet</h1>
           </div>
           <div className="px-lg-5 py-lg-4 px-5 w-100 mt-auto">
-            <h1>Bienvenido</h1>
+            <h2 className={`${styles.h2} mb-5`}>Bienvenida/o</h2>
             <form action="/store" method="post" encType="multipart/form-data">
-              <div className="mb-4">
-                <label for="exampleInputEmail1" className="form-label fw-bold">Email:</label>
+              <div className="mb-3">
+                <label htmlFor="exampleInputEmail1" className="form-label fw-bold">Email:</label>
                 <input
                   type="email"
                   name="txtEmail"
-                  className="form-control border-0 mb-2"
+                  className="form-control border-2 mb-2"
                   placeholder="Ingresa tu Email"
                   id="txtEmail"
                   aria-describedby="emailHelp"
                 />
 
-                <div className="mb-4">
-                  <label for="exampleInputPassword1" className="form-label fw-bold"
+                <div className="mb-3">
+                  <label htmlFor="exampleInputPassword1" className="form-label fw-bold"
                     >Contraseña:</label>
                   <input
                     type="password"
                     name="txtPass"
-                    className="form-control border-0 mb-2"
+                    className="form-control border-2 mb-2"
                     placeholder="Ingresa tu Contraseña"
                     id="txtPass"
                   />
@@ -119,20 +120,20 @@ const Login = () => {
                     className="form-text text-decoration-none"
                     >Has olvidado tu Contraseña?
                   </a>
-                  {% block content %}
+                  {/* {% block content %}
                     {% if errorUsuario %}
                       <h4 id="mensajeError">Email o Contraseña Incorrecta. Vuelve a intentarlo</h4>
                     {% else %} 
                       
                     {% endif %}
-                  {% endblock content %}
+                  {% endblock content %} */}
                 </div>
               </div>
-              <form action="/layout">
-                <button type="submit" className="btn vincnav w-100">
+             
+                <button type="submit" className={`${styles.btn} ${styles.vincnav} w-30 align-center`}>
                   Iniciar Sesión
                 </button>
-              </form>
+              
             </form>
           </div>
           <div className="text-center px-lg-5 pt-lg-3 pb-lg-4 p-4 w-100 mt-auto">
@@ -148,7 +149,8 @@ const Login = () => {
       integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
       crossOrigin="anonymous"
     ></script>
-  </body>
+  </main>
+  </>
   );
 }
 
