@@ -1,16 +1,8 @@
+import { productsApi } from "@/api/products";
 import styles from "./page.module.css";
 
-const API_URL = `http://localhost:8000/api`;
-
-const getProducts = async () => {
-  const response = await fetch(`${API_URL}/products`);
-  const result = await response.json();
-  console.log(result);
-  return result;
-};
-
 const Home = async () => {
-  const products = await getProducts();
+  const products = await productsApi.getAll;
 
   return (
     <main id="main" className={styles.main}>
