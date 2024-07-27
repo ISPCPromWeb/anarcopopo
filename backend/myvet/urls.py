@@ -1,18 +1,10 @@
 from django.urls import path
 from . import views
+from .views import Pets_ApiView, Pet_ApiView
 
 urlpatterns = [
     path('', views.homepage),
+    path('pets', Pets_ApiView.as_view()),
+    path('pet/<int:id>', Pet_ApiView.as_view()),
 
-    path('products', views.products),
-    path('product/<int:id>', views.product),
-
-    path('pets', views.pets),
-    path('pet/<int:id>', views.pet),
-
-    path('users', views.users),
-    path('user/<int:id>', views.user),
-    
-    path('vaccines', views.vaccines),
-    path('vaccine/<int:id>', views.vaccine)
 ]
