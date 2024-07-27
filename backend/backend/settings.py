@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'anarcopopo',
+    'myvet',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         "USER": "postgres.enhuoxckyememalnzmzx",
-        "PASSWORD": "estaesunapasswordsegura",
+        "PASSWORD": "estaesunapasswordsegura", #guardar en un .env
         "HOST": "aws-0-us-east-1.pooler.supabase.com",
         "PORT": "6543"
     }
