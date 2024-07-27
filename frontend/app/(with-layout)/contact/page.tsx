@@ -51,8 +51,8 @@ const Contact = () => {
 =======--> */}
               <div className={`${styles.colSm7} text-center`}>
                 <form action="/cotactoConsulta" method="POST" encType="multipart/form-data">
-                  <div className={`${styles.row}`}>
-                    <div className="col-sm-4 form-group">
+                  <div className={`${styles.row} gap-3`}>
+                    <div className="col-sm-4 form-group ">
                       <input
                         className="form-control"
                         id="txtNombre"
@@ -111,7 +111,7 @@ const Contact = () => {
           </div>
         </div>
       </section>
-      <section id="contacto">
+      <section className={`${styles.contacto}`}>
         <div className="container w-50 m-auto text-center" id="equipo">
           <h2 className="my-5 fs-2">
             Equipo pequeño con
@@ -125,7 +125,7 @@ const Contact = () => {
           <div className="container text-center">
             <div className={`${styles.row}`}>
               <div className="col-sm-6 text-center ">
-                <h3 className={`${styles.h3}`}>GUADA PADIN ROJAS</h3>
+                <h3>GUADA PADIN ROJAS</h3>
                 <h4>Desarrolladora</h4>
                 <p>Contacto:</p>
                 <p>
@@ -152,34 +152,7 @@ const Contact = () => {
                 </p>
                 <p className="fw-bold">GPRNomade</p>
               </div>
-              <div className="col-sm-6 text-center ">
-                <h3 className={`${styles.h3}`}>PATRICIA CASTILLO</h3>
-                <h4>Desarrolladora</h4>
-                <p>Contacto:</p>
-                <p>
-                  <a
-                    href="https://www.linkedin.com/in/xxxx"
-                    aria-label="LinkedIn de Patricia Castillo"
-                    ><img
-                      src="../static/Img/LogoLinkedInP1.png"
-                      alt=""
-                      height="50"
-                      width="50"
-                  /></a>
-                </p>
-                <p>
-                  <a
-                    href="https://github.com/xxxx"
-                    aria-label="GitHub de Patricia Castillo"
-                    ><img
-                      src="../static/Img/LogoGithubP1.png"
-                      alt=""
-                      height="50"
-                      width="50"
-                  /></a>
-                </p>
-                <p className="fw-bold">Carofgit</p>
-              </div>
+              
             </div>
           </div>
         </div>

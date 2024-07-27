@@ -1,8 +1,10 @@
+"use client"
 import Image from "next/image";
 import styles from "./page.module.css";
 
 
-const Signin = () => {
+
+const Register = () => {
   return (
     <>
 <main className="body-dark bg-gray">
@@ -16,32 +18,32 @@ const Signin = () => {
 
         <form className={`${styles.row} g-3 pt-4 mt-4`}>
           <div className=" col-md-4 ">
-            <label for="nombre" className="form-label">Nombre</label>
+            <label htmlFor="nombre" className="form-label">Nombre</label>
             <input type="text" className="form-control" name="nombre" id="nombre" required/>
           </div>
           <div className="col-md-4">
-            <label for="apellido" className="form-label">Apellido</label>
+            <label htmlFor="apellido" className="form-label">Apellido</label>
             <input type="text" className="form-control gx-4" name="apellido" id="apellido" required/>
           </div>
 
           <div className="col-md-3">
-            <label for="dni" className="form-label">DNI (sin puntos)</label>
+            <label htmlFor="dni" className="form-label">DNI (sin puntos)</label>
             <input type="text" className="form-control" name="dni" id="dni" placeholder="12345678" pattern="[0-9]{8}" required/>
           </div>
 
           <div className="col-md-4">
-            <label for="email" className="form-label">Email</label>
+            <label htmlFor="email" className="form-label">Email</label>
             <input type="email" className="form-control" name="email" placeholder="ejemplo@gmail.com" id="email" required/>
           </div>
 
           <div className="col-md-3">
-            <label for="password" className="form-label">Password</label>
-            <input type="password" className="form-control" name="password" id="password" placeholder="8 caracteres" pattern="[0-9]{8}"  required/>
+            <label htmlFor="password" className="form-label">Password</label>
+            <input type="password" className="form-control" name="password" id="password" placeholder="6 caracteres" pattern="[0-9]{6}"  required/>
           </div>
          
         
           <div className="col-12 pt-4 mt-4">
-            <button className={`${styles.btn} btn-primary`} type="button" data-bs-toggle="collapse" href="#formMascota" role="button" aria-expanded="false" aria-controls="formMascota">Agregar Mascota</button>
+            <a className={`${styles.btn} btn-primary`} type="button" data-bs-toggle="collapse" href="#formMascota" role="button" aria-expanded="false" aria-controls="formMascota">Agregar Mascota</a>
           </div>
           
 
@@ -56,18 +58,18 @@ const Signin = () => {
         
                 <form className={`${styles.row} g-3 pt-4 mt-4`}>
                   <div className="col-md-5">
-                    <label for="nombre" className="form-label">Nombre</label>
+                    <label htmlFor="nombre" className="form-label">Nombre</label>
                     <input type="text" className="form-control" id="nombre" required/>
                   </div>
                   
                   <div className="col-md-12">        
                   </div>
                   <div className="col-md-2">
-                    <label for="edad" className="form-label">Edad</label>
+                    <label htmlFor="edad" className="form-label">Edad</label>
                     <input type="number" className="form-control" id="edad" required/>
                   </div>
                   <div className="col-md-3">
-                    <label for="categoria" className="form-label">Tipo de Mascota</label>
+                    <label htmlFor="categoria" className="form-label">Tipo de Mascota</label>
                     <select className="form-select" id="categoria" name="categoria" required>
                       <option selected disabled value="">...</option>
                       <option>Perro</option>
@@ -77,12 +79,12 @@ const Signin = () => {
                   
 
                   <div className="col-md-4">
-                    <label for="raza" className="form-label">Raza</label>
+                    <label htmlFor="raza" className="form-label">Raza</label>
                     <input type="text" className="form-control" id="raza" required/>
                   </div>
                                   
                   <div className="col-12 pt-4 mt-4">
-                    <button className="btn btn-primary" type="submit" onClick="">Guardar Mascota</button>
+                    <button className="btn btn-primary" type="submit" onClick={()=>console.log("guardarMascota")}>Guardar Mascota</button>
                   </div>
                 </form>  
               </div>
@@ -111,4 +113,4 @@ const Signin = () => {
   );
 }
 
-export default Signin;
+export default Register;
