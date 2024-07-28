@@ -85,3 +85,15 @@
 .vinculos:hover {
   color: var(--colorFVR) !important;
 }
+
+.btn {
+  background-color: var(--bcolorNyV);
+  color: var(--colorFVR);
+  border-radius: 5px;
+  padding: 10px;
+}
+.row {
+  text-align: left;
+  flex-wrap: wrap;
+  display: flex;
+}
