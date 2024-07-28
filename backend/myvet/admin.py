@@ -1,9 +1,14 @@
 from django.contrib import admin
-from .models import Product, Pet, User, ProductType, PetType, UserType, Vaccine, VaccineType
-from .forms import PetForm
+from .models import Product, Pet, Client, ProductType, PetType, Vaccine, VaccineType, Appointment
+from .forms import PetForm, ClientForm
 
 class VaccineInline(admin.TabularInline):
     model = Vaccine
+    extra = 1
+
+class PetInline(admin.TabularInline):
+    form = PetForm
+    model = Pet
     extra = 1
 
 class ProductAdmin(admin.ModelAdmin):
@@ -20,8 +25,8 @@ class ProductAdmin(admin.ModelAdmin):
 
 class PetAdmin(admin.ModelAdmin):
     form: PetForm
-    list_display = ['name', 'breed', 'get_pet_type_name']
-    list_filter = ['name', 'breed', 'type__name']
+    list_display = ['name', 'breed', 'get_pet_type_name', 'owner']
+    list_filter = ['name', 'breed', 'type__name', 'owner']
     inlines = [VaccineInline]
 
     def get_pet_type_name(self, obj):
@@ -33,14 +38,21 @@ class PetAdmin(admin.ModelAdmin):
         form.base_fields['vaccines'] = PetForm.base_fields['vaccines']
         return form
 
-class UserAdmin(admin.ModelAdmin):
-    list_display = ['name', 'address', 'get_user_type_name']
-    list_filter = ['name', 'address', 'type__name']
+class ClientAdmin(admin.ModelAdmin):
+    form: ClientForm
+    list_display = ['name', 'address']
+    list_filter = ['name', 'address']
+    inlines = [PetInline]
 
-    def get_user_type_name(self, obj):
-        return obj.type.name
-    get_user_type_name.short_description = 'Type'
-
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        form.base_fields['pets'] = ClientForm.base_fields['pets']
+        return form
+    
+    def save_model(self, request, obj, form, change):
+        if form.cleaned_data['password']:
+            obj.set_password(form.cleaned_data['password'])
+        super().save_model(request, obj, form, change)
 
 class VaccineAdmin(admin.ModelAdmin):
     list_display = ['get_vaccine_type_name', 'pet', 'app_date']
@@ -50,11 +62,13 @@ class VaccineAdmin(admin.ModelAdmin):
         return obj.type.name
     get_vaccine_type_name.short_description = 'Vaccine Name'
 
-admin.site.register(Product, ProductAdmin)
-admin.site.register(Pet, PetAdmin)
-admin.site.register(User, UserAdmin)
-admin.site.register(ProductType)
 admin.site.register(PetType)
-admin.site.register(UserType)
-admin.site.register(Vaccine, VaccineAdmin)
+admin.site.register(ProductType)
 admin.site.register(VaccineType)
+
+admin.site.register(Client, ClientAdmin)
+admin.site.register(Pet, PetAdmin)
+admin.site.register(Product, ProductAdmin)
+admin.site.register(Vaccine, VaccineAdmin)
+
+admin.site.register(Appointment)
