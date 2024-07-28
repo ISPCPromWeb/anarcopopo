@@ -1,8 +1,7 @@
 // import { productsApi } from "@/api/products";
 import { products as mockedProducts } from "@/constants";
 import styles from "./page.module.css";
-import ServicesSection from "@/components/ServicesSection/page";
-import ServiceSection from "@/components/ServiceSection/page";
+import { Services } from "@/components/Services";
 
 const Home = async () => {
   // const products = await productsApi.getAll;
@@ -72,50 +71,8 @@ const Home = async () => {
         </div>
         <a href={"/tienda"}>Ver todos los productos</a>
       </section>
-      <ServicesSection />
 
-      <div className={`${styles.servicios} bg-white`}>
-        <div className={`row ${styles.servicioFila}`}>
-          <div className="col-lg-7 d-flex">
-            <div className="align-self-center p-5">
-              <h2 className="display-4 fw-bold m-4">Para Dueños</h2>
-              <p className="mx-4 mt-4 mb-5 fs-3">
-                Chequeá la salud de tu mascota y elegí el alimento adecuado para
-                sus necesidades. También aquí conseguirás los oufits que están
-                de moda para lookearlos.
-              </p>
-              <p
-                className={`${styles.parag}text-decoration-underline fst-italic mt-3 fs-4 text-end`}
-              >
-                Próximamente:
-              </p>
-              <ul className={`${styles.lista2} text-end`}>
-                <li className="text-end">
-                  Estudios y procedimientos realizados.
-                </li>
-                <li className={`${styles.elemLista2} text-end mb-5`}>
-                  Agenda de turnos.
-                </li>
-              </ul>
-              <a
-                className={`${styles.vinculos} mx-5 my-5 text-center`}
-                href={"/login/"}
-              >
-                Ingreso para Dueñas/os aquí
-              </a>
-            </div>
-          </div>
-          <div className="col-lg-5 d-flex icono-wrap">
-            <div className="align-items-center text-center mx-auto me-5 p-5">
-              <img
-                src="/grupo-6-g6/Img/IconoDueños.png"
-                className={`img-fuid ${styles.imgVetDuenos}`}
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <Services />
     </main>
   );
 };
