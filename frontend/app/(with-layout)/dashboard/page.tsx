@@ -1,10 +1,10 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import { productsApi, petsApi } from "@/api";
+// import { productsApi, petsApi } from "@/api";
 
 const Dashboard = async () => {
-  const products = await productsApi.getAll;
-  const pets = await petsApi.getAll;
+  // const products = await productsApi.getAll;
+  // const pets = await petsApi.getAll;
   return (
     <>
       <h1>Panel de control</h1>
@@ -21,7 +21,7 @@ const Dashboard = async () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product: any, index: number) => (
+          {/* {products.map((product: any, index: number) => (
             <tr key={index}>
               <th scope="row">{product.id}</th>
               <td>{product.name}</td>
@@ -29,13 +29,13 @@ const Dashboard = async () => {
               <td className="d-none d-md-table-cell">{product.description}</td>
               <td>{product.quantity}</td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
       </table>
       <hr />
-      {pets.map((pet: any, index: number) => (
+      {/* {pets.map((pet: any, index: number) => (
         <p key={index}>{pet.name}</p>
-      ))}
+      ))} */}
     </>
   );
 };

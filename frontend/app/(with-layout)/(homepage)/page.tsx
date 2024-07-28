@@ -1,8 +1,10 @@
-import { productsApi } from "@/api/products";
+// import { productsApi } from "@/api/products";
+import { products as mockedProducts  } from "@/constants";
 import styles from "./page.module.css";
 
 const Home = async () => {
-  const products = await productsApi.getAll;
+  // const products = await productsApi.getAll;
+  const products = mockedProducts
 
   return (
     <main id="main" className={styles.main}>
