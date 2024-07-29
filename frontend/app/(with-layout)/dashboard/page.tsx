@@ -36,6 +36,9 @@ const Dashboard = async () => {
       {pets.map((pet: any, index: number) => (
         <p key={index}>{pet.name}</p>
       ))}
+      <form action={`/dashboard/api`} method="post">
+        <button type="submit">Cerrar Sesión</button>
+      </form>
     </>
   );
 };
