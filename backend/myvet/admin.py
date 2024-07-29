@@ -40,8 +40,8 @@ class PetAdmin(admin.ModelAdmin):
 
 class ClientAdmin(admin.ModelAdmin):
     form: ClientForm
-    list_display = ['name', 'address']
-    list_filter = ['name', 'address']
+    list_display = ['email', 'name', 'surname', 'address']
+    list_filter = ['name', 'surname', 'address']
     inlines = [PetInline]
 
     def get_form(self, request, obj=None, **kwargs):

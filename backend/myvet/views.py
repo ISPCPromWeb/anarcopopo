@@ -4,10 +4,9 @@ from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .models import Product, Client, Vaccine, Pet
 from django.contrib.auth.models import User
-from .serializers import ProductSerializer, PetSerializer, ClientSerializer, VaccineSerializer
+from .serializers import ProductSerializer, PetSerializer, ClientSerializer, VaccineSerializer, UserSerializer
 from django.db.models import Q
 from django.contrib.auth import login, logout
-from .forms import EmailAuthenticationForm
 from .auth_backends import EmailBackend
 
 @api_view(['GET'])
@@ -16,31 +15,23 @@ def homepage(request):
     return Response(data)
 
 @api_view(['POST'])
-def custom_register(request):
-    email = request.POST["email"]
-    password = request.POST["password"]
-        
-    user = Client(email=email, password=password)
-    user.set_password(user.password)
-    user.save()
-
-    return Response({'message': 'User registered successfully'}, status=200)
-
-@api_view(['POST'])
 def custom_login(request):
     email = request.POST["email"]
     password = request.POST["password"]
     pub_date = request.POST["pub_date"]
 
     user = None
+    user_data = None
 
     try:
         user = User.objects.get(Q(email=email) | Q(username=email))
+        user_data = UserSerializer(user).data
     except User.DoesNotExist:
         pass
 
     try:
         user = Client.objects.get(email=email)
+        user_data = ClientSerializer(user).data
     except Client.DoesNotExist:
         pass
     
@@ -51,7 +42,7 @@ def custom_login(request):
 
     if user is not None:
         login(request, user, backend='myvet.auth_backends.EmailBackend')
-        return Response({'message': 'User logged in successfully'}, status=200)
+        return Response(user_data, status=200)
     else:
         return Response({'message': 'Error in login'}, status=400)
 
