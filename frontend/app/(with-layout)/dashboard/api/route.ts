@@ -16,3 +16,12 @@ export async function POST(req: NextRequest) {
 
   redirect("/");
 }
+
+export async function GET(req: NextRequest) {
+  console.log(req);
+  const session = cookies().get("sessionid");
+  console.log(session);
+  if (!session) {
+    redirect("/login");
+  }
+}

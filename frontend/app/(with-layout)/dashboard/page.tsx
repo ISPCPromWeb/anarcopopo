@@ -1,13 +1,23 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { productsApi, petsApi } from "@/api";
+import { isStaff, sessionId, user } from "@/utils/auth";
+import { redirect } from "next/navigation";
 
 const Dashboard = async () => {
   const products = await productsApi.getAll;
   const pets = await petsApi.getAll;
+  const staff = isStaff;
+  const userName = user.name || (staff ? "Doc" : "Cliente");
+
+  if (!sessionId) {
+    redirect("/login");
+    return null;
+  }
+
   return (
     <>
-      <h1>Panel de control</h1>
+      <h1>Bienvenide, {userName}</h1>
       <table className="table table-striped">
         <thead>
           <tr>

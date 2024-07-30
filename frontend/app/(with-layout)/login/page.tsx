@@ -1,7 +1,14 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import { sessionId } from "@/utils/auth";
+import { redirect } from "next/navigation";
 
 const Login = () => {
+  if (!sessionId) {
+    redirect("/login");
+    return null;
+  }
+
   return (
     <>
       <main>

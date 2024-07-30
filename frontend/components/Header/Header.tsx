@@ -1,15 +1,8 @@
+import { sessionId, user } from "@/utils/auth";
 import styles from "./Header.module.css";
-import { cookies } from "next/headers";
 
 export const Header = () => {
-  const sessionId = cookies().get("sessionid");
-  const user = cookies().get("user");
-  let userName = "";
-
-  if (user) {
-    const parsedUser = JSON.parse(user.value);
-    userName = parsedUser.name || parsedUser.email || "User";
-  }
+  const userName = user.name || user.email;
 
   return (
     <header>

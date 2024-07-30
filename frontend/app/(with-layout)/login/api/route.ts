@@ -31,5 +31,5 @@ export async function POST(req: NextRequest) {
 
   cookies().set("user", JSON.stringify(result));
 
-  redirect("/");
+  redirect("/dashboard");
 }
