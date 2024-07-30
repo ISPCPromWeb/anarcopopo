@@ -1,18 +1,14 @@
 from django import forms
+from .models import Pet, Client
+from .widgets import ReadOnlyListWidget
 from django.utils.safestring import mark_safe
-from .models import Pet, Vaccine
+from django.contrib.auth.forms import AuthenticationForm
 
-class VaccineListWidget(forms.Widget):
-    def render(self, name, value, attrs=None, renderer=None):
-        if value is None or value is "":
-            return mark_safe(f'<p>No vaccines</p>')
-        elif isinstance(value, str):
-            value = value.split(', ')
-        list_items = ''.join([f'<li>{vaccine}</li>' for vaccine in value])
-        return mark_safe(f'<ul style="margin-left: 0; border: 1px solid #fff; border-radius: 5px">{list_items}</ul>')
+class EmailAuthenticationForm(AuthenticationForm):
+    username = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'autofocus': True}))
 
 class PetForm(forms.ModelForm):
-    vaccines = forms.CharField(label='Vaccines', required=False, widget=VaccineListWidget)
+    vaccines = forms.CharField(label=mark_safe(f'<strong>Vaccines</strong>'), required=False, widget=ReadOnlyListWidget)
 
     class Meta:
         model = Pet
@@ -22,3 +18,15 @@ class PetForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         if self.instance and self.instance.vaccines:
             self.fields['vaccines'].initial = ', '.join(self.instance.vaccines)
+
+class ClientForm(forms.ModelForm):
+    pets = forms.CharField(label=mark_safe(f'<strong>Pets</strong>'), required=False, widget=ReadOnlyListWidget)
+
+    class Meta:
+        model = Client
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance and self.instance.pets:
+            self.fields['pets'].initial = ', '.join(self.instance.pets)
