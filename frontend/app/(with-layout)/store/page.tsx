@@ -3,6 +3,7 @@ import { PHASE_PRODUCTION_SERVER } from "next/dist/shared/lib/constants";
 import styles from "./page.module.css";
 import { products as mockedProducts } from "@/constants";
 import Link from "next/link";
+import { StoreHeader } from "@/components/StoreHeader";
 
 const Store = async () => {
   // const products = await productsApi.getAll;
@@ -10,6 +11,7 @@ const Store = async () => {
 
   return (
     <main id="main" className={styles.main}>
+      <StoreHeader />
       <section className={styles.popularProducts}>
         <div className={styles.cardsContainer}>
           {products.map((product: any, index: number) => (

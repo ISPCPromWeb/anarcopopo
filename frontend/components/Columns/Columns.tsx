@@ -6,15 +6,16 @@ interface ColumnsProps {
   color: string;
   reversed?: boolean;
   children: React.ReactNode;
+  borderRadius: string;
 }
 
 export const Columns = async (props: ColumnsProps) => {
-  const { color, children, reversed } = props;
+  const { color, borderRadius, children, reversed } = props;
   return (
     <div
-      className={`${styles.servicioFila} row bg-${color} ${
-        reversed && styles.reversed
-      }`}
+      className={`${styles.servicioFila}  ${
+        styles.servicios
+      } row bg-${color} rounded-${borderRadius} ${reversed && styles.reversed}`}
     >
       {children}
     </div>

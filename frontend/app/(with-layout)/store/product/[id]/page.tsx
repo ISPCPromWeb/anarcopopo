@@ -1,6 +1,6 @@
 import { GET } from "./api/route";
 import { products as mockedProducts } from "@/constants";
-import Breadcrumbs from "@/components/Breadcrums/page";
+import { Breadcrumbs } from "@/components/Breadcrums/Breadcrumbs";
 import styles from "./page.module.css";
 import { Columns } from "@/components/Columns";
 import { ServiceImage } from "@/components/ServiceImage";
@@ -60,9 +60,11 @@ const Product = async ({ params }: { params: { id: string } }) => {
         <div className="container-fluid">
           <section className="d-flex py-3" id="plpContainer">
             <div className="container mb-4 d-block align-self-center">
-              <Breadcrumbs name={product.name} />
+              <div className="justify-content-end">
+                <Breadcrumbs name={product.name} />
+              </div>
 
-              <Columns color="white">
+              <Columns color="white" borderRadius="3">
                 <ServiceImage image={product.img} />
                 <ProductContent
                   content={{ name: product.name, price: formattedPrice }}
@@ -72,7 +74,7 @@ const Product = async ({ params }: { params: { id: string } }) => {
           </section>
         </div>
         <section className="container">
-          <Columns color="white">
+          <Columns color="white" borderRadius="3">
             <Column size={12}>
               <div className="user-content mb-4">
                 <h5 className="mb-4 ">Descripción</h5>

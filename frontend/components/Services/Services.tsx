@@ -33,7 +33,12 @@ export const Services = () => {
     <section className="d-flex py-3">
       <div className="container mb-4 d-flex flex-column align-self-center gap-4">
         {servicesContent.map((service, index) => (
-          <Columns key={index} color="white" reversed={index % 2 !== 0}>
+          <Columns
+            key={index}
+            color="white"
+            borderRadius="5"
+            reversed={index % 2 !== 0}
+          >
             <ServiceImage image={service.image} />
             <ServiceContent content={service.content} />
           </Columns>

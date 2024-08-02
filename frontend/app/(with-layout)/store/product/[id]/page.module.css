@@ -97,3 +97,6 @@
   flex-wrap: wrap;
   display: flex;
 }
+.borderRadius {
+  border-radius: 50px;
+}

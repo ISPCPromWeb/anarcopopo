@@ -40,7 +40,9 @@ p {
   font-size: medium;
 }
 h3 {
-  color: var(--colorFB);
+  font-family: var(--fuenteBase);
+  color: var(--colorFB) !important;
+  padding: 0.5rem;
 }
 
 footer {
@@ -50,4 +52,11 @@ footer {
 footer p {
   color: var(--colorFVR);
   text-align: center;
+  font-size: 0.8rem;
+}
+
+footer a {
+  color: var(--colorFVR);
+  text-align: center;
+  font-size: 0.8rem;
 }
