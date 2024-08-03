@@ -1,7 +1,10 @@
-import { getCurrentUser, sessionId, user } from "@/utils/auth";
+import { cookies } from "next/headers";
 import styles from "./Header.module.css";
 
 export const Header = () => {
+  const user = JSON.parse(cookies().get("user")?.value || "");
+  const sessionId = cookies().get("userSession");
+
   return (
     <header>
       <a className={styles.skipMain} href="#main">

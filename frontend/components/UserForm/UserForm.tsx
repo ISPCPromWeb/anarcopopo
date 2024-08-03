@@ -1,14 +1,18 @@
-import { user } from "@/utils/auth";
+/* import { user } from "@/utils/auth"; */
 import styles from "./UserForm.module.css";
 import { API_URL } from "@/api/constants";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export const UserForm = () => {
+  const user = JSON.parse(cookies().get("user")?.value || "");
+
   const handleUserUpdate = async (form: FormData) => {
     "use server";
-    form.set("id", user.id);
-    form.set("password", user.password);
-    form.set("pub_date", user.pub_date);
+
+    form.set("id", user?.id);
+    form.set("password", user?.password);
+    form.set("pub_date", user?.pub_date);
 
     const res = await fetch(`${API_URL}/client/${user.id}`, {
       method: "PUT",

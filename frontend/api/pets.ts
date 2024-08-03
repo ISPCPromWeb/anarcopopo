@@ -6,6 +6,17 @@ const getAll = async () => {
   return result;
 };
 
+const getOne = async (id: number) => {
+  try {
+    const response = await fetch(`${API_URL}/pet/${id}`);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return [];
+  }
+};
+
 export const petsApi = {
   getAll: getAll,
+  getOne: getOne,
 };

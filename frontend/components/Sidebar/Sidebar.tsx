@@ -16,7 +16,7 @@ export const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link href={`/dashboard/clients`} className="nav-link">
+          <Link href={`/dashboard/pets`} className="nav-link">
             Mascotas
           </Link>
         </li>
