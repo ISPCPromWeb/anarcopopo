@@ -31,7 +31,7 @@ const Dashboard = async () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product: any, index: number) => (
+          {/* {products.map((product: any, index: number) => (
             <tr key={index}>
               <th scope="row">{product.id}</th>
               <td>{product.name}</td>
@@ -39,13 +39,10 @@ const Dashboard = async () => {
               <td className="d-none d-md-table-cell">{product.description}</td>
               <td>{product.quantity}</td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
       </table>
       <hr />
-      {pets.map((pet: any, index: number) => (
-        <p key={index}>{pet.name}</p>
-      ))}
       <form action={`/dashboard/api`} method="post">
         <button type="submit">Cerrar Sesión</button>
       </form>
