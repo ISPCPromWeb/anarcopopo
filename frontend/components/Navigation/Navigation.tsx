@@ -4,10 +4,10 @@ export const Navigation = () => {
   return (
     <nav className={`${styles.navbar} navbar navbar-expand-lg bg-transparent`}>
       <div className="container">
-        <a className={`${styles.vincnav} navbar-brand fw-bold`} href="#">
+        <a className={`${styles.vincnav} navbar-brand fw-bold`} href="/">
           <img
-            className="isotipoNav mx-3"
-            src="../static/Img/IsoLight.png"
+            className={`${styles.isotipoNav} mx-3`}
+            src="./assets/IsoLight.png"
             alt=""
           />
           My Vet

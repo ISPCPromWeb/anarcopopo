@@ -12,3 +12,15 @@
   font: bold 1.1rem var(--fuenteBase);
   padding: 1rem;
 }
+
+.imgCart{
+  width: 65px;
+}
+
+.divCant{
+  width: 50px;
+}
+
+.divPrice{
+  width: 80px;
+}

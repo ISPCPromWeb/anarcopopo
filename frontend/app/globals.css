@@ -33,11 +33,13 @@ main {
 }
 h2 {
   color: var(--colorFB);
+  font-family: var(--fuenteBase);
   font-weight: 700;
   padding-top: 5%;
 }
 p {
   font-size: medium;
+  font-family: var(--fuenteBase);
 }
 h3 {
   font-family: var(--fuenteBase);
@@ -45,9 +47,15 @@ h3 {
   padding: 0.5rem;
 }
 
+h4 {
+  font-family: var(--fuenteBase);
+  color: var(--colorFB) !important;
+}
+
 footer {
   background: var(--bcolorNyV);
   max-height: 75px;
+  font-family: var(--fuenteBase);
 }
 footer p {
   color: var(--colorFVR);
@@ -59,4 +67,9 @@ footer a {
   color: var(--colorFVR);
   text-align: center;
   font-size: 0.8rem;
+}
+
+span {
+  color: var(--colorFB);
+  font-family: var(--fuenteBase);
 }

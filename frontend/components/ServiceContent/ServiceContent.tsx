@@ -30,8 +30,8 @@ export const ServiceContent = (props) => {
           anchors.map((anchor, index) => (
             <a
               key={index}
-              className={`${styles.vinculos} mx-5 my-5 text-center`}
-              href="#"
+              className={`${styles.vinculos} mx-5 my-6 text-center`}
+              href="/login"
             >
               {anchor}
             </a>

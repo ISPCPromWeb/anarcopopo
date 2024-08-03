@@ -3,7 +3,7 @@ import styles from "./Breadcrumbs.module.css";
 export const Breadcrumbs = (props) => {
   const { name } = props;
   return (
-    <nav className="breadcrumb align-top  pt-3 pe-3">
+    <nav className={`${styles.contBreadcrumb} align-top  pt-3 pe-3`}>
       <ol className="breadcrumb">
         <li className="breadcrumb-item">
           <a className={`${styles.vinculos} `} href="/" title="My Vet">

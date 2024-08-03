@@ -1,82 +1,50 @@
-.hero {
-  padding: 6em 0em 6em 8em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  height: calc(100vh - 57px);
+.popularProducts {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-bottom: 3rem;
 }
 
-.h2Hero {
-  word-spacing: 5px;
-  letter-spacing: 2px;
+.cardsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1em;
+  margin-bottom: 1.5em;
 }
 
-.resaltado {
-  color: #45b6cc;
+.cardWrapper {
+  min-height: 5rem;
+  width: calc(100% / 3 - 2 * 1rem / 3);
+  height: max-content;
+  background: var(--bcolorB);
+  border: 1px solid var(--bcolorNyV);
+  border-radius: 10px;
+  padding: 1em;
+  margin-bottom: 1em;
 }
 
-.main {
-  font-family: var(--fuenteBase);
-  color: var(--colorFB) !important;
-  background-color: var(--bcolorB);
+.cardImage {
+  height: 70%;
+  width: 100%;
+  background: var(--bcolorNyV);
+  border-radius: 10px 10px 0 0;
 }
 
-.content {
-  max-width: 500px;
-}
-
-.logo {
-  height: 22em;
-}
-.logoChico {
-  height: 18em;
-}
-
-.servicios {
-  border-radius: 50px;
-  margin-bottom: 20px;
-}
-
-.isotipoMain {
-  max-height: 100px;
-}
-
-.imgVetDuenos {
-  max-width: 110%;
-}
-
-.lista {
-  list-style: none;
-  list-style-position: outside;
-  font-size: 1.2em;
-  margin-left: 2em;
-}
-
-.lista2 {
-  list-style: none;
-}
-
-.elemLista {
-  padding-bottom: 1px !important;
-}
-
-.elemLista::before {
-  content: "•"; /* Insert content that looks like bullets    "•" */
-
-  font-size: 40px;
-  padding-right: 0.3em;
-  margin-top: 0px;
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
   color: var(--bcolorNyV);
+  margin: 1rem;
 }
 
-.elemLista2 {
-  font-size: 1em;
-  padding-bottom: 0.5px !important;
-  padding-right: 0.3em;
-  margin-top: 0px;
+.cardPrice {
+  font-size: 1.25rem;
+  font-weight: 400;
   color: var(--bcolorNyV);
-}
-
-.parag {
-  font-size: 0.5em;
+  margin: 1.5rem;
 }
 .vinculos {
   background-color: var(--bcolorNyV) !important;
@@ -90,43 +58,6 @@
 
 .vinculos:hover {
   color: var(--colorFVR) !important;
-}
-
-.popularProducts {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-.cardsContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.cardWrapper {
-  min-height: 5rem;
-  width: calc(100% / 3 - 2 * 1rem / 3);
-  height: 20rem;
-  background: var(--bcolorB);
-}
-
-.cardImage {
-  height: 70%;
-  width: 100%;
-  background: var(--bcolorNyV);
-}
-
-.cardTitle {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.cardPrice {
-  font-size: 1.25rem;
-  font-weight: 400;
 }
 
 @media (max-width: 992px) {

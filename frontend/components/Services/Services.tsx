@@ -10,9 +10,10 @@ const servicesContent = [
     content: {
       title: "Para Veterinarias",
       description:
-        "My Pet es un sistema de gestión de historias clínicas para veterinarias, manteniendo un registro actualizado de los clientes y sus mascotas. La automatización de las historias clínicas permitirá al médico veterinario llevar un mayor control y seguimiento de las consultas y evolución de sus pacientes. Permite llevar un registro de todo el tratamiento prescrito para cada mascota:",
+        "My Vet es un sistema de gestión de historias clínicas para veterinarias, manteniendo un registro actualizado de los clientes y sus mascotas. La automatización de las historias clínicas permitirá al médico veterinario llevar un mayor control y seguimiento de las consultas y evolución de sus pacientes. Permite llevar un registro de todo el tratamiento prescrito para cada mascota:",
       soon: "Próximamente:",
       features: ["Estudios y procedimientos realizados.", "Agenda de turnos."],
+      anchors: ["Ingreso para Veterinarias aquí"],
     },
   },
   {

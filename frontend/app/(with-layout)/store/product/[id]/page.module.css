@@ -1,27 +1,11 @@
-.hero {
-  padding: 6em 0em 6em 8em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  height: calc(100vh - 57px);
-}
-
 .h2Hero {
+  margin-top: 2em;
   word-spacing: 5px;
-  letter-spacing: 2px;
+  font-weight: bold;
 }
-
-.resaltado {
-  color: #45b6cc;
-}
-
-.content {
-  max-width: 500px;
-}
-
-.logo {
-  height: 22em;
-}
-.logoChico {
-  height: 18em;
+.h2Description {
+  word-spacing: 5px;
+  font-weight: bold;
 }
 
 .servicios {
@@ -29,48 +13,8 @@
   margin-bottom: 20px;
 }
 
-.isotipoMain {
-  max-height: 100px;
-}
-
-.imgVetDuenos {
-  max-width: 110%;
-}
-
-.lista {
-  list-style: none;
-  list-style-position: outside;
-  font-size: 1.2em;
-  margin-left: 2em;
-}
-
-.lista2 {
-  list-style: none;
-}
-
-.elemLista {
-  padding-bottom: 1px !important;
-}
-
-.elemLista::before {
-  content: "•"; /* Insert content that looks like bullets    "•" */
-
-  font-size: 40px;
-  padding-right: 0.3em;
-  margin-top: 0px;
-  color: var(--bcolorNyV);
-}
-
-.elemLista2 {
-  font-size: 1em;
-  padding-bottom: 0.5px !important;
-  padding-right: 0.3em;
-  margin-top: 0px;
-  color: var(--bcolorNyV);
-}
-
 .parag {
-  font-size: 0.5em;
+  font-size: 1.5em;
 }
 .vinculos {
   background-color: var(--bcolorNyV) !important;
@@ -88,15 +32,16 @@
 
 .btn {
   background-color: var(--bcolorNyV);
-  color: var(--colorFVR);
+  color: var(--colorFVC);
   border-radius: 5px;
-  padding: 10px;
+  padding: 0.5em;
+  font: bold 1.2em var(--fuenteBase);
 }
-.row {
-  text-align: left;
-  flex-wrap: wrap;
-  display: flex;
+.btn:hover {
+  color: var(--colorFVR) !important;
+  background-color: var(--bcolorNyV);
 }
+
 .borderRadius {
   border-radius: 50px;
 }

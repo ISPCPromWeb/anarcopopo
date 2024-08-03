@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 import { products as mockedProducts } from "@/constants";
 import Link from "next/link";
+import { CartItem } from "@/components/CartItem";
 
 const Cart = async () => {
   // const products = await productsApi.getAll;
@@ -21,29 +22,15 @@ const Cart = async () => {
     <>
       <div className="row g-5">
         <div className="col-md-5 col-lg-6 order-md-last">
-          <h3 className="d-flex justify-content-between align-items-center">
-            Tu Carrito
-          </h3>
-          <ul className="list-group mb-3">
-            <li className="list-group-item d-flex justify-content-between lh-sm py-3">
-              <div>
-                <h6 className="my-0">product.name</h6>
-              </div>
-              <span className="text-body-secondary">formattedPrice</span>
-            </li>
-            <li className="list-group-item d-flex justify-content-between lh-sm py-3">
-              <div>
-                <h6 className="my-0">Second product</h6>
-              </div>
-              <span className="text-body-secondary">$8</span>
-            </li>
-            <li className="list-group-item d-flex justify-content-between lh-sm py-3">
-              <div>
-                <h6 className="my-0">Third item</h6>
-              </div>
-              <span className="text-body-secondary">$5</span>
-            </li>
+          <div className="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h3 className="mb-1">Tu Carrito</h3>
+            </div>
+          </div>
 
+          <CartItem />
+
+          <ul className="list-group mb-3">
             <li className="list-group-item d-flex justify-content-between py-4">
               <span>Total (ARS)</span>
               <strong>$20</strong>
@@ -63,7 +50,6 @@ const Cart = async () => {
                   className="form-control"
                   id="firstName"
                   placeholder=""
-                  value=""
                   required
                 />
                 <div className="invalid-feedback">
@@ -80,7 +66,6 @@ const Cart = async () => {
                   className="form-control"
                   id="lastName"
                   placeholder=""
-                  value=""
                   required
                 />
                 <div className="invalid-feedback">

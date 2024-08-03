@@ -17,3 +17,7 @@
   border-radius: 5px;
   padding: 10px;
 }
+
+.contBreadcrumb {
+  margin-bottom: 0.1rem !important;
+}

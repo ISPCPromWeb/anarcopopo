@@ -1,9 +1,9 @@
-// import { CartHeader } from "@/components/CartHeader";
+import { CartHeader } from "@/components/CartHeader";
 
 const CartLayout = ({ children }: any) => {
   return (
     <>
-      {/* <CartHeader /> */}
+      <CartHeader />
       <div className="container justify-content-md-center container-md my-5">
         {children}
       </div>
