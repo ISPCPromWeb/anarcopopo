@@ -6,8 +6,8 @@ import { cookies } from "next/headers";
 export async function POST(req: NextRequest) {
   const res = await fetch(`${API_URL}/logout`, { ...req, method: "POST" });
 
-  cookies().delete("csrftoken");
-  cookies().delete("sessionid");
+  cookies().delete("userToken");
+  cookies().delete("userSession");
   cookies().delete("user");
 
   redirect("/");

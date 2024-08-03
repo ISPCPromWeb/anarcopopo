@@ -29,7 +29,14 @@ export async function POST(req: NextRequest) {
       const [keyValue] = segments;
       const [name, value] = keyValue.split("=").map((str) => str.trim());
       if (name === "csrftoken" || name === "sessionid") {
-        cookies().set(name, value);
+        if (name === "csrftoken") {
+          cookies().set("userToken", value);
+        }
+
+        if (name === "sessionid") {
+          cookies().set("userSession", value);
+        }
+
         cookiesSet = true;
       }
     });

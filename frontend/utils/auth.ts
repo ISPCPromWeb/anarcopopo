@@ -18,5 +18,5 @@ export const getCurrentUser = async () => {
 };
 
 export const user = parsedUser();
-export const sessionId = cookies().get("sessionid");
-export const token = cookies().get("csrftoken");
+export const sessionId = cookies().get("userSession");
+export const token = cookies().get("userToken");

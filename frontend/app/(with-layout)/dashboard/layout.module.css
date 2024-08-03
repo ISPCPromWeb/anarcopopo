@@ -1,0 +1,22 @@
+.sidebar {
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .dashboardLayout {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .sidebar {
+    width: 20%;
+  }
+
+  .content {
+    width: 80%;
+  }
+}
