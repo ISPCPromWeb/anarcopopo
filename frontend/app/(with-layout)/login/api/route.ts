@@ -1,9 +1,13 @@
 import { API_URL } from "@/api/constants";
 import { redirect } from "next/navigation";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 
 export async function POST(req: NextRequest) {
+  if (cookies().get("user")) {
+    cookies().delete("user");
+  }
+
   const form = await req.formData();
   form.append("pub_date", new Date().toISOString());
 
@@ -18,6 +22,7 @@ export async function POST(req: NextRequest) {
 
   if (rawCookies) {
     const cookie = rawCookies.split(",");
+    let cookiesSet = false;
 
     cookie.forEach((segment) => {
       const segments = segment.split(";");
@@ -25,11 +30,19 @@ export async function POST(req: NextRequest) {
       const [name, value] = keyValue.split("=").map((str) => str.trim());
       if (name === "csrftoken" || name === "sessionid") {
         cookies().set(name, value);
+        cookiesSet = true;
       }
     });
+
+    if (cookiesSet) {
+      cookies().set("user", JSON.stringify(result));
+      redirect("/dashboard");
+    } else {
+      console.error("Failed to set cookies");
+      redirect("/login");
+    }
+  } else {
+    console.error("No cookies received from the server");
+    redirect("/login");
   }
-
-  cookies().set("user", JSON.stringify(result));
-
-  redirect("/dashboard");
 }

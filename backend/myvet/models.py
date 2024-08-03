@@ -1,7 +1,9 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User, AbstractBaseUser
+from django.utils import timezone
 
 class ProductType(models.Model):
     name = models.CharField(max_length=200)
@@ -26,7 +28,7 @@ class Product(models.Model):
     type = models.ForeignKey('ProductType', on_delete=models.CASCADE)
     pet_type = models.ForeignKey('PetType', on_delete=models.CASCADE)
     img = models.ImageField(max_length=10000)
-    pub_date = models.DateTimeField("Date Published")
+    pub_date = models.DateTimeField("Date Published", default=timezone.now)
     def __str__(self):
         return self.name
 
@@ -37,21 +39,22 @@ class Pet(models.Model):
     age = models.IntegerField(default=100)
     owner = models.ForeignKey('Client', null=True, on_delete=models.CASCADE)
     vaccines = models.JSONField(blank=True, null=True, default=dict)
-    pub_date = models.DateTimeField("Date Published")
+    pub_date = models.DateTimeField("Date Published", default=timezone.now)
     def __str__(self):
         return self.name
 
-class Client(models.Model):
+class Client(AbstractBaseUser):
     name = models.CharField(max_length=200, default="")
     surname = models.CharField(max_length=200, default="")
     dni = models.IntegerField(default=0)
     address = models.CharField(max_length=200, default="")
-    email = models.EmailField()   
+    email = models.EmailField()
+    phone = models.CharField(default="")
     password = models.CharField()
     pets = models.JSONField(blank=True, null=True, default=dict)
-    is_active = models.BooleanField(default=False)
+    level = models.IntegerField(default=0)
     last_login = models.DateTimeField("Last Login", null=True, default=None)
-    pub_date = models.DateTimeField("Date Published")
+    pub_date = models.DateTimeField("Date Published", default=timezone.now)
 
     def __str__(self):
         return self.name
@@ -59,6 +62,10 @@ class Client(models.Model):
     def set_password(self, raw_password):
         self.password = make_password(raw_password)
         self.save()
+
+    def check_password(self, raw_password):
+        is_correct = super().check_password(raw_password)
+        return is_correct
     
 class Vaccine(models.Model):
     type = models.ForeignKey('VaccineType', on_delete=models.CASCADE)
@@ -68,10 +75,10 @@ class Vaccine(models.Model):
         return self.type.name
     
 class Appointment(models.Model):
-    date = models.DateTimeField("Date Published")
+    date = models.DateTimeField("Appointment Date", default=timezone.now)
     client = models.ForeignKey('Client', on_delete=models.CASCADE)
     pet = models.ForeignKey('Pet', on_delete=models.CASCADE)
-    pub_date = models.DateTimeField("Date Published")
+    pub_date = models.DateTimeField("Date Published", default=timezone.now)
     def __str__(self):
         return self.client.name
     
@@ -84,3 +91,24 @@ def update_pet_vaccines(sender, instance, **kwargs):
     current_vaccines.append(instance.type.name)
     pet.vaccines = current_vaccines
     pet.save()
+
+@receiver(post_save, sender=User)
+def create_or_update_client(sender, instance, created, **kwargs):
+    if created:
+        Client.objects.create(
+            name=instance.first_name,
+            surname=instance.last_name,
+            email=instance.username,
+            password=instance.password,
+            pub_date=timezone.now()
+        )
+    else:
+        try:
+            client = Client.objects.get(email=instance.email)
+            client.name = instance.first_name
+            client.surname = instance.last_name
+            client.email = instance.email
+            client.password = instance.password
+            client.save()
+        except Client.DoesNotExist:
+            pass

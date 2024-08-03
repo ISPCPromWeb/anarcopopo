@@ -7,5 +7,5 @@ const getAll = async () => {
 };
 
 export const petsApi = {
-  getAll: getAll(),
+  getAll: getAll,
 };

@@ -1,3 +1,4 @@
+import { userApi } from "@/api";
 import { cookies } from "next/headers";
 
 export const parsedUser = () => {
@@ -8,14 +9,14 @@ export const parsedUser = () => {
   return {};
 };
 
-export const checkIsStaff = (user: any) => {
-  if (user.is_staff) {
-    return user.is_staff;
+export const getCurrentUser = async () => {
+  let currentUser = null;
+  if (user.id) {
+    [currentUser] = await userApi.getOne(user.id);
   }
-  return false;
+  return currentUser;
 };
 
 export const user = parsedUser();
-export const isStaff = checkIsStaff(user);
 export const sessionId = cookies().get("sessionid");
 export const token = cookies().get("csrftoken");

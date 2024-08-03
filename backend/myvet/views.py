@@ -3,16 +3,11 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .models import Product, Client, Vaccine, Pet
-from django.contrib.auth.models import User
 from .serializers import ProductSerializer, PetSerializer, ClientSerializer, VaccineSerializer, UserSerializer
 from django.db.models import Q
 from django.contrib.auth import login, logout
+from django.contrib.auth.models import User
 from .auth_backends import EmailBackend
-
-@api_view(['GET'])
-def homepage(request):
-    data = { 'message': 'Wololo' }
-    return Response(data)
 
 @api_view(['POST'])
 def custom_login(request):
@@ -20,37 +15,25 @@ def custom_login(request):
     password = request.POST["password"]
     pub_date = request.POST["pub_date"]
 
-    user = None
-    user_data = None
+    user = EmailBackend.authenticate(request, email=email, password=password)
+    serializer = ClientSerializer(user)
 
-    try:
-        user = User.objects.get(Q(email=email) | Q(username=email))
-        user_data = UserSerializer(user).data
-    except User.DoesNotExist:
-        pass
-
-    try:
-        user = Client.objects.get(email=email)
-        user_data = ClientSerializer(user).data
-    except Client.DoesNotExist:
-        pass
+    if user is False:
+        return Response({ 'message': 'Wrong Password' }, status=401)
     
     if user is None:
         user = Client(email=email, password=password, pub_date=pub_date)
         user.set_password(user.password)
         user.save()
+        serializer = ClientSerializer(user)
 
-    if user is not None:
-        login(request, user, backend='myvet.auth_backends.EmailBackend')
-        return Response(user_data, status=200)
-    else:
-        return Response({'message': 'Error in login'}, status=400)
+    login(request, user, backend='myvet.auth_backends.EmailBackend')
+    return Response(serializer.data, status=200)
 
-    
 @api_view(['POST'])
 def custom_logout(request):
     logout(request)
-    return Response({'message': 'User logged out successfully'}, status=200)
+    return Response({'message': 'Logout successfully'}, status=200)
         
 class Pets_ApiView(APIView):
     def get(self, request):
@@ -69,7 +52,7 @@ class Pets_ApiView(APIView):
 
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'Pet added successfully'}, status=200)
+            return Response(serializer.data, status=200)
 
         return Response(serializer.errors, status=400)
     
@@ -85,21 +68,23 @@ class Pet_ApiView(APIView):
         
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'Pet updated successfully'}, status=200)
+            return Response(serializer.data, status=200)
             
         return Response(serializer.errors, status=400)
         
     def delete(self, request, id):
         pet = get_object_or_404(Pet, id=id)
+        serializer = PetSerializer(pet, data=request.data)
         pet.delete()
 
-        return Response({'message': 'Pet removed successfully'}, status=200)
+        return Response(serializer.data, status=200)
     
 class Products_ApiView(APIView):
     def get(self, request):
         product_type = request.query_params.get('productType', None)
         product_pet_type = request.query_params.get('productPetType', None)
         value = request.query_params.get('value', '')
+
         if product_type is not None and product_pet_type is not None:
             data = Product.objects.filter(Q(type=product_type) | Q(pet_type=product_pet_type) | Q(name__icontains=value) | Q(description__icontains=value))
         else:
@@ -113,7 +98,7 @@ class Products_ApiView(APIView):
 
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'Product added successfully'}, status=200)
+            return Response(serializer.data, status=200)
 
         return Response(serializer.errors, status=400)
     
@@ -129,15 +114,16 @@ class Product_ApiView(APIView):
         
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'Product updated successfully'}, status=200)
+            return Response(serializer.data, status=200)
             
         return Response(serializer.errors, status=400)
         
     def delete(self, request, id):
         product = get_object_or_404(Product, id=id)
+        serializer = ProductSerializer(product, data=request.data)
         product.delete()
 
-        return Response({'message': 'Product removed successfully'}, status=200)
+        return Response(serializer.data, status=200)
     
 class Clients_ApiView(APIView):
     def get(self, request):
@@ -152,7 +138,7 @@ class Clients_ApiView(APIView):
 
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'User added successfully'}, status=200)
+            return Response(serializer.data, status=200)
 
         return Response(serializer.errors, status=400)
     
@@ -163,20 +149,44 @@ class Client_ApiView(APIView):
         return Response(serializer.data)
     
     def put(self, request, id):
+        email = request.data.get('email')
+        name = request.data.get('name')
+        surname = request.data.get('surname')
+
+        admin_user = None
+
         user = get_object_or_404(Client, id=id)
         serializer = ClientSerializer(user, data=request.data)
-        
+
+        try:
+            admin_user = User.objects.get(username=email)
+            admin_user.first_name = name
+            admin_user.last_name = surname
+            admin_user.email = email
+            admin_user.username = email
+            admin_user.save()
+
+        except User.DoesNotExist:
+            pass
+
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'Client updated successfully'}, status=200)
-            
+            return Response(serializer.data, status=200)   
         return Response(serializer.errors, status=400)
         
     def delete(self, request, id):
         user = get_object_or_404(Client, id=id)
+
+        try:
+            admin_user = User.objects.get(email=request.get['email'])
+            admin_user.delete()
+        except admin_user is None:
+            pass
+
+        serializer = ClientSerializer(user, data=request.data)
         user.delete()
 
-        return Response({'message': 'Client removed successfully'}, status=200)
+        return Response(serializer.data, status=200)
     
 class Vaccines_ApiView(APIView):
     def get(self, request):
@@ -194,7 +204,7 @@ class Vaccines_ApiView(APIView):
 
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'User added successfully'}, status=200)
+            return Response(serializer.data, status=200)
 
         return Response(serializer.errors, status=400)
     
@@ -210,12 +220,13 @@ class Vaccine_ApiView(APIView):
         
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'Vaccine updated successfully'}, status=200)
+            return Response(serializer.data, status=200)
             
         return Response(serializer.errors, status=400)
         
     def delete(self, request, id):
         vaccine = get_object_or_404(Vaccine, id=id)
+        serializer = VaccineSerializer(data=request.data)
         vaccine.delete()
 
-        return Response({'message': 'Vaccine removed successfully'}, status=200)
+        return Response(serializer.data, status=200)

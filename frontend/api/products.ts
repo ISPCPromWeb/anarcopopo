@@ -7,5 +7,5 @@ const getAll = async () => {
 };
 
 export const productsApi = {
-  getAll: getAll(),
+  getAll: getAll,
 };

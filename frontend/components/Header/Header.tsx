@@ -1,9 +1,7 @@
-import { sessionId, user } from "@/utils/auth";
+import { getCurrentUser, sessionId, user } from "@/utils/auth";
 import styles from "./Header.module.css";
 
 export const Header = () => {
-  const userName = user.name || user.email;
-
   return (
     <header>
       <a className={styles.skipMain} href="#main">
@@ -49,7 +47,7 @@ export const Header = () => {
                   aria-current="page"
                   href={sessionId ? `/dashboard` : `/login`}
                 >
-                  {userName || `Ingresa`}
+                  {user.name || `Ingresa`}
                 </a>
               </li>
             </ul>

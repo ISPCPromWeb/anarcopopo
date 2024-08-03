@@ -2,7 +2,7 @@ import { productsApi } from "@/api/products";
 import styles from "./page.module.css";
 
 const Home = async () => {
-  const products = await productsApi.getAll;
+  const products = await productsApi.getAll();
 
   return (
     <main id="main" className={styles.main}>

@@ -3,8 +3,6 @@ from . import views
 from .views import Pets_ApiView, Pet_ApiView, Client_ApiView, Clients_ApiView, Product_ApiView, Products_ApiView, Vaccines_ApiView, Vaccine_ApiView
 
 urlpatterns = [
-    path('', views.homepage),
-
     path('pets', Pets_ApiView.as_view()),
     path('pet/<int:id>', Pet_ApiView.as_view()),
 

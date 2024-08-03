@@ -1,11 +1,11 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import { sessionId } from "@/utils/auth";
 import { redirect } from "next/navigation";
+import { sessionId } from "@/utils/auth";
 
 const Login = () => {
-  if (!sessionId) {
-    redirect("/login");
+  if (sessionId) {
+    redirect("/dashboard");
     return null;
   }
 
