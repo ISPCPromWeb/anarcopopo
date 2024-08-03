@@ -9,30 +9,11 @@
   letter-spacing: 2px;
 }
 
-.resaltado {
-  color: #45b6cc;
-}
-
-.main {
-  font-family: var(--fuenteBase);
-  color: var(--colorFB) !important;
-  background-color: var(--bcolorB);
-}
-
-.content {
-  max-width: 500px;
-}
-
 .logo {
   height: 22em;
 }
 .logoChico {
   height: 18em;
-}
-
-.servicios {
-  border-radius: 50px;
-  margin-bottom: 20px;
 }
 
 .isotipoMain {

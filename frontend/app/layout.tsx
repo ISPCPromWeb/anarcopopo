@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { BootstrapWrapper } from "../components/BootstrapWrapper/BootstrapWrapper";
 import { Providers } from "@/context";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,7 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} body-dark bg-gray`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <BootstrapWrapper>{children}</BootstrapWrapper>
+        </Providers>
       </body>
     </html>
   );

@@ -1,16 +1,17 @@
-.vincnav{
-    color: var(--colorFVR);
-  }
-  .vincnav:hover{
-    color: var(--colorFVC);
-  }
-  
-  .navbar {
-    min-height: 25px;
-    background-color: var(--bcolorNyV) !important;
-    border-bottom: 1px solid #45B6CC;
-  }
-  
-  .isotipoNav{
-    max-height: 50px;
-  }
+.vincnav {
+  color: var(--colorFVR) !important;
+}
+
+.vincnav:hover {
+  color: var(--colorFVC) !important;
+}
+
+.navbar {
+  min-height: 25px;
+  background-color: var(--bcolorNyV) !important;
+  border-bottom: 1px solid #45b6cc;
+}
+
+.isotipoNav {
+  max-height: 50px;
+}

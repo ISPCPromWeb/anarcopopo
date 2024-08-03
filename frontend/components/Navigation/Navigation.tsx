@@ -1,16 +1,24 @@
 import Link from "next/link";
 import styles from "./Navigation.module.css";
+import { cookies } from "next/headers";
 
 export const Navigation = () => {
+  const user = JSON.parse(cookies().get("user")?.value || "");
+  const sessionId = cookies().get("userSession");
+
   return (
-    <nav className="navbar navbar-expand-lg bg-transparent">
+    <nav className={`${styles.navbar} navbar navbar-expand-lg bg-transparent`}>
       <div className="container">
-        <Link className={`${styles.vincnav} navbar-brand fw-bold`} href={`/`}>
-          <img className="isotipoNav mx-3" src="/assets/IsoLight.png" alt="" />
-          My Pet
+        <Link className={`${styles.vincnav} navbar-brand fw-bold`} href={"/"}>
+          <img
+            className={`${styles.isotipoNav} mx-3`}
+            src="./assets/IsoLight.png"
+            alt=""
+          />
+          My Vet
         </Link>
         <button
-          className={`navbar-toggler`}
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
@@ -18,33 +26,27 @@ export const Navigation = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className={`navbar-toggler-icon`}></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div className={`collapse navbar-collapse`} id="navbarSupportedContent">
-          <ul className={`navbar-nav ms-auto mb-1 mb-lg-0`}>
-            <li className={`nav-item`}>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav ms-auto mb-1 mb-lg-0">
+            <li className="nav-item">
               <Link
-                className={`${styles.vincnav} nav-link active fw-bold`}
+                className={`${styles.vincnav} nav-link active fw-bold me-4`}
+                href={"/store"}
                 aria-current="page"
-                href="#"
               >
-                Ingreso para Veterinarias
+                Tienda
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                className="vincnav nav-link disabled"
-                href="#"
-                tabIndex={-1}
-                aria-disabled="true"
+                className={`${styles.vincnav} nav-link active fw-bold me-4`}
+                aria-current="page"
+                href={sessionId ? "/dashboard" : "/login"}
               >
-                App Dueños de Mascotas
+                {user ? user.name : `Ingresa`}
               </Link>
-            </li>
-            <li className="nav-item">
-              <a className="vincnav nav-link active" href="#">
-                Contacto
-              </a>
             </li>
           </ul>
         </div>
