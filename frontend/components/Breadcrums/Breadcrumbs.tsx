@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Breadcrumbs.module.css";
 
 export const Breadcrumbs = (props: any) => {
@@ -6,9 +7,9 @@ export const Breadcrumbs = (props: any) => {
     <nav className={`${styles.contBreadcrumb} align-top  pt-3 pe-3`}>
       <ol className="breadcrumb">
         <li className="breadcrumb-item">
-          <a className={`${styles.vinculos} `} href="/" title="My Vet">
+          <Link className={`${styles.vinculos} `} href="/" title="My Vet">
             Inicio
-          </a>
+          </Link>
         </li>
         <li className="breadcrumb-item">
           <a className={`${styles.vinculos} `} href="/store" title="Tienda">
@@ -22,5 +23,3 @@ export const Breadcrumbs = (props: any) => {
     </nav>
   );
 };
-
-// puedo elegir name, price o q quiera del objeto, siempre y cuando se lo pase en la instancia (lo q pongas en la pdp). Data binding, one way binding, entre componentes del front. Los vinculos podrían ser un componente en sí mismo.

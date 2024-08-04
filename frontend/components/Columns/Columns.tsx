@@ -1,5 +1,3 @@
-// import { productsApi } from "@/api/products";
-
 import styles from "./Columns.module.css";
 
 interface ColumnsProps {
