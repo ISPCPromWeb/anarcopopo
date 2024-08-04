@@ -13,7 +13,7 @@ export const Columns = async (props: ColumnsProps) => {
   const { color, borderRadius, children, reversed } = props;
   return (
     <div
-      className={`${styles.servicioFila}  ${
+      className={`d-flex ${styles.servicioFila} ${
         styles.servicios
       } row bg-${color} rounded-${borderRadius} ${reversed && styles.reversed}`}
     >

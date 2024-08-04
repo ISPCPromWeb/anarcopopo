@@ -11,8 +11,11 @@ const Home = async () => {
 
   return (
     <main id="main">
-      <section className={`${styles.hero} px-5 text-left d-flex`} id="hero">
-        <div className="container">
+      <section
+        className={`${styles.hero} h-100 px-5 text-left d-flex`}
+        id="hero"
+      >
+        <div className=" container">
           <div className="row">
             <div className="col-lg-5">
               <div
@@ -23,7 +26,11 @@ const Home = async () => {
               >
                 <div className="carousel-inner">
                   <div className="carousel-item active">
-                    <img src="./assets/LogoDark.png" className=" logo" alt="" />
+                    <img
+                      src="./assets/LogoDark.png"
+                      className={styles.logo}
+                      alt=""
+                    />
                   </div>
                   <div className="carousel-item">
                     <img

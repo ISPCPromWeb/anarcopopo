@@ -9,7 +9,7 @@ export const ServiceContent = (props) => {
   } = props;
   return (
     <Column size={7}>
-      <div className="align-self-center p-5">
+      <div className="w-100 align-self-center p-5">
         <h2 className="display-4 fw-bold ms-4 ">{title}</h2>
 
         <p className="mx-4 mt-5 mb-2 fs-5">{description}</p>

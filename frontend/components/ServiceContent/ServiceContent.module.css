@@ -112,9 +112,7 @@
     text-align: left;
   }
   .vinculos {
-    font-size: 3em;
     padding: 20px;
-    display: flex;
   }
   #contacto {
     display: none;
@@ -130,8 +128,10 @@
     display: none;
   }
   .vinculos {
-    font-size: 2.2em !important;
+    font-size: 1em !important;
     padding: 15px;
+    text-align: center;
+    display: block;
   }
   #contacto {
     display: none;

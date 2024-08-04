@@ -16,7 +16,7 @@ export const Breadcrumbs = (props) => {
           </a>
         </li>
         <li className="breadcrumb-item active">
-          <span className={`${styles.vinculosActive}`}>{name}</span>
+          <span className={`${styles.vinculos}`}>{name}</span>
         </li>
       </ol>
     </nav>

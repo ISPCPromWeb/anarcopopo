@@ -15,7 +15,7 @@ const Store = async () => {
   return (
     <main id="main" className={styles.main}>
       <StoreHeader />
-      <div className="d-flex flex-row">
+      <div className="col-12 h-100 d-block d-md-flex md-flex-row">
         <StoreFilter />
         <section className={`col-9`}>
           <div className={`${styles.cardsContainer} mb-4`}>

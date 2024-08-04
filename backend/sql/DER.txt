@@ -1,0 +1,32 @@
+[ProductType] <--- [Product] ---> [PetType]
+ (id)               (id)            (id)
+ (name)             (name)          (name)
+                   (description)
+                   (quantity)
+                   (price)
+                   (img)
+                   (pub_date)
+
+[Pet] ---> [PetType]
+ (id)       (id)
+ (name)     (name)
+ (breed)
+ (age)
+ (owner) <-- [Client]
+ (vaccines)  (id)
+ (pub_date)  (name)
+             (surname)
+             (dni)
+             (address)
+             (email)
+             (phone)
+             (password)
+             (level)
+             (last_login)
+             (pub_date)
+
+[Vaccine] --> [VaccineType]
+ (id)         (id)
+ (app_date)   (name)
+ (pet)
+

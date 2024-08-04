@@ -3,7 +3,11 @@ import styles from "./Navigation.module.css";
 import { cookies } from "next/headers";
 
 export const Navigation = () => {
-  const user = JSON.parse(cookies().get("user")?.value || "");
+  let user;
+  if (cookies().get("user")) {
+    user = JSON.parse(cookies().get("user")?.value || "");
+  }
+
   const sessionId = cookies().get("userSession");
 
   return (

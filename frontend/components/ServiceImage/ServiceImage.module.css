@@ -7,10 +7,6 @@
   max-height: 100px;
 }
 
-.imgVetDuenos {
-  max-width: 110%;
-}
-
 .lista {
   list-style: none;
   list-style-position: outside;
@@ -111,9 +107,6 @@
   .icono-wrap {
     flex-wrap: wrap;
     justify-content: center !important;
-  }
-  .imgVetDuenos {
-    display: none;
   }
   .vinculos {
     font-size: 2.2em !important;

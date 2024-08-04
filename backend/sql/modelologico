@@ -1,0 +1,38 @@
+Tabla: ProductType
+---------------------------------
+id (PK) | name
+
+Tabla: Product
+---------------------------------
+id (PK) | name | description | quantity | price | type_id (FK) | pet_type_id (FK) | img | pub_date
+
+Tabla: PetType
+---------------------------------
+id (PK) | name
+
+Tabla: Pet
+---------------------------------
+id (PK) | name | type_id (FK) | breed | age | owner_id (FK) | vaccines | pub_date
+
+Tabla: Client
+---------------------------------
+id (PK) | name | surname | dni | address | email | phone | password | level | last_login | pub_date
+
+Tabla: VaccineType
+---------------------------------
+id (PK) | name | pet_type_id (FK)
+
+Tabla: Vaccine
+---------------------------------
+id (PK) | type_id (FK) | app_date | pet_id (FK)
+
+
+
+Relaciones:
+- Product.type_id -> ProductType.id
+- Product.pet_type_id -> PetType.id
+- Pet.type_id -> PetType.id
+- Pet.owner_id -> Client.id
+- Vaccine.type_id -> VaccineType.id
+- Vaccine.pet_id -> Pet.id
+

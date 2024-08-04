@@ -5,7 +5,6 @@ import { products as mockedProducts } from "@/constants";
 export const StoreFilter = () => {
   return (
     <>
-      <div className={`${styles.separator}`}></div>
       <div className={`${styles.contenedor} col-3 p-3`}>
         <h4 className="d-flex align-items-center pb-3 mb-3  text-decoration-none border-bottom">
           <svg className="bi pe-none me-2" width="30" height="24">
