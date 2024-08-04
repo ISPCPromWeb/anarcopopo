@@ -10,7 +10,7 @@ export const ServiceImage = (props) => {
       <div className="w-100 d-md-flex justify-content-md-center align-self-center text-center mx-auto p-5">
         <img
           src={image}
-          className={`img-fluid d-none d-md-block ${styles.imgVetDuenos}`}
+          className={`img-fluid d-md-block ${styles.imgVetDuenos}`}
           alt=""
         />
       </div>

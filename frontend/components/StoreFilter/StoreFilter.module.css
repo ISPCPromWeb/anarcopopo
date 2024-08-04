@@ -1,43 +1,47 @@
-.lista {
-  list-style: none;
-  list-style-position: outside;
-  font-size: 1.3em !important;
-}
-.elemLista2 {
-  font-size: 1.3em;
-  padding-bottom: 0.5px !important;
-  padding-right: 0.3em;
-  margin-top: 0px;
-  color: var(--colorFB);
+.h4Small {
+  display: none;
 }
 
-.vincnav {
-  color: var(--colorFVR) !important;
-}
+@media screen and (min-width: 768px) {
+  .btnSmall {
+    display: none;
+  }
+  .lista {
+    list-style: none;
+    list-style-position: outside;
+    font-size: 1.3em !important;
+  }
+  .elemLista2 {
+    font-size: 1.3em;
+    padding-bottom: 0.5px !important;
+    padding-right: 0.3em;
+    margin-top: 0px;
+    color: var(--colorFB);
+  }
 
-.vincnav:hover {
-  color: var(--colorFVC) !important;
-}
+  .vincnav {
+    color: var(--colorFVR) !important;
+  }
 
-.navbar {
-  min-height: 25px;
-  background-color: var(--bcolorNyV) !important;
-  border-bottom: 1px solid #45b6cc;
-}
+  .vincnav:hover {
+    color: var(--colorFVC) !important;
+  }
 
-.separator {
-  flex-shrink: 0;
-  width: 1.5rem;
-  height: 100vh;
-}
-.btn-toggle::before {
-  width: 1.25em;
-  line-height: 0;
-  content: url("/assets/flecha.png");
-  transition: transform 0.35s ease;
-  transform-origin: 0.5em 50%;
-  transform: rotate(90deg);
-}
-.btn-toggle[aria-expanded="true"]::before {
-  transform: rotate(90deg);
+  .navbar {
+    min-height: 25px;
+    background-color: var(--bcolorNyV) !important;
+    border-bottom: 1px solid #45b6cc;
+  }
+
+  .btn-toggle::before {
+    width: 1.25em;
+    line-height: 0;
+    content: url("/assets/flecha.png");
+    transition: transform 0.35s ease;
+    transform-origin: 0.5em 50%;
+    transform: rotate(90deg);
+  }
+  .btn-toggle[aria-expanded="true"]::before {
+    transform: rotate(90deg);
+  }
 }

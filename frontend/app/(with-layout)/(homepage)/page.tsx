@@ -28,14 +28,14 @@ const Home = async () => {
                   <div className="carousel-item active">
                     <img
                       src="./assets/LogoDark.png"
-                      className={styles.logo}
+                      className={`${styles.logo} img-fluid  justify-content-sm-center`}
                       alt=""
                     />
                   </div>
                   <div className="carousel-item">
                     <img
                       src="./assets/LogoLight.png"
-                      className={styles.logo}
+                      className={`${styles.logo} img-fluid justify-content-sm-center`}
                       alt=""
                     />
                   </div>
