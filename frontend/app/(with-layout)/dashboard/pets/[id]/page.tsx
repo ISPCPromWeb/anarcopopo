@@ -1,5 +1,4 @@
 import styles from "./page.module.css";
-import { redirect } from "next/navigation";
 import { petsApi } from "@/api";
 
 const Pet = async (props: any) => {

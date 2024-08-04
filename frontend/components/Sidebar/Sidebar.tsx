@@ -21,12 +21,12 @@ export const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link href={`/dashboard/clients`} className="nav-link">
+          <Link href={`/dashboard/vaccines`} className="nav-link">
             Vacunas
           </Link>
         </li>
         <li>
-          <Link href={`/dashboard/clients`} className="nav-link">
+          <Link href={`/dashboard/products`} className="nav-link">
             Productos
           </Link>
         </li>

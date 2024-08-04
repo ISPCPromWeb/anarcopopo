@@ -1,10 +1,22 @@
+import os
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, AbstractBaseUser, BaseUserManager
 from django.utils import timezone
+from django.core.files.storage import FileSystemStorage
 
+def product_image_upload_path(instance, filename):
+    base_filename, file_extension = os.path.splitext(filename)
+    return f'{base_filename}{file_extension}'
+
+class NoHashFileSystemStorage(FileSystemStorage):
+    def get_available_name(self, name, max_length=None):
+        # Check if the file name already exists, delete if it does
+        if self.exists(name):
+            os.remove(os.path.join(self.location, name))
+        return name
 class ClientManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -46,7 +58,7 @@ class Product(models.Model):
     price = models.IntegerField(default=100)
     type = models.ForeignKey('ProductType', on_delete=models.CASCADE)
     pet_type = models.ForeignKey('PetType', on_delete=models.CASCADE)
-    img = models.ImageField(max_length=10000)
+    img = models.ImageField(upload_to=product_image_upload_path, storage=NoHashFileSystemStorage(), max_length=10000)
     pub_date = models.DateTimeField("Date Published", default=timezone.now)
 
     def __str__(self):
