@@ -63,7 +63,7 @@ export const Sidebar = () => {
             </li>
             <hr />
             <li className="nav-item">
-              <form action={`/dashboard/api`} method="post">
+              <form>
                 <button
                   className={`${styles.btn} btn vincnav nav-link`}
                   type="submit"

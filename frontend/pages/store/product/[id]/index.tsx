@@ -1,6 +1,6 @@
 import { products as mockedProducts } from "@/constants";
 import { Breadcrumbs } from "@/components/Breadcrums/Breadcrumbs";
-import styles from "./page.module.css";
+import styles from "./index.module.css";
 import { Columns } from "@/components/Columns";
 import { ServiceImage } from "@/components/ServiceImage";
 import { Column } from "@/components/Column";

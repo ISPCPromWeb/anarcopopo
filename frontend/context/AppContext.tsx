@@ -12,15 +12,19 @@ export interface AppContextProviderProps {
 }
 
 interface AppContextType {
+  type: string;
   theme: string;
   isLoading: boolean;
+  setType: React.Dispatch<React.SetStateAction<string>>;
   setTheme: React.Dispatch<React.SetStateAction<string>>;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const defaultContextValue: AppContextType = {
+  type: "common",
   theme: "dark",
   isLoading: false,
+  setType: () => {},
   setTheme: () => {},
   setIsLoading: () => {},
 };
@@ -28,6 +32,7 @@ const defaultContextValue: AppContextType = {
 const AppContext = createContext<AppContextType>(defaultContextValue);
 
 export const AppProvider: FC<AppContextProviderProps> = ({ children }) => {
+  const [type, setType] = useState<string>("common");
   const [theme, setTheme] = useState<string>("dark");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -35,12 +40,14 @@ export const AppProvider: FC<AppContextProviderProps> = ({ children }) => {
 
   const contextValue = useMemo(
     () => ({
+      type,
       theme,
       isLoading,
+      setType,
       setTheme,
       setIsLoading,
     }),
-    [isLoading, theme]
+    [isLoading, theme, type]
   );
 
   return (

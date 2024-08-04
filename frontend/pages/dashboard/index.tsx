@@ -1,5 +1,5 @@
 import { UserForm } from "@/components/UserForm";
-import styles from "./page.module.css";
+import styles from "./index.module.css";
 import { WithAuth } from "@/components/WithAuth";
 
 const Dashboard = () => {

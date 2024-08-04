@@ -4,10 +4,11 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export const UserForm = () => {
-  const user = JSON.parse(cookies().get("user")?.value || "");
+  const user = null;
+  /* const user = JSON.parse(cookies().get("user")?.value || ""); */
 
   const handleUserUpdate = async (form: FormData) => {
-    "use server";
+    /* "use server";
 
     form.set("id", user?.id);
     form.set("password", user?.password);
@@ -19,7 +20,7 @@ export const UserForm = () => {
       credentials: "include",
     });
 
-    redirect("/dashboard");
+    redirect("/dashboard"); */
   };
 
   return (

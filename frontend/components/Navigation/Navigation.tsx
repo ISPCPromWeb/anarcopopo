@@ -1,14 +1,9 @@
 import Link from "next/link";
 import styles from "./Navigation.module.css";
-import { cookies } from "next/headers";
 
 export const Navigation = () => {
   let user;
-  if (cookies().get("user")) {
-    user = JSON.parse(cookies().get("user")?.value || "");
-  }
-
-  const sessionId = cookies().get("userSession");
+  let sessionId;
 
   return (
     <nav className={`${styles.navbar} navbar navbar-expand-lg bg-transparent`}>

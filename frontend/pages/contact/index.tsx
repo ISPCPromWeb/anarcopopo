@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./index.module.css";
 
 const Contact = () => {
   return (
@@ -26,11 +26,7 @@ const Contact = () => {
               </div>
 
               <div className="col-sm-6 col-md-12 text-center d-inline m-1">
-                <form
-                  action="/cotactoConsulta"
-                  method="POST"
-                  encType="multipart/form-data"
-                >
+                <form>
                   <div className={`${styles.row} gap-3`}>
                     <div className="col-sm-4 form-group ">
                       <input

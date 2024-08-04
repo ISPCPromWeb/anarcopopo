@@ -1,6 +1,6 @@
 // import { productsApi } from "@/api/products";
 import { PHASE_PRODUCTION_SERVER } from "next/dist/shared/lib/constants";
-import styles from "./page.module.css";
+import styles from "./index.module.css";
 import { products as mockedProducts } from "@/constants";
 import Link from "next/link";
 import { StoreHeader } from "@/components/StoreHeader";

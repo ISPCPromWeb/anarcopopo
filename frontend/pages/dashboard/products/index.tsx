@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./page.module.css";
+import styles from "./index.module.css";
 import { productsApi } from "@/api";
 import Image from "next/image";
 

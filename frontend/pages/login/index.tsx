@@ -1,4 +1,5 @@
-import styles from "./page.module.css";
+import { authApi, userApi } from "@/api";
+import styles from "./index.module.css";
 
 const Login = () => {
   return (
@@ -87,7 +88,7 @@ const Login = () => {
                   My Vet
                 </h1>
                 <h2 className="mb-5">Bienvenida/o</h2>
-                <form action={`/login/api`} method="post">
+                <form>
                   <div className="mb-3">
                     <label
                       htmlFor="exampleInputEmail1"
@@ -127,8 +128,8 @@ const Login = () => {
                   </div>
                   <div className="align-items-center ">
                     <button
-                      type="submit"
                       className={`${styles.btn}  mx-auto btn w-30 `}
+                      onClick={(e) => authApi.userLogin(e)}
                     >
                       Ingresar
                     </button>

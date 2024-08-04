@@ -1,4 +1,4 @@
-import styles from "./page.module.css";
+import styles from "./index.module.css";
 import { products as mockedProducts } from "@/constants";
 import Link from "next/link";
 import { CartItem } from "@/components/CartItem";

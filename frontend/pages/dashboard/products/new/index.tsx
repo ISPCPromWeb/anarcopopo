@@ -1,13 +1,9 @@
-import styles from "./page.module.css";
+import styles from "./index.module.css";
 import { productsApi } from "@/api";
 
 const NewProduct = async () => {
   return (
-    <form
-      action={`/dashboard/products/new/api`}
-      method="POST"
-      encType="multipart/form-data"
-    >
+    <form>
       <div className="col-md-4">
         <label htmlFor="nombre" className="form-label">
           Nombre

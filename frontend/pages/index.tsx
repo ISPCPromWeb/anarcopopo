@@ -1,13 +1,13 @@
 // import { productsApi } from "@/api/products";
-import { products as mockedProducts } from "@/constants";
-import styles from "./page.module.css";
+import styles from "./index.module.css";
 import { Services } from "@/components/Services";
 import { FeatProducts } from "@/components/FeatProducts";
 import { StoreHeader } from "@/components/StoreHeader";
+import { productsApi } from "@/api";
 
 const Home = async () => {
-  /* const products = await productsApi.getAll(); */
-  const products = mockedProducts;
+  const products = await productsApi.getAll();
+  /* const products = mockedProducts; */
 
   return (
     <main id="main">

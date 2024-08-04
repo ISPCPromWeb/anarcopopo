@@ -1,6 +1,7 @@
 import styles from "./Footer.module.css";
 
-export const Footer = () => {
+export const Footer = (props: any) => {
+  const { type } = props;
   return (
     <footer>
       <footer className="w-100 d-flex align-items-center justify-content-center flex-wrap">
