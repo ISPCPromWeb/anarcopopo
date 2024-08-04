@@ -17,7 +17,6 @@ export const CheckoutButton = (props: any) => {
           body: product,
         });
         const { url } = await response.json();
-        console.log(url);
         setUrl(url);
       } catch (error) {
         console.error(error);

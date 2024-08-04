@@ -6,7 +6,7 @@ mercadopago.configure({
   access_token: process.env.MEPA_TOKEN || "",
 });
 
-const URL = "http://localhost:3000/";
+const URL = "https://myvet-three.vercel.app/";
 
 export async function POST(req: NextRequest) {
   try {
@@ -27,8 +27,6 @@ export async function POST(req: NextRequest) {
     };
 
     const response = await mercadopago.preferences.create(preference);
-
-    console.log("lalala", response.body.init_point);
 
     return new Response(JSON.stringify({ url: response.body.init_point }), {
       status: 200,

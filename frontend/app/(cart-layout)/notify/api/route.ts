@@ -1,4 +1,5 @@
 import mercadopago from "mercadopago";
+import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
 
 mercadopago.configure({
@@ -18,12 +19,13 @@ export async function GET(req: NextRequest) {
 
       console.log({ payment, paymentStatus });
 
-      return new Response(JSON.stringify({ payment, paymentStatus }), {
+      redirect("/notify");
+      /* return new Response(JSON.stringify({ payment, paymentStatus }), {
         status: 200,
         headers: {
           "Content-Type": "application/json",
         },
-      });
+      }); */
     } else {
       return new Response(JSON.stringify({ message: "Invalid topic" }), {
         status: 400,
