@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import styles from "./CheckoutButton.module.css";
 
 export const CheckoutButton = (props: any) => {
   const { product } = props;
@@ -30,10 +31,12 @@ export const CheckoutButton = (props: any) => {
   return (
     <div>
       {loading ? (
-        <button>Cargando</button>
+        <span>Cargando...</span>
       ) : (
         <>
-          <a href={url || ""}>Comprar ahora</a>
+          <a className={`${styles.btn} btn w-100`} href={url || ""}>
+            Comprar ahora
+          </a>
         </>
       )}
     </div>

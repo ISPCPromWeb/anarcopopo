@@ -49,6 +49,7 @@ export const Navigation = () => {
                 aria-current="page"
                 href={sessionId ? "/dashboard" : "/login"}
               >
+                Ingresá
                 {user ? user.name : `Ingresa`}
               </Link>
             </li>

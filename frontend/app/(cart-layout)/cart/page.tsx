@@ -22,7 +22,7 @@ const Cart = async () => {
   return (
     <>
       <div className="row g-5">
-        <div className="col-md-5 col-lg-6 order-md-last">
+        <div className="col-md-12 col-lg-6 order-last ">
           <div className="d-flex justify-content-between align-items-center mb-4">
             <div>
               <h3 className="mb-1">Tu Carrito</h3>
@@ -37,8 +37,10 @@ const Cart = async () => {
               <strong>$20</strong>
             </li>
           </ul>
+          <CheckoutButton product={mockedProducts[0]} />
         </div>
-        <div className="col-md-5 col-lg-6">
+
+        <div className="col-md-12 col-lg-6 ">
           <h3>Datos de la compra</h3>
           <form className="needs-validation">
             <div className="row g-3">
@@ -171,84 +173,6 @@ const Cart = async () => {
             </div>
 
             <hr className="my-4" />
-
-            <h4 className="mb-3">Pago</h4>
-
-            <div className="row gy-3">
-              <div className="col-md-6">
-                <label htmlFor="cc-number" className="form-label">
-                  Número de tarjeta de crédito
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="cc-number"
-                  placeholder=""
-                  required
-                />
-                <div className="invalid-feedback">
-                  Se requiere número de tarjeta de crédito
-                </div>
-              </div>
-              <div className="col-md-6">
-                <label htmlFor="cc-name" className="form-label">
-                  Nombre en la tarjeta
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="cc-name"
-                  placeholder=""
-                  required
-                />
-                <small className="text-body-secondary">
-                  Nombre completo como se muestra en la tarjeta
-                </small>
-                <div className="invalid-feedback">
-                  Se requiere el nombre en la tarjeta
-                </div>
-              </div>
-
-              <div className="col-md-3">
-                <label htmlFor="cc-expiration" className="form-label">
-                  Vencimiento
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="cc-expiration"
-                  placeholder=""
-                  required={true}
-                />
-                <div className="invalid-feedback">
-                  Fecha de vencimiento requerida
-                </div>
-              </div>
-
-              <div className="col-md-3">
-                <label htmlFor="cc-cvv" className="form-label">
-                  CVV
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="cc-cvv"
-                  placeholder=""
-                  required
-                />
-                <div className="invalid-feedback">
-                  {" "}
-                  Código de seguridad requerido
-                </div>
-              </div>
-            </div>
-
-            <hr className="my-4" />
-
-            {/* <button className={`${styles.btn} btn w-100`} type="submit">
-              Continuar con el pago
-            </button> */}
-            <CheckoutButton product={mockedProducts[0]} />
           </form>
         </div>
       </div>
