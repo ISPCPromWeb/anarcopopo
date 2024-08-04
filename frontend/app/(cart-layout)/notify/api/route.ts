@@ -2,7 +2,7 @@ import mercadopago from "mercadopago";
 import { NextRequest } from "next/server";
 
 mercadopago.configure({
-  access_token: process.env.MEPA_TOKEN,
+  access_token: process.env.MEPA_TOKEN || "",
 });
 
 export async function GET(req: NextRequest) {
@@ -37,7 +37,6 @@ export async function GET(req: NextRequest) {
     return new Response(
       JSON.stringify({
         message: "Internal Server Error",
-        error: error.message,
       }),
       {
         status: 500,

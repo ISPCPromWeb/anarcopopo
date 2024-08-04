@@ -3,7 +3,7 @@
 import { Column } from "../Column";
 import styles from "./ServiceImage.module.css";
 
-export const ServiceImage = (props) => {
+export const ServiceImage = (props: any) => {
   const { image } = props;
   return (
     <Column size={5}>

@@ -3,7 +3,7 @@
 import { Column } from "../Column";
 import styles from "./ServiceContent.module.css";
 
-export const ServiceContent = (props) => {
+export const ServiceContent = (props: any) => {
   const {
     content: { title, description, soon, features, anchors },
   } = props;
@@ -19,7 +19,7 @@ export const ServiceContent = (props) => {
           {soon}
         </p>
         <ul className={`${styles.lista2} text-end`}>
-          {features.map((feature, index) => (
+          {features.map((feature: any, index: number) => (
             <li key={index} className="text-end">
               {feature}
             </li>
@@ -27,7 +27,7 @@ export const ServiceContent = (props) => {
         </ul>
 
         {anchors &&
-          anchors.map((anchor, index) => (
+          anchors.map((anchor: any, index: number) => (
             <a
               key={index}
               className={`${styles.vinculos} mx-5 my-6 text-center`}

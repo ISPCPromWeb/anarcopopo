@@ -1,7 +1,8 @@
 "use client";
 import { useEffect } from "react";
 
-export const BootstrapWrapper = ({ children }) => {
+export const BootstrapWrapper = (props: any) => {
+  const { children } = props;
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min.js");
   }, []);

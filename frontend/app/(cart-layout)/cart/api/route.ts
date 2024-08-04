@@ -3,7 +3,7 @@ import { CreatePreferencePayload } from "mercadopago/models/preferences/create-p
 import { NextRequest } from "next/server";
 
 mercadopago.configure({
-  access_token: process.env.MEPA_TOKEN,
+  access_token: process.env.MEPA_TOKEN || "",
 });
 
 const URL = "http://localhost:3000/";

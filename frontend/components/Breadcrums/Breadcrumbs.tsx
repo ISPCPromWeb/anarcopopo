@@ -1,6 +1,6 @@
 import styles from "./Breadcrumbs.module.css";
 
-export const Breadcrumbs = (props) => {
+export const Breadcrumbs = (props: any) => {
   const { name } = props;
   return (
     <nav className={`${styles.contBreadcrumb} align-top  pt-3 pe-3`}>
