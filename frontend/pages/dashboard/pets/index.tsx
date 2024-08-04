@@ -1,8 +1,8 @@
 import styles from "./index.module.css";
 import { petsApi } from "@/api";
 
-const Pets = async () => {
-  const pets = await petsApi.getAll();
+const Pets = () => {
+  /* const pets = await petsApi.getAll(); */
 
   return (
     <div className={styles.clientsList}>

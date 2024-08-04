@@ -9,8 +9,8 @@ import { FeatProducts } from "@/components/FeatProducts";
 import { ProductContent } from "@/components/ProductContent";
 import { productsApi } from "@/api";
 
-const Product = async ({ params }: { params: { id: string } }) => {
-  const [product] = await productsApi.getOne(Number(params.id));
+const Product = ({ params }: { params: { id: string } }) => {
+  /* const [product] = await productsApi.getOne(Number(params.id)); */
 
   return (
     <>
@@ -19,17 +19,17 @@ const Product = async ({ params }: { params: { id: string } }) => {
           <section className="d-flex py-3" id="plpContainer">
             <div className="container mb-4 d-block align-self-center">
               <div className="justify-content-end">
-                <Breadcrumbs name={product.name} />
+                {/* <Breadcrumbs name={product.name} /> */}
               </div>
 
               <Columns color="white" borderRadius="3">
-                <ServiceImage image={product.img} />
+                {/* <ServiceImage image={product.img} />
                 <ProductContent
                   content={{
                     name: product.name,
                     price: product.price,
                   }}
-                />
+                /> */}
               </Columns>
             </div>
           </section>
@@ -41,9 +41,9 @@ const Product = async ({ params }: { params: { id: string } }) => {
                 <h2 className={`${styles.h2Description} ms-4 mb-4 `}>
                   Descripción
                 </h2>
-                <p className={`${styles.parag} mx-4 mt-5 mb-2`}>
+                {/* <p className={`${styles.parag} mx-4 mt-5 mb-2`}>
                   {product.description}
-                </p>
+                </p> */}
               </div>
             </Column>
           </Columns>

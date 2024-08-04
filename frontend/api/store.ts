@@ -1,4 +1,4 @@
-import mercadopago from "mercadopago";
+/* import mercadopago from "mercadopago";
 import { CreatePreferencePayload } from "mercadopago/models/preferences/create-payload.model";
 import { redirect } from "next/navigation";
 
@@ -31,14 +31,14 @@ const getUrl = async () => {
 
     return response.body.init_point;
 
-    /* return new Response(JSON.stringify({ url:  }), {
+    return new Response(JSON.stringify({ url:  }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
       },
-    }); */
+    });
   } catch (error) {
-    /* console.error(error);
+    console.error(error);
     return new Response(
       JSON.stringify({
         message: "Internal Server Error",
@@ -49,7 +49,7 @@ const getUrl = async () => {
           "Content-Type": "application/json",
         },
       }
-    ); */
+    );
   }
 };
 
@@ -68,23 +68,17 @@ const redirectToSummary = async (req: any) => {
       console.log({ payment, paymentStatus });
 
       redirect("/notify");
-      /* return new Response(JSON.stringify({ payment, paymentStatus }), {
-        status: 200,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }); */
     } else {
-      /* return new Response(JSON.stringify({ message: "Invalid topic" }), {
+      return new Response(JSON.stringify({ message: "Invalid topic" }), {
         status: 400,
         headers: {
           "Content-Type": "application/json",
         },
-      }); */
+      });
     }
   } catch (error) {
     console.error(error);
-    /* return new Response(
+    return new Response(
       JSON.stringify({
         message: "Internal Server Error",
       }),
@@ -94,7 +88,7 @@ const redirectToSummary = async (req: any) => {
           "Content-Type": "application/json",
         },
       }
-    ); */
+    );
   }
 };
 
@@ -102,3 +96,4 @@ export const storeApi = {
   getUrl: getUrl,
   redirectToSummary: redirectToSummary,
 };
+ */

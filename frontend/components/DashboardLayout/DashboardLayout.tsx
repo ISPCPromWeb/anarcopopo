@@ -1,5 +1,5 @@
 import { Sidebar } from "@/components/Sidebar/Sidebar";
-import styles from "./layout.module.css";
+import styles from "./DashboardLayout.module.css";
 
 const DashboardLayout = ({ children }: any) => {
   return (

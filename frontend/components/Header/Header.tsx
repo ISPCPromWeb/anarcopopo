@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import styles from "./Header.module.css";
 import { Navigation } from "../Navigation";
 

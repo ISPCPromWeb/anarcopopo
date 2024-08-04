@@ -1,19 +1,18 @@
 import { API_URL } from "@/api/constants";
 import { redirect } from "next/navigation";
+/* import { cookies } from "next/headers"; */
 
-const login = async (req: any) => {
-  console.log(req);
+const login = async (formData: FormData) => {
   /* if (cookies().get("user")) {
     cookies().delete("user");
   } */
 
-  const form = await req.formData();
+  const form = formData;
   form.append("pub_date", new Date().toISOString());
 
   const res = await fetch(`${API_URL}/login`, {
     method: "POST",
     body: form,
-    credentials: "include",
   });
 
   const result = await res.json();
@@ -49,18 +48,20 @@ const login = async (req: any) => {
     }
   } else {
     console.error("No cookies received from the server");
-    redirect("/login");
+    return result;
+    /* redirect("/login"); */
   }
 };
 
 const logout = async (req: any) => {
   const res = await fetch(`${API_URL}/logout`, { ...req, method: "POST" });
-
+  const result = await res.json();
   /* cookies().delete("userToken");
   cookies().delete("userSession");
   cookies().delete("user"); */
 
-  redirect("/");
+  /* redirect("/"); */
+  return result;
 };
 
 export const authApi = {

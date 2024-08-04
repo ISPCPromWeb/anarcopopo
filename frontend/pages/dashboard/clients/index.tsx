@@ -2,8 +2,8 @@ import styles from "./index.module.css";
 import { userApi } from "@/api";
 import Link from "next/link";
 
-const Clients = async () => {
-  const clients = await userApi.getAll();
+const Clients = () => {
+  /* const clients = await userApi.getAll(); */
 
   return (
     <div className={styles.clientsList}>

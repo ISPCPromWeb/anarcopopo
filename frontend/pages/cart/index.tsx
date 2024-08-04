@@ -3,8 +3,40 @@ import { products as mockedProducts } from "@/constants";
 import Link from "next/link";
 import { CartItem } from "@/components/CartItem";
 import { CheckoutButton } from "@/components/CheckoutButton";
+import mercadopago from "mercadopago";
 
-const Cart = async () => {
+export const getServerSideProps = async () => {
+  mercadopago.configure({
+    access_token: process.env.MEPA_TOKEN || "",
+  });
+
+  const URL = "https://myvet-three.vercel.app/";
+  const preference: any = {
+    items: [
+      {
+        title: "prueba",
+        unit_price: 10,
+        quantity: 1,
+      },
+    ],
+    auto_return: "approved",
+    back_urls: {
+      success: `${URL}/notify/`,
+      failure: `${URL}/cart/`,
+    },
+    notification_url: `${URL}/notify/api/`,
+  };
+
+  const response = await mercadopago.preferences.create(preference);
+
+  return {
+    props: {
+      url: response.body.init_point,
+    },
+  };
+};
+
+const Cart = () => {
   // const products = await productsApi.getAll;
   //const products = mockedProducts;
 

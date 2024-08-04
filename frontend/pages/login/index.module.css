@@ -52,12 +52,12 @@
     padding: 2%;
   }
   .img1 {
-    background-image: url("../../../public/assets/IconoDueños.png");
+    background-image: url("/assets/IconoDueños.png");
     background-size: cover;
     background-position: center;
   }
   .img2 {
-    background-image: url("../../../public/assets/IconoVetes.png");
+    background-image: url("/assets/IconoVetes.png");
     background-size: cover;
     background-position: center;
     max-height: 50%;

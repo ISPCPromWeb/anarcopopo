@@ -7,7 +7,7 @@ interface ColumnsProps {
   borderRadius: string;
 }
 
-export const Columns = async (props: ColumnsProps) => {
+export const Columns = (props: ColumnsProps) => {
   const { color, borderRadius, children, reversed } = props;
   return (
     <div

@@ -17,17 +17,20 @@ interface UserContextType {
 }
 
 const defaultContextValue: UserContextType = {
-  user: {},
+  user: null,
   setUser: () => {},
 };
 
 const UserContext = createContext<UserContextType>(defaultContextValue);
 
 export const UserProvider: FC<UserContextProviderProps> = ({ children }) => {
-  const parsedUser = {};
-  const [user, setUser] = useState<any>(parsedUser);
+  const [user, setUser] = useState<any>(null);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      setUser(JSON.parse(localStorage.getItem("user") || ""));
+    }
+  }, []);
 
   const contextValue = useMemo(
     () => ({

@@ -9,8 +9,8 @@ import { StoreFilter } from "@/components/StoreFilter";
 import { ProductCard } from "@/components/ProductCard";
 import { productsApi } from "@/api";
 
-const Store = async () => {
-  const products = await productsApi.getAll();
+const Store = () => {
+  /* const products = await productsApi.getAll(); */
 
   return (
     <main id="main" className={styles.main}>
@@ -19,9 +19,9 @@ const Store = async () => {
         <StoreFilter />
         <section className={`col-9`}>
           <div className={`${styles.cardsContainer} mb-4`}>
-            {products.map((product: any, index: number) => (
+            {/* {products.map((product: any, index: number) => (
               <ProductCard product={product} key={index} />
-            ))}
+            ))} */}
           </div>
         </section>
       </div>

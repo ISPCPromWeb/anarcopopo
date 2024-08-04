@@ -5,8 +5,8 @@ import { FeatProducts } from "@/components/FeatProducts";
 import { StoreHeader } from "@/components/StoreHeader";
 import { productsApi } from "@/api";
 
-const Home = async () => {
-  const products = await productsApi.getAll();
+const Home = () => {
+  /* const products = await productsApi.getAll(); */
   /* const products = mockedProducts; */
 
   return (

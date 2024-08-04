@@ -1,7 +1,30 @@
 import { authApi, userApi } from "@/api";
 import styles from "./index.module.css";
+import { useUserContext } from "@/context";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const { user } = useUserContext();
+  const router = useRouter();
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    try {
+      const currentUser = await authApi.userLogin(formData);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("user", JSON.stringify(currentUser));
+      }
+      router.push("/dashboard");
+    } catch (error) {
+      console.error("Login failed", error);
+    }
+  };
+
+  useEffect(() => {
+    console.log("useEffect", user);
+  }, [user]);
   return (
     <>
       <main>
@@ -80,7 +103,7 @@ const Login = () => {
               <div className="px-lg-5 py-lg-4 px-5 w-100 mt-auto ">
                 <div className="align-items-center pb-3 ">
                   <img
-                    src="./assets/IsoDark.png"
+                    src="/assets/IsoDark.png"
                     className={`${styles.imgSmall} mx-auto`}
                   />
                 </div>
@@ -88,7 +111,7 @@ const Login = () => {
                   My Vet
                 </h1>
                 <h2 className="mb-5">Bienvenida/o</h2>
-                <form>
+                <form onSubmit={handleSubmit} encType="multipart/form-data">
                   <div className="mb-3">
                     <label
                       htmlFor="exampleInputEmail1"
@@ -129,7 +152,7 @@ const Login = () => {
                   <div className="align-items-center ">
                     <button
                       className={`${styles.btn}  mx-auto btn w-30 `}
-                      onClick={(e) => authApi.userLogin(e)}
+                      type="submit"
                     >
                       Ingresar
                     </button>

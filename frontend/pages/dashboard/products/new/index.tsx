@@ -1,7 +1,7 @@
 import styles from "./index.module.css";
 import { productsApi } from "@/api";
 
-const NewProduct = async () => {
+const NewProduct = () => {
   return (
     <form>
       <div className="col-md-4">

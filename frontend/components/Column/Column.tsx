@@ -5,7 +5,7 @@ interface ColumnProps {
   children: React.ReactNode;
 }
 
-export const Column = async (props: ColumnProps) => {
+export const Column = (props: ColumnProps) => {
   const { size, children } = props;
   return <div className={`d-flex col-lg-${size} icono-wrap`}>{children}</div>;
 };

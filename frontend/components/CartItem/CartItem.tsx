@@ -1,12 +1,12 @@
 import styles from "./CartItem.module.css";
 // import { productsApi } from "@/api/products";
-import { products as mockedProducts } from "@/constants";
+/* import { products as mockedProducts } from "@/constants"; */
 import { formattedPrice } from "@/utils";
 
-export const CartItem = async () => {
+export const CartItem = () => {
   // const products = await productsApi.getAll;
 
-  const products = mockedProducts;
+  /* const products = mockedProducts; */
   return (
     <div className="card mb-3">
       <div className="card-body">

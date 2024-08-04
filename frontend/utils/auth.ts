@@ -1,4 +1,4 @@
-import { cookies } from "next/headers";
+/* import { cookies } from "next/headers";
 
 const parsedUser = () => {
   const cookieStore = cookies();
@@ -22,3 +22,4 @@ export const getToken = () => {
 export const user = parsedUser();
 export const sessionId = getSessionId();
 export const token = getToken();
+ */

@@ -3,8 +3,8 @@ import styles from "./index.module.css";
 import { productsApi } from "@/api";
 import Image from "next/image";
 
-const Products = async () => {
-  const products = await productsApi.getAll();
+const Products = () => {
+  /* const products = await productsApi.getAll(); */
 
   return (
     <div className={styles.clientsList}>
