@@ -5,12 +5,12 @@ import { products as mockedProducts } from "@/constants";
 export const StoreFilter = () => {
   return (
     <>
-      <div className={`col-3 p-3`}>
+      <div className={` col-3 p-3`}>
         <button
-          className={`d-block d-md-none btn btn-toggle align-items-center rounded border-0 collapsed`}
+          className={` d-block d-md-none btn btn-toggle align-items-center rounded border-0`}
           data-bs-toggle="collapse"
           data-bs-target="#filtros-collapse"
-          aria-expanded="false"
+          aria-expanded="true"
         >
           <svg className="bi pe-none me-2" width="30" height="24">
             <use xlinkHref="#bootstrap"></use>

@@ -10,7 +10,7 @@ export const StoreHeader = () => {
         <div className="container col-xxl-8 px-4 pb-4 pt-2">
           <div className="row">
             <Breadcrumbs />
-            <h3>My Pet Tienda</h3>
+            <h3>My Vet Tienda</h3>
             <p>Elegí los productos que tu mascota necesita</p>
           </div>
         </div>

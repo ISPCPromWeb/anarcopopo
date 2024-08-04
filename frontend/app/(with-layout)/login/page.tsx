@@ -29,30 +29,22 @@ const Login = () => {
                     data-bs-slide-to="1"
                     aria-label="Slide 2"
                   ></button>
-                  <button
-                    type="button"
-                    data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide-to="2"
-                    aria-label="Slide 3"
-                  ></button>
                 </div>
                 <div className="carousel-inner">
-                  <div className="carousel-item min-vh-100 active img-1">
+                  <div
+                    className={`${styles.img1} carousel-item min-vh-100 active`}
+                  >
                     <div className="carousel-caption d-none d-md-block">
-                      <h5>La mejor atención</h5>
-                      <p></p>
+                      <h5 className={styles.caption}>
+                        La mejor atención y variedad de productos
+                      </h5>
                     </div>
                   </div>
-                  <div className="carousel-item min-vh-100 img-2">
+                  <div className={`${styles.img2} carousel-item min-vh-100`}>
                     <div className="carousel-caption d-none d-md-block">
-                      <h5>Protección tu Mascotas. Tranquilidad para ti</h5>
-                      <p></p>
-                    </div>
-                  </div>
-                  <div className="carousel-item min-vh-100 img-3">
-                    <div className="carousel-caption d-none d-md-block">
-                      <h5>Comprometidos con el bienestar de tu Mascota</h5>
-                      <p></p>
+                      <h5 className={styles.caption}>
+                        Protección tu Mascotas. Tranquilidad para ti
+                      </h5>
                     </div>
                   </div>
                 </div>
@@ -63,7 +55,7 @@ const Login = () => {
                   data-bs-slide="prev"
                 >
                   <span
-                    className="carousel-control-prev-icon"
+                    className={`${styles.flecha} carousel-control-prev-icon`}
                     aria-hidden="true"
                   ></span>
                   <span className="visually-hidden">Previous</span>
@@ -75,7 +67,7 @@ const Login = () => {
                   data-bs-slide="next"
                 >
                   <span
-                    className="carousel-control-next-icon"
+                    className={`${styles.flecha} carousel-control-next-icon`}
                     aria-hidden="true"
                   ></span>
                   <span className="visually-hidden">Next</span>
@@ -84,11 +76,17 @@ const Login = () => {
             </div>
 
             <div className="col-lg-5 d-flex flex-column align-items-end min-vh-100">
-              <div className="px-lg-5 pt-lg-4 pb-lg-3 w-100 mb-auto">
-                <h1 className={`${styles.h1} fw-bold text-center`}>My Pet</h1>
-              </div>
-              <div className="px-lg-5 py-lg-4 px-5 w-100 mt-auto">
-                <h2 className={`${styles.h2} mb-5`}>Bienvenida/o</h2>
+              <div className="px-lg-5 py-lg-4 px-5 w-100 mt-auto ">
+                <div className="align-items-center pb-3 ">
+                  <img
+                    src="./assets/IsoDark.png"
+                    className={`${styles.imgSmall} mx-auto`}
+                  />
+                </div>
+                <h1 className={`${styles.h1Small} fw-bold text-center`}>
+                  My Vet
+                </h1>
+                <h2 className="mb-5">Bienvenida/o</h2>
                 <form action={`/login/api`} method="post">
                   <div className="mb-3">
                     <label
@@ -121,19 +119,20 @@ const Login = () => {
                       <a
                         href="#"
                         id="emailHelp"
-                        className="form-text text-decoration-none"
+                        className={`${styles.vincnav} form-text `}
                       >
                         Has olvidado tu Contraseña?
                       </a>
                     </div>
                   </div>
-
-                  <button
-                    type="submit"
-                    className={`${styles.btn} ${styles.vincnav} w-30 align-center`}
-                  >
-                    Ingresar
-                  </button>
+                  <div className="align-items-center ">
+                    <button
+                      type="submit"
+                      className={`${styles.btn}  mx-auto btn w-30 `}
+                    >
+                      Ingresar
+                    </button>
+                  </div>
                 </form>
               </div>
               <div className="text-center px-lg-5 pt-lg-3 pb-lg-4 p-4 w-100 mt-auto">

@@ -1,11 +1,4 @@
-.h4Small {
-  display: none;
-}
-
 @media screen and (min-width: 768px) {
-  .btnSmall {
-    display: none;
-  }
   .lista {
     list-style: none;
     list-style-position: outside;
