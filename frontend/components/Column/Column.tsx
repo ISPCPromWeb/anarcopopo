@@ -9,5 +9,5 @@ interface ColumnProps {
 
 export const Column = async (props: ColumnProps) => {
   const { size, children } = props;
-  return <div className={`col-lg-${size} icono-wrap`}>{children}</div>;
+  return <div className={`d-flex col-lg-${size} icono-wrap`}>{children}</div>;
 };

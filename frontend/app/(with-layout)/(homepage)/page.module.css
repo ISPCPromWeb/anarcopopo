@@ -12,9 +12,6 @@
 .logo {
   height: 22em;
 }
-.logoChico {
-  height: 18em;
-}
 
 .isotipoMain {
   max-height: 100px;
@@ -73,43 +70,6 @@
   color: var(--colorFVR) !important;
 }
 
-.popularProducts {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-.cardsContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.cardWrapper {
-  min-height: 5rem;
-  width: calc(100% / 3 - 2 * 1rem / 3);
-  height: 20rem;
-  background: var(--bcolorB);
-}
-
-.cardImage {
-  height: 70%;
-  width: 100%;
-  background: var(--bcolorNyV);
-}
-
-.cardTitle {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.cardPrice {
-  font-size: 1.25rem;
-  font-weight: 400;
-}
-
 @media (max-width: 992px) {
   .servicioFila {
     width: 100% !important;
@@ -118,17 +78,14 @@
   .lista {
     text-align: left;
   }
-  .icono-wrap {
-    flex-wrap: wrap;
-    justify-content: center !important;
-  }
+
   .imgVetDuenos {
-    max-width: 50%;
+    display: none;
   }
 }
 
 @media (max-width: 768px) {
-  #hero {
+  .hero {
     text-align: center;
     justify-content: center;
     font: 70%;
@@ -138,10 +95,7 @@
     text-align: center;
     font-size: 50%;
   }
-  .icono-wrap {
-    flex-wrap: wrap;
-    justify-content: center !important;
-  }
+
   .imgVetDuenos {
     max-width: 250px;
   }
@@ -149,28 +103,27 @@
     text-align: left;
   }
   .vinculos {
-    font-size: 3em;
+    font-size: 1em;
     padding: 20px;
-    display: flex;
-  }
-  #contacto {
-    display: none;
   }
 }
 
 @media (max-width: 576px) {
-  .icono-wrap {
-    flex-wrap: wrap;
-    justify-content: center !important;
+  .hero {
+    text-align: center;
+    justify-content: center;
+    font: 70%;
   }
   .imgVetDuenos {
     display: none;
   }
   .vinculos {
-    font-size: 2.2em !important;
+    font-size: 0.9em !important;
     padding: 15px;
+    max-width: 100%;
   }
-  #contacto {
-    display: none;
+  .logo {
+    max-width: 100%;
+    height: AUTO;
   }
 }

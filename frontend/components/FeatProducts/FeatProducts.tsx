@@ -15,8 +15,10 @@ export const FeatProducts = async () => {
           <ProductCard product={product} />
         ))}
       </div>
-      <div className="pagination justify-content-end">
-        <a className={styles.vinculos} href={"/store"}>
+      <div
+        className={`${styles.paginationvinc} pagination justify-content-end`}
+      >
+        <a className={`${styles.vinculos}`} href={"/store"}>
           Ver todos los productos
         </a>
       </div>

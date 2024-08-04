@@ -27,3 +27,25 @@
 .vinculos:hover {
   color: var(--colorFVR) !important;
 }
+
+@media (max-width: 768px) {
+  .vinculos {
+    font-size: 1.5em !important;
+    padding: 15px;
+    max-width: 100%;
+  }
+  .paginationvinc {
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .vinculos {
+    font-size: 0.9em !important;
+    padding: 15px;
+    max-width: 100%;
+  }
+  .paginationvinc {
+    justify-content: center !important;
+  }
+}

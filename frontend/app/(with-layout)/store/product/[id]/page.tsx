@@ -1,4 +1,3 @@
-import { GET } from "./api/route";
 import { products as mockedProducts } from "@/constants";
 import { Breadcrumbs } from "@/components/Breadcrums/Breadcrumbs";
 import styles from "./page.module.css";
@@ -50,12 +49,9 @@ const ProductContent = (props: any) => {
 };
 
 const Product = async ({ params }: { params: { id: string } }) => {
-  console.log(params);
-  const data = await GET(params.id);
   const [product] = mockedProducts.filter(
     (product) => product.id === Number(params.id)
   );
-  console.log(data);
 
   return (
     <>

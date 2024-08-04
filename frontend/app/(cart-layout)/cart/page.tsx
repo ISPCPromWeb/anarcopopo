@@ -2,6 +2,7 @@ import styles from "./page.module.css";
 import { products as mockedProducts } from "@/constants";
 import Link from "next/link";
 import { CartItem } from "@/components/CartItem";
+import { CheckoutButton } from "@/components/CheckoutButton";
 
 const Cart = async () => {
   // const products = await productsApi.getAll;
@@ -244,9 +245,10 @@ const Cart = async () => {
 
             <hr className="my-4" />
 
-            <button className={`${styles.btn} btn w-100`} type="submit">
+            {/* <button className={`${styles.btn} btn w-100`} type="submit">
               Continuar con el pago
-            </button>
+            </button> */}
+            <CheckoutButton product={mockedProducts[0]} />
           </form>
         </div>
       </div>

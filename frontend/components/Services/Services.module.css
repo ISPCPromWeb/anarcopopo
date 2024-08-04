@@ -72,7 +72,7 @@
     justify-content: center !important;
   }
   .imgVetDuenos {
-    max-width: 50%;
+    display: none;
   }
 }
 
@@ -98,7 +98,7 @@
     text-align: left;
   }
   .vinculos {
-    font-size: 3em;
+    font-size: 1em;
     padding: 20px;
     display: flex;
   }
@@ -116,7 +116,7 @@
     display: none;
   }
   .vinculos {
-    font-size: 2.2em !important;
+    font-size: 1em !important;
     padding: 15px;
   }
   #contacto {

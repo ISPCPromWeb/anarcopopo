@@ -1,21 +1,24 @@
 import { cookies } from "next/headers";
 
-export const parsedUser = () => {
-  const rawUser = cookies().get("user");
+const parsedUser = () => {
+  const cookieStore = cookies();
+  const rawUser = cookieStore.get("user");
   if (rawUser) {
     return JSON.parse(rawUser.value);
   }
   return {};
 };
 
-export const checkIsStaff = (user: any) => {
-  if (user.is_staff) {
-    return user.is_staff;
-  }
-  return false;
+export const getSessionId = () => {
+  const cookieStore = cookies();
+  return cookieStore.get("userSession");
+};
+
+export const getToken = () => {
+  const cookieStore = cookies();
+  return cookieStore.get("userToken");
 };
 
 export const user = parsedUser();
-export const isStaff = checkIsStaff(user);
-export const sessionId = cookies().get("sessionid");
-export const token = cookies().get("csrftoken");
+export const sessionId = getSessionId();
+export const token = getToken();
