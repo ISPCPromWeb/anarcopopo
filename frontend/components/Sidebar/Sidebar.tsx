@@ -1,7 +1,27 @@
 import Link from "next/link";
 import styles from "./Sidebar.module.css";
+import { useRouter } from "next/navigation";
+import { authApi } from "@/api";
+import { useUserContext } from "@/context";
 
 export const Sidebar = () => {
+  const { setUser } = useUserContext();
+  const router = useRouter();
+  const handleLogout = async (e: any) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    try {
+      await authApi.userLogout(formData);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("user", "");
+        setUser(null);
+      }
+      router.push("/login");
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
+  };
   return (
     <nav
       className={`${styles.navbar} navbar-expand-lg navbar-toggler h-100 d-flex flex-column flex-shrink-0 p-3`}
@@ -63,7 +83,7 @@ export const Sidebar = () => {
             </li>
             <hr />
             <li className="nav-item">
-              <form>
+              <form onSubmit={handleLogout} encType="multipart/form-data">
                 <button
                   className={`${styles.btn} btn vincnav nav-link`}
                   type="submit"

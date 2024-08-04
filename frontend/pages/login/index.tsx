@@ -5,9 +5,9 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const Login = () => {
-  const { user } = useUserContext();
+  const { setUser } = useUserContext();
   const router = useRouter();
-  const handleSubmit = async (e: any) => {
+  const handleLogin = async (e: any) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
@@ -15,6 +15,7 @@ const Login = () => {
       const currentUser = await authApi.userLogin(formData);
       if (typeof window !== "undefined") {
         localStorage.setItem("user", JSON.stringify(currentUser));
+        setUser(currentUser);
       }
       router.push("/dashboard");
     } catch (error) {
@@ -22,9 +23,6 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("useEffect", user);
-  }, [user]);
   return (
     <>
       <main>
@@ -110,8 +108,8 @@ const Login = () => {
                 <h1 className={`${styles.h1Small} fw-bold text-center`}>
                   My Vet
                 </h1>
-                <h2 className="mb-5">Bienvenida/o</h2>
-                <form onSubmit={handleSubmit} encType="multipart/form-data">
+                <h2 className="mb-5">Bienvenide</h2>
+                <form onSubmit={handleLogin} encType="multipart/form-data">
                   <div className="mb-3">
                     <label
                       htmlFor="exampleInputEmail1"

@@ -1,9 +1,23 @@
+import { useRouter } from "next/navigation";
 import styles from "./index.module.css";
 import { productsApi } from "@/api";
 
 const NewProduct = () => {
+  const router = useRouter();
+  const handleAddProduct = async (e: any) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    try {
+      await productsApi.createOne(formData);
+      router.push("/dashboard/products");
+    } catch (error) {
+      console.error("Login failed", error);
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={handleAddProduct} encType="multipart/form-data">
       <div className="col-md-4">
         <label htmlFor="nombre" className="form-label">
           Nombre

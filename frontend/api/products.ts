@@ -18,7 +18,7 @@ const getOne = async (id: number) => {
   }
 };
 
-const updateOne = async (id: number) => {
+const createOne = async (form: FormData) => {
   /* const form = await req.formData(); */
   form.append("pub_date", new Date().toISOString());
 
@@ -48,5 +48,5 @@ const updateOne = async (id: number) => {
 export const productsApi = {
   getAll: getAll,
   getOne: getOne,
-  updateOne: updateOne,
+  createOne: createOne,
 };
