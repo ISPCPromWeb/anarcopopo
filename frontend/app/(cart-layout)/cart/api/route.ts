@@ -18,10 +18,10 @@ export async function POST(req: NextRequest) {
           quantity: 1,
         },
       ],
-
+      auto_return: "approved",
       back_urls: {
-        success: `${URL}`,
-        failure: `${URL}`,
+        success: `${URL}/notify/`,
+        failure: `${URL}/cart/`,
       },
       notification_url: `${URL}/notify/api/`,
     };
