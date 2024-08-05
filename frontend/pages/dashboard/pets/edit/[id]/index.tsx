@@ -35,7 +35,7 @@ const EditPet = (props: any) => {
       <div className={styles.clientsList}>
         <form
           className="g-3 pt-4 mt-4 mx-4"
-          action={handleEditClient}
+          onSubmit={handleEditClient}
           encType="multipart/form-data"
         >
           <div className="col-md-4">
@@ -53,16 +53,29 @@ const EditPet = (props: any) => {
           </div>
 
           <div className="col-md-3">
-            <label htmlFor="dni" className="form-label">
+            <label htmlFor="type" className="form-label">
+              Tipo
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              name="type"
+              id="type"
+              placeholder="Perro"
+              defaultValue={pet.type}
+            />
+          </div>
+
+          <div className="col-md-3">
+            <label htmlFor="age" className="form-label">
               Edad
             </label>
             <input
               type="text"
               className="form-control"
-              name="dni"
-              id="dni"
-              placeholder="12345678"
-              pattern="[0-9]{8}"
+              name="age"
+              id="age"
+              placeholder="12"
               required
               defaultValue={pet.age}
             />

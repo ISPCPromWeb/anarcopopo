@@ -129,15 +129,6 @@ class Vaccine(models.Model):
     def __str__(self):
         return self.type.name
     
-class Appointment(models.Model):
-    date = models.DateTimeField("Appointment Date", default=timezone.now)
-    client = models.ForeignKey('Client', on_delete=models.CASCADE)
-    pet = models.ForeignKey('Pet', on_delete=models.CASCADE)
-    pub_date = models.DateTimeField("Date Published", default=timezone.now)
-
-    def __str__(self):
-        return self.client.name
-    
 @receiver(post_save, sender=Vaccine)
 def update_pet_vaccines(sender, instance, **kwargs):
     pet = instance.pet

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Pet, Client, Vaccine
+from .models import Product, Pet, Client, Vaccine, PetType, VaccineType, ProductType
 from django.contrib.auth.models import User
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -25,4 +25,19 @@ class UserSerializer(serializers.ModelSerializer):
 class VaccineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vaccine
+        fields = '__all__'
+
+class PetTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PetType
+        fields = '__all__'
+
+class VaccineTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VaccineType
+        fields = '__all__'
+
+class ProductTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductType
         fields = '__all__'
