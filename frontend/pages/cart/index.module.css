@@ -13,14 +13,20 @@
   padding: 1rem;
 }
 
-.imgCart{
+.imgCart {
   width: 65px;
 }
 
-.divCant{
+.divCant {
   width: 50px;
 }
 
-.divPrice{
+.divPrice {
   width: 80px;
+}
+
+@media screen and (min-width: 1280px) {
+  .wrapper {
+    height: calc(100vh - 57px - 52px - 3rem);
+  }
 }

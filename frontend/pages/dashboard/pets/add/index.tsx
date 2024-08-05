@@ -1,10 +1,20 @@
 import { useRouter } from "next/navigation";
 import styles from "./index.module.css";
-import { petsApi } from "@/api";
+import { petsApi, userApi } from "@/api";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { ButtonSmall } from "@/components/ButtonSmall";
 
-const NewPet = () => {
+export const getServerSideProps = async () => {
+  const clients = await userApi.getAll();
+  return {
+    props: {
+      clients,
+    },
+  };
+};
+
+const AddPet = (props: any) => {
+  const { clients } = props;
   const router = useRouter();
   const handleAddPet = async (e: any) => {
     e.preventDefault();
@@ -98,4 +108,4 @@ const NewPet = () => {
   );
 };
 
-export default NewPet;
+export default AddPet;

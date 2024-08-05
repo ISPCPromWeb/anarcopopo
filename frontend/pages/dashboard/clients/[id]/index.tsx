@@ -14,8 +14,8 @@ export const getServerSideProps = async (req: any) => {
   };
 };
 
-const User = (props: any) => {
-  const { user, name } = props;
+const Client = (props: any) => {
+  const { user } = props;
 
   return (
     <DashboardLayout>
@@ -53,11 +53,11 @@ const User = (props: any) => {
           </li>
         </ul>
       </div>
-      <a href={`/dashboard/clients/edit/${user.id}`}>
+      <Link href={`/dashboard/clients/edit/${user.id}`}>
         <ButtonSmall type="button" name="Editar" />
-      </a>
+      </Link>
     </DashboardLayout>
   );
 };
 
-export default User;
+export default Client;

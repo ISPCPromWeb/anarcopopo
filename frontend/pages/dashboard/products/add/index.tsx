@@ -2,8 +2,9 @@ import { useRouter } from "next/navigation";
 import styles from "./index.module.css";
 import { productsApi } from "@/api";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
+import { ButtonSmall } from "@/components/ButtonSmall";
 
-const NewProduct = () => {
+const AddProduct = () => {
   const router = useRouter();
   const handleAddProduct = async (e: any) => {
     e.preventDefault();
@@ -110,10 +111,10 @@ const NewProduct = () => {
             required
           />
         </div>
-        <button type="submit">Agregar Producto</button>
+        <ButtonSmall type="submit" name="Agregar Producto" />
       </form>
     </DashboardLayout>
   );
 };
 
-export default NewProduct;
+export default AddProduct;

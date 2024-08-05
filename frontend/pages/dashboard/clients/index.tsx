@@ -1,8 +1,8 @@
 import styles from "./index.module.css";
 import { userApi } from "@/api";
+import { ButtonSmall } from "@/components/ButtonSmall";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import Link from "next/link";
-import { useEffect } from "react";
 
 export const getServerSideProps = async () => {
   const clients = await userApi.getAll();
@@ -17,9 +17,12 @@ const Clients = (props: any) => {
   const { clients } = props;
   return (
     <DashboardLayout>
-      <div
-        className={`${styles.clientsList} table-responsive justify-content-center`}
-      >
+      <div className={`${styles.clientsList}`}>
+        <div className="w-100 my-4">
+          <Link href={`/dashboard/clients/add`}>
+            <ButtonSmall name="Agregar Usuario" type="button" />
+          </Link>
+        </div>
         <table className="table">
           <thead>
             <tr>
@@ -39,7 +42,7 @@ const Clients = (props: any) => {
                   </Link>
                 </td>
                 <td>{client.surname}</td>
-                <td>{client.email}</td>
+                <td className="text-break">{client.email}</td>
                 <td>{client.dni}</td>
                 <td>
                   {client.pets.map((pet: any, index: number) => (

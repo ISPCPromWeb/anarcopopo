@@ -11,9 +11,9 @@ export const Columns = (props: ColumnsProps) => {
   const { color, borderRadius, children, reversed } = props;
   return (
     <div
-      className={`d-flex ${styles.servicioFila} ${
+      className={`d-flex col-12 ${styles.servicioFila} ${
         styles.servicios
-      } row bg-${color} rounded-${borderRadius} ${reversed && styles.reversed}`}
+      } bg-${color} rounded-${borderRadius} ${reversed && styles.reversed}`}
     >
       {children}
     </div>

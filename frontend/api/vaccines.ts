@@ -1,14 +1,14 @@
 import { API_URL } from "./constants";
 
 const getAll = async () => {
-  const response = await fetch(`${API_URL}/clients`);
+  const response = await fetch(`${API_URL}/vaccines`);
   const result = await response.json();
   return result;
 };
 
 const getOne = async (id: number) => {
   try {
-    const response = await fetch(`${API_URL}/client/${id}`);
+    const response = await fetch(`${API_URL}/vaccine/${id}`);
     const result = await response.json();
     return result;
   } catch (error) {
@@ -19,7 +19,7 @@ const getOne = async (id: number) => {
 const createOne = async (form: FormData) => {
   form.append("pub_date", new Date().toISOString());
   try {
-    const response = await fetch(`${API_URL}/clients`, {
+    const response = await fetch(`${API_URL}/vaccines`, {
       method: "POST",
       body: form,
     });
@@ -33,7 +33,7 @@ const createOne = async (form: FormData) => {
 const updateOne = async (id: number, form: FormData) => {
   form.append("pub_date", new Date().toISOString());
   try {
-    const response = await fetch(`${API_URL}/client/${id}`, {
+    const response = await fetch(`${API_URL}/vaccine/${id}`, {
       method: "PUT",
       body: form,
     });
@@ -44,7 +44,7 @@ const updateOne = async (id: number, form: FormData) => {
   }
 };
 
-export const userApi = {
+export const vaccinesApi = {
   getAll: getAll,
   getOne: getOne,
   createOne: createOne,

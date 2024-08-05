@@ -1,32 +1,20 @@
-import { ButtonSmall } from "@/components/ButtonSmall";
+import { useRouter } from "next/navigation";
 import styles from "./index.module.css";
 import { userApi } from "@/api";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
-import { useRouter } from "next/navigation";
+import { ButtonSmall } from "@/components/ButtonSmall";
 
-export const getServerSideProps = async (req: any) => {
-  const { id } = req.params;
-  const [user] = await userApi.getOne(Number(id));
-  return {
-    props: {
-      id,
-      user,
-    },
-  };
-};
-
-const EditClient = (props: any) => {
-  const { id, user } = props;
+const AddClient = () => {
   const router = useRouter();
-  const handleEditClient = async (e: any) => {
+  const handleAddClient = async (e: any) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     try {
-      await userApi.updateOne(id, formData);
+      await userApi.createOne(formData);
       router.push("/dashboard/clients");
     } catch (error) {
-      console.error("Client update failed", error);
+      console.error("Client creation failed", error);
     }
   };
 
@@ -35,7 +23,7 @@ const EditClient = (props: any) => {
       <div className={styles.clientsList}>
         <form
           className="row g-3 pt-4 mt-4"
-          action={handleEditClient}
+          action={handleAddClient}
           encType="multipart/form-data"
         >
           <div className="col-md-4">
@@ -48,7 +36,7 @@ const EditClient = (props: any) => {
               name="name"
               id="name"
               required
-              defaultValue={user.name}
+              defaultValue={""}
             />
           </div>
           <div className="col-md-4 ">
@@ -61,7 +49,7 @@ const EditClient = (props: any) => {
               name="surname"
               id="surname"
               required
-              defaultValue={user.surname}
+              defaultValue={""}
             />
           </div>
 
@@ -77,7 +65,7 @@ const EditClient = (props: any) => {
               placeholder="12345678"
               pattern="[0-9]{8}"
               required
-              defaultValue={user.dni}
+              defaultValue={""}
             />
           </div>
 
@@ -92,7 +80,7 @@ const EditClient = (props: any) => {
               id="phone"
               placeholder="0123456789"
               pattern="[0-9]{10}"
-              defaultValue={user.phone}
+              defaultValue={""}
               required
             />
           </div>
@@ -107,7 +95,7 @@ const EditClient = (props: any) => {
               name="address"
               id="address"
               required
-              defaultValue={user.address}
+              defaultValue={""}
             />
           </div>
 
@@ -122,7 +110,7 @@ const EditClient = (props: any) => {
               placeholder="ejemplo@gmail.com"
               id="email"
               required
-              defaultValue={user.email}
+              defaultValue={""}
             />
           </div>
 
@@ -135,4 +123,4 @@ const EditClient = (props: any) => {
   );
 };
 
-export default EditClient;
+export default AddClient;

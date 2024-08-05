@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 import { productsApi } from "@/api";
 import Image from "next/image";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
+import { ButtonSmall } from "@/components/ButtonSmall";
 
 export const getServerSideProps = async () => {
   const products = await productsApi.getAll();
@@ -19,7 +20,11 @@ const Products = (props: any) => {
   return (
     <DashboardLayout>
       <div className={styles.clientsList}>
-        <Link href={`/dashboard/products/new`}>Agregar Producto</Link>
+        <div className="w-100 my-4">
+          <Link href={`/dashboard/products/add`}>
+            <ButtonSmall name="Agregar Producto" type="button" />
+          </Link>
+        </div>
         <table className="table">
           <thead>
             <tr>

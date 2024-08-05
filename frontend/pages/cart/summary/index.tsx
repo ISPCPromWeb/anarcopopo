@@ -1,8 +1,17 @@
-import mercadopago from "mercadopago";
-import { productsApi } from "@/api";
+/* import mercadopago from "mercadopago"; */
+/* import cookie from "cookie"; */
 
-export const getServerSideProps = async () => {
-  const products = await productsApi.getAll();
+import { CartItem } from "@/components/CartItem";
+import { useCartContext } from "@/context";
+import { formattedPrice } from "@/utils";
+import styles from "./index.module.css";
+import { ButtonSmall } from "@/components/ButtonSmall";
+import Link from "next/link";
+
+export const getServerSideProps = async (context: any) => {
+  /* const { req } = context;
+  const cookies = cookie.parse(req.headers.cookie || "[]");
+  const cart = JSON.parse(cookies.cart); */
 
   /* const searchParams = req.params;
   const topic = searchParams.topic || searchParams.type;
@@ -39,16 +48,31 @@ export const getServerSideProps = async () => {
   } */
 
   return {
-    props: {
-      products,
-    },
+    props: {},
   };
 };
 
 const Summary = () => {
+  const { cart } = useCartContext();
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
   return (
-    <div>
-      <p>Compra exitosa</p>
+    <div className={styles.wrapper}>
+      <h2>Resumen de Compra</h2>
+      {cart.map((product, index) => (
+        <CartItem key={index} product={product} />
+      ))}
+      <ul className="list-group mb-3">
+        <li className="list-group-item d-flex justify-content-between py-4">
+          <span>Total (ARS)</span>
+          <strong>{formattedPrice(totalPrice)}</strong>
+        </li>
+      </ul>
+      <Link href={`/`}>
+        <ButtonSmall type="button" name="Ir a la Página Principal" />
+      </Link>
     </div>
   );
 };

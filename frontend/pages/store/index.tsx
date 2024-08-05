@@ -26,9 +26,9 @@ const Store = (props: any) => {
   return (
     <main id="main" className={styles.main}>
       <StoreHeader />
-      <div className="col-12 h-100 d-block d-md-flex md-flex-row">
+      <div className="container col-12 h-100 d-block d-md-flex md-flex-row">
         <StoreFilter />
-        <section className={`col-9`}>
+        <section className={`col-12 px-4 col-md-9`}>
           <div className={`${styles.cardsContainer} mb-4`}>
             {products.map((product: any, index: number) => (
               <ProductCard product={product} key={index} />

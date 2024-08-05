@@ -3,16 +3,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { BootstrapWrapper } from "@/components/BootstrapWrapper";
-import { Providers, useAppContext } from "@/context";
+import { Providers } from "@/context";
 import { Footer } from "@/components/Footer";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Providers>
       <BootstrapWrapper>
-        <Header />
-        <Component {...pageProps} />
-        <Footer />
+        <div className={`main-container-height`}>
+          <Header />
+          <Component {...pageProps} />
+          <Footer />
+        </div>
       </BootstrapWrapper>
     </Providers>
   );

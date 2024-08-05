@@ -18,20 +18,36 @@ const getOne = async (id: number) => {
 };
 
 const createOne = async (form: FormData) => {
-  /* const form = await req.formData(); */
   form.append("pub_date", new Date().toISOString());
+  try {
+    const response = await fetch(`${API_URL}/pets`, {
+      method: "POST",
+      body: form,
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return [];
+  }
+};
 
-  const res = await fetch(`${API_URL}/pets`, {
-    method: "POST",
-    body: form,
-  });
-
-  const result = await res.json();
-  return result;
+const updateOne = async (id: number, form: FormData) => {
+  form.append("pub_date", new Date().toISOString());
+  try {
+    const response = await fetch(`${API_URL}/pet/${id}`, {
+      method: "PUT",
+      body: form,
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return [];
+  }
 };
 
 export const petsApi = {
   getAll: getAll,
   getOne: getOne,
   createOne: createOne,
+  updateOne: updateOne,
 };

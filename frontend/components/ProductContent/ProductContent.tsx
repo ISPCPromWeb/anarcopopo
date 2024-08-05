@@ -3,6 +3,7 @@ import { Column } from "../Column";
 import styles from "./ProductContent.module.css";
 import { formattedPrice } from "@/utils";
 import { useEffect } from "react";
+import { ButtonSmall } from "../ButtonSmall";
 
 export const ProductContent = (props: any) => {
   const {
@@ -74,7 +75,7 @@ export const ProductContent = (props: any) => {
             <label htmlFor="quantity">Cantidad</label>
             <input
               type="number"
-              className=" form-control border-2 mb-5 w-25"
+              className="form-control w-75 border-2 mb-5 w-25"
               autoCorrect="off"
               autoCapitalize="off"
               pattern="\d*"
@@ -83,9 +84,7 @@ export const ProductContent = (props: any) => {
               min="1"
               aria-label="Cambiar cantidad"
             />
-            <button className={`${styles.btn} btn`} type="submit">
-              Agregar al carrito
-            </button>
+            <ButtonSmall type="submit" name="Agregar al Carrito"></ButtonSmall>
           </form>
         </div>
       </Column>

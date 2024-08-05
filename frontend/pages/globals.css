@@ -73,3 +73,7 @@ span {
   color: var(--colorFB);
   font-family: var(--fuenteBase);
 }
+
+.main-container-height {
+  height: 100vh;
+}

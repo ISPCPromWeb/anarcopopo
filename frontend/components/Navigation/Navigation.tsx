@@ -33,6 +33,15 @@ export const Navigation = () => {
             <li className="nav-item">
               <Link
                 className={`${styles.vincnav} nav-link active fw-bold me-4`}
+                href={"/cart"}
+                aria-current="page"
+              >
+                Carrito
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                className={`${styles.vincnav} nav-link active fw-bold me-4`}
                 href={"/store"}
                 aria-current="page"
               >

@@ -1,7 +1,4 @@
-import { redirect } from "next/navigation";
 import { API_URL } from "./constants";
-import path from "path";
-import fs from "fs";
 
 const getAll = async () => {
   const response = await fetch(`${API_URL}/products`);
@@ -20,21 +17,35 @@ const getOne = async (id: number) => {
 };
 
 const createOne = async (form: FormData) => {
-  /* const form = await req.formData(); */
   form.append("pub_date", new Date().toISOString());
+  try {
+    const response = await fetch(`${API_URL}/products`, {
+      method: "POST",
+      body: form,
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return [];
+  }
+};
 
-  const res = await fetch(`${API_URL}/products`, {
-    method: "POST",
-    body: form,
-  });
-
-  const result = await res.json();
-
-  return result;
+const updateOne = async (id: number, form: FormData) => {
+  try {
+    const response = await fetch(`${API_URL}/product/${id}`, {
+      method: "PUT",
+      body: form,
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return [];
+  }
 };
 
 export const productsApi = {
   getAll: getAll,
   getOne: getOne,
   createOne: createOne,
+  updateOne: updateOne,
 };

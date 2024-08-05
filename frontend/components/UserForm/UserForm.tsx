@@ -31,7 +31,7 @@ export const UserForm = () => {
     user !== null && (
       <>
         <h2>Bienvenide, {user.name}</h2>
-        <div className="row">
+        <div className="">
           <div className="col-md-12">
             <h3 className="mt-6">Tus datos</h3>
           </div>
