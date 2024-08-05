@@ -1,23 +1,57 @@
+import Link from "next/link";
 import styles from "./index.module.css";
-import { petsApi } from "@/api";
+import { petsApi, userApi } from "@/api";
+import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
+import { ButtonSmall } from "@/components/ButtonSmall";
 
 export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
   const [pet] = await petsApi.getOne(Number(id));
+  const [user] = await userApi.getOne(Number(pet.owner));
   return {
     props: {
       pet,
+      user,
     },
   };
 };
 
 const Pet = (props: any) => {
-  const { pet } = props;
+  const { pet, user } = props;
 
   return (
-    <div className={styles.clientsList}>
-      <h1>Aca va el {pet.name}</h1>
-    </div>
+    <DashboardLayout>
+      <div className={styles.clientsList}>
+        <ul className="list-group">
+          <li className="list-group-item">
+            <span>Nombre: </span> <span>{pet.name}</span>
+          </li>
+          <li className="list-group-item">
+            <span>Dueña/o: </span>{" "}
+            <span>
+              <Link href={`/dashboard/clients/${user.id}`}>
+                {user.name} {user.surname}
+              </Link>
+            </span>
+          </li>
+          <li className="list-group-item">
+            <span>Tipo: </span> <span>{pet.type}</span>
+          </li>
+          <li className="list-group-item">
+            <span>Raza: </span> <span>{pet.breed}</span>
+          </li>
+          <li className="list-group-item">
+            <span>Edad: </span> <span>{pet.age}</span>
+          </li>
+          <li className="list-group-item">
+            <span>Vacunas aplicadas: </span> <span>{pet.vaccines}</span>
+          </li>
+        </ul>
+      </div>
+      <Link href={`/dashboard/pets/edit/${pet.id}`}>
+        <ButtonSmall type="button" name="Editar" />
+      </Link>
+    </DashboardLayout>
   );
 };
 

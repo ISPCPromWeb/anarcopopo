@@ -17,12 +17,15 @@ const Clients = (props: any) => {
   const { clients } = props;
   return (
     <DashboardLayout>
-      <div className={styles.clientsList}>
+      <div
+        className={`${styles.clientsList} table-responsive justify-content-center`}
+      >
         <table className="table">
           <thead>
             <tr>
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
+              <th scope="col">Email</th>
               <th scope="col">DNI</th>
               <th scope="col">Mascotas</th>
             </tr>
@@ -30,8 +33,13 @@ const Clients = (props: any) => {
           <tbody>
             {clients.map((client: any, index: number) => (
               <tr key={index}>
-                <td>{client.name}</td>
+                <td>
+                  <Link href={`/dashboard/clients/${client.id}`}>
+                    {client.name}
+                  </Link>
+                </td>
                 <td>{client.surname}</td>
+                <td>{client.email}</td>
                 <td>{client.dni}</td>
                 <td>
                   {client.pets.map((pet: any, index: number) => (

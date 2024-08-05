@@ -1,6 +1,7 @@
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import styles from "./index.module.css";
 import { petsApi, userApi } from "@/api";
+import Link from "next/link";
 
 export const getServerSideProps = async () => {
   const pets = await petsApi.getAll();
@@ -17,6 +18,7 @@ const Pets = (props: any) => {
   return (
     <DashboardLayout>
       <div className={styles.clientsList}>
+        <Link href={`/dashboard/pets/new`}>Agregar Mascota</Link>
         <table className="table">
           <thead>
             <tr>

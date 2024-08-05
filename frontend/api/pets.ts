@@ -1,3 +1,4 @@
+import { createPostponedAbortSignal } from "next/dist/server/app-render/dynamic-rendering";
 import { API_URL } from "./constants";
 
 const getAll = async () => {
@@ -16,7 +17,21 @@ const getOne = async (id: number) => {
   }
 };
 
+const createOne = async (form: FormData) => {
+  /* const form = await req.formData(); */
+  form.append("pub_date", new Date().toISOString());
+
+  const res = await fetch(`${API_URL}/pets`, {
+    method: "POST",
+    body: form,
+  });
+
+  const result = await res.json();
+  return result;
+};
+
 export const petsApi = {
   getAll: getAll,
   getOne: getOne,
+  createOne: createOne,
 };

@@ -1,42 +1,25 @@
-import styles from "./UserForm.module.css";
-import { API_URL } from "@/api/constants";
-import { useUserContext } from "@/context";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import { useEffect, useState } from "react";
-import { ButtonSmall } from "../ButtonSmall";
+import { ButtonSmall } from "@/components/ButtonSmall";
+import styles from "./index.module.css";
+import { userApi } from "@/api";
+import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 
-export const UserForm = () => {
-  const { user } = useUserContext();
-
-  /* const user = JSON.parse(cookies().get("user")?.value || ""); */
-
-  const handleUserUpdate = (form: FormData) => {
-    /* "use server";
-
-    form.set("id", user?.id);
-    form.set("password", user?.password);
-    form.set("pub_date", user?.pub_date);
-
-    const res = await fetch(`${API_URL}/client/${user.id}`, {
-      method: "PUT",
-      body: form,
-      credentials: "include",
-    });
-
-    redirect("/dashboard"); */
+export const getServerSideProps = async (req: any) => {
+  const { id } = req.params;
+  const [user] = await userApi.getOne(Number(id));
+  return {
+    props: {
+      user,
+    },
   };
+};
+
+const User = (props: any) => {
+  const { user } = props;
 
   return (
-    user !== null && (
-      <>
-        <h2>Bienvenide, {user.name}</h2>
-        <div className="row">
-          <div className="col-md-12">
-            <h3 className="mt-6">Tus datos</h3>
-          </div>
-        </div>
-        <form className="row g-3 pt-4 mt-4 mx-2" action={handleUserUpdate}>
+    <DashboardLayout>
+      <div className={styles.clientsList}>
+        <form className="row g-3 pt-4 mt-4">
           <div className="col-md-4">
             <label htmlFor="nombre" className="form-label">
               Nombre
@@ -125,11 +108,13 @@ export const UserForm = () => {
             />
           </div>
 
-          <div className="col-12 pt-4 my-4">
-            <ButtonSmall name="Guardar cambios" type="submit" />
+          <div className="col-12 pt-4 mt-4">
+            <ButtonSmall type="submit" name="Guardar" />
           </div>
         </form>
-      </>
-    )
+      </div>
+    </DashboardLayout>
   );
 };
+
+export default User;
