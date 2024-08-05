@@ -22,8 +22,8 @@ const AddClient = () => {
     <DashboardLayout>
       <div className={styles.clientsList}>
         <form
-          className="row g-3 pt-4 mt-4"
-          action={handleAddClient}
+          className="g-3 pt-4 mt-4 mx-4"
+          onSubmit={handleAddClient}
           encType="multipart/form-data"
         >
           <div className="col-md-4">
@@ -53,7 +53,7 @@ const AddClient = () => {
             />
           </div>
 
-          <div className="col-md-3">
+          <div className="col-md-4">
             <label htmlFor="dni" className="form-label">
               DNI (sin puntos)
             </label>
@@ -69,7 +69,7 @@ const AddClient = () => {
             />
           </div>
 
-          <div className="col-md-3">
+          <div className="col-md-4">
             <label htmlFor="phone" className="form-label">
               Teléfono
             </label>
@@ -85,7 +85,7 @@ const AddClient = () => {
             />
           </div>
 
-          <div className="col-md-5">
+          <div className="col-md-4">
             <label htmlFor="direccion" className="form-label">
               Dirección
             </label>

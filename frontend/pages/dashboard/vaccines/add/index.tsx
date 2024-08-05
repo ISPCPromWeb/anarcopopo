@@ -21,48 +21,54 @@ const AddVaccine = () => {
 
   return (
     <DashboardLayout>
-      <form onSubmit={handleAddVaccine} encType="multipart/form-data">
-        <div className="col-md-4">
-          <label htmlFor="nombre" className="form-label">
-            Tipo
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="name"
-            id="name"
-            required
-            defaultValue={""}
-          />
-        </div>
-        <div className="col-md-4">
-          <label htmlFor="description" className="form-label">
-            Fecha
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="description"
-            id="description"
-            required
-            defaultValue={""}
-          />
-        </div>
-        <div className="col-md-4">
-          <label htmlFor="quantity" className="form-label">
-            Mascota
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="quantity"
-            id="quantity"
-            required
-            defaultValue={""}
-          />
-        </div>
-        <ButtonSmall type="submit" name="Agregar Vacuna" />
-      </form>
+      <div className={styles.clientsList}>
+        <form
+          className="g-3 pt-4 mt-4 mx-4"
+          onSubmit={handleAddVaccine}
+          encType="multipart/form-data"
+        >
+          <div className="col-md-4">
+            <label htmlFor="nombre" className="form-label">
+              Tipo
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              name="name"
+              id="name"
+              required
+              defaultValue={""}
+            />
+          </div>
+          <div className="col-md-4">
+            <label htmlFor="description" className="form-label">
+              Fecha
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              name="description"
+              id="description"
+              required
+              defaultValue={""}
+            />
+          </div>
+          <div className="col-md-4">
+            <label htmlFor="quantity" className="form-label">
+              Mascota
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              name="quantity"
+              id="quantity"
+              required
+              defaultValue={""}
+            />
+          </div>
+          <ButtonSmall type="submit" name="Agregar Vacuna" />
+        </form>
+      </div>
     </DashboardLayout>
   );
 };

@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 import { userApi } from "@/api";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { useRouter } from "next/navigation";
+import { FormEvent } from "react";
 
 export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
@@ -34,8 +35,8 @@ const EditClient = (props: any) => {
     <DashboardLayout>
       <div className={styles.clientsList}>
         <form
-          className="row g-3 pt-4 mt-4"
-          action={handleEditClient}
+          className="g-3 pt-4 mt-4 mx-4"
+          onSubmit={handleEditClient}
           encType="multipart/form-data"
         >
           <div className="col-md-4">

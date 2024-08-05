@@ -10,6 +10,7 @@ const AddProduct = () => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
+    console.log(formData.get("name"));
     try {
       await productsApi.createOne(formData);
       router.push("/dashboard/products");
@@ -20,7 +21,11 @@ const AddProduct = () => {
 
   return (
     <DashboardLayout>
-      <form onSubmit={handleAddProduct} encType="multipart/form-data">
+      <form
+        className="g-3 pt-4 mt-4 mx-4"
+        onSubmit={handleAddProduct}
+        encType="multipart/form-data"
+      >
         <div className="col-md-4">
           <label htmlFor="nombre" className="form-label">
             Nombre

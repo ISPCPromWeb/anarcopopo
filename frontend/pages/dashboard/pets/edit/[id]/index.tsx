@@ -34,7 +34,7 @@ const EditPet = (props: any) => {
     <DashboardLayout>
       <div className={styles.clientsList}>
         <form
-          className="row g-3 pt-4 mt-4"
+          className="g-3 pt-4 mt-4 mx-4"
           action={handleEditClient}
           encType="multipart/form-data"
         >

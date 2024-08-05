@@ -23,38 +23,44 @@ const Clients = (props: any) => {
             <ButtonSmall name="Agregar Usuario" type="button" />
           </Link>
         </div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">Nombre</th>
-              <th scope="col">Apellido</th>
-              <th scope="col">Email</th>
-              <th scope="col">DNI</th>
-              <th scope="col">Mascotas</th>
-            </tr>
-          </thead>
-          <tbody>
-            {clients.map((client: any, index: number) => (
-              <tr key={index}>
-                <td>
-                  <Link href={`/dashboard/clients/${client.id}`}>
-                    {client.name}
-                  </Link>
-                </td>
-                <td>{client.surname}</td>
-                <td className="text-break">{client.email}</td>
-                <td>{client.dni}</td>
-                <td>
-                  {client.pets.map((pet: any, index: number) => (
-                    <Link key={index} href={`/dashboard/pets/${pet.id}`}>
-                      {pet.name}
-                    </Link>
-                  ))}
-                </td>
+        {clients.length !== 0 ? (
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Email</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Mascotas</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {clients.map((client: any, index: number) => (
+                <tr key={index}>
+                  <td>
+                    <Link href={`/dashboard/clients/${client.id}`}>
+                      {client.name}
+                    </Link>
+                  </td>
+                  <td>{client.surname}</td>
+                  <td className="text-break">{client.email}</td>
+                  <td>{client.dni}</td>
+                  <td>
+                    {client.pets.map((pet: any, index: number) => (
+                      <Link key={index} href={`/dashboard/pets/${pet.id}`}>
+                        {pet.name}
+                      </Link>
+                    ))}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div>
+            <h3>No tienes clientes en este momento</h3>
+          </div>
+        )}
       </div>
     </DashboardLayout>
   );

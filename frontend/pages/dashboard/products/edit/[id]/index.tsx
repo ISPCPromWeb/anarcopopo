@@ -3,6 +3,8 @@ import styles from "./index.module.css";
 import { productsApi } from "@/api";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { useState } from "react";
 
 export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
@@ -17,6 +19,7 @@ export const getServerSideProps = async (req: any) => {
 
 const Pet = (props: any) => {
   const { id, product } = props;
+  const [isImageChanging, setIsImageChanging] = useState(false);
 
   const router = useRouter();
   const handleEditProduct = async (e: any) => {
@@ -34,7 +37,11 @@ const Pet = (props: any) => {
   return (
     <DashboardLayout>
       <div className={styles.clientsList}>
-        <form onSubmit={handleEditProduct} encType="multipart/form-data">
+        <form
+          className="g-3 pt-4 mt-4 mx-4"
+          onSubmit={handleEditProduct}
+          encType="multipart/form-data"
+        >
           <div className="col-md-4">
             <label htmlFor="nombre" className="form-label">
               Nombre
@@ -71,7 +78,7 @@ const Pet = (props: any) => {
               name="quantity"
               id="quantity"
               required
-              defaultValue={product.stock}
+              defaultValue={product.quantity}
             />
           </div>
           <div className="col-md-4">
@@ -84,7 +91,7 @@ const Pet = (props: any) => {
               name="price"
               id="price"
               required
-              defaultValue={product.stock}
+              defaultValue={product.price}
             />
           </div>
           <div className="col-md-4">
@@ -117,16 +124,40 @@ const Pet = (props: any) => {
             <label htmlFor="img" className="form-label">
               Imagen
             </label>
-            <input
-              type="file"
-              className="form-control"
-              name="img"
-              id="img"
-              required
-              defaultValue={product.img}
-            />
+            {!isImageChanging && (
+              <div className="d-flex">
+                <Image
+                  width={200}
+                  height={200}
+                  src={`http://localhost:8001${product.img}`}
+                  alt=""
+                />
+                <ButtonSmall
+                  callback={() => setIsImageChanging(!isImageChanging)}
+                  type="button"
+                  name="Cambiar Imagen"
+                />
+              </div>
+            )}
+            {isImageChanging && (
+              <div className="d-flex">
+                <input
+                  type="file"
+                  className="form-control"
+                  name="img"
+                  id="img"
+                  required
+                  defaultValue={""}
+                />
+                <ButtonSmall
+                  callback={() => setIsImageChanging(!isImageChanging)}
+                  type="button"
+                  name="Cancelar"
+                />
+              </div>
+            )}
           </div>
-          <ButtonSmall type="submit" name="Editar" />
+          <ButtonSmall type="submit" name="Guardar" />
         </form>
       </div>
     </DashboardLayout>

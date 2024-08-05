@@ -12,7 +12,15 @@ import { ButtonSmall } from "@/components/ButtonSmall";
 export const getServerSideProps = async (context: any) => {
   const { req } = context;
   const cookies = cookie.parse(req.headers.cookie || "[]");
-  const cart = JSON.parse(cookies.cart);
+  const cart = cookies.cart
+    ? JSON.parse(cookies.cart)
+    : [
+        {
+          name: "Algo salió mal",
+          price: 404,
+          quantity: 404,
+        },
+      ];
 
   const formattedCart = cart?.map((cartItem: any) => {
     return {

@@ -34,7 +34,11 @@ const EditVaccine = (props: any) => {
   return (
     <DashboardLayout>
       <div className={styles.clientsList}>
-        <form onSubmit={handleEditVaccine} encType="multipart/form-data">
+        <form
+          className="g-3 pt-4 mt-4 mx-4"
+          onSubmit={handleEditVaccine}
+          encType="multipart/form-data"
+        >
           <div className="col-md-4">
             <label htmlFor="nombre" className="form-label">
               Mascota

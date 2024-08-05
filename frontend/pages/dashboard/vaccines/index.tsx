@@ -26,24 +26,30 @@ const Vaccines = (props: any) => {
             <ButtonSmall name="Agregar Aplicación de Vacuna" type="button" />
           </Link>
         </div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">Tipo</th>
-              <th scope="col">Fecha</th>
-              <th scope="col">Mascota</th>
-            </tr>
-          </thead>
-          <tbody>
-            {vaccines.map((vaccine: any, index: number) => (
-              <tr key={index}>
-                <td>{vaccine.type}</td>
-                <td>{vaccine.app_date}</td>
-                <td>{vaccine.pet}</td>
+        {vaccines.length !== 0 ? (
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">Tipo</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Mascota</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {vaccines.map((vaccine: any, index: number) => (
+                <tr key={index}>
+                  <td>{vaccine.type}</td>
+                  <td>{vaccine.app_date}</td>
+                  <td>{vaccine.pet}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div>
+            <h3>No tienes vacunas en este momento</h3>
+          </div>
+        )}
       </div>
     </DashboardLayout>
   );

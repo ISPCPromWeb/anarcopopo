@@ -28,7 +28,7 @@ const Product = (props: any) => {
             <span>Descripción: </span> <span>{product.description}</span>
           </li>
           <li className="list-group-item">
-            <span>Disponible: </span> <span>{product.stock}</span>
+            <span>Disponible: </span> <span>{product.quantity}</span>
           </li>
           <li className="list-group-item">
             <span>Precio: </span> <span>{product.price}</span>
@@ -39,7 +39,7 @@ const Product = (props: any) => {
           </li>
         </ul>
       </div>
-      <Link href={`/dashboard/product/edit/${product.id}`}>
+      <Link href={`/dashboard/products/edit/${product.id}`}>
         <ButtonSmall type="button" name="Editar" />
       </Link>
     </DashboardLayout>
