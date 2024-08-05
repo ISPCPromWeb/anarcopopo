@@ -8,7 +8,7 @@ export const ProductCard = (props: any) => {
     <div className={styles.cardWrapper}>
       <img
         className={styles.cardImage}
-        src={`/products${product.img}`}
+        src={`http://localhost:8001${product.img}`}
         alt=""
       />
       <Link href={`/store/product/${product.id}`} className={styles.cardTitle}>

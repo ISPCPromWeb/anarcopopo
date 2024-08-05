@@ -28,7 +28,9 @@ const createOne = async (form: FormData) => {
     body: form,
   });
 
-  redirect("/dashboard/products");
+  const result = await res.json();
+
+  return result;
 };
 
 export const productsApi = {

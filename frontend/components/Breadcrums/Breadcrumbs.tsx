@@ -12,9 +12,9 @@ export const Breadcrumbs = (props: any) => {
           </Link>
         </li>
         <li className="breadcrumb-item">
-          <a className={`${styles.vinculos} `} href="/store" title="Tienda">
+          <Link className={`${styles.vinculos}`} href="/store" title="Tienda">
             Tienda
-          </a>
+          </Link>
         </li>
         <li className="breadcrumb-item active">
           <span className={`${styles.vinculos}`}>{name}</span>

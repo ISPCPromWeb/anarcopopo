@@ -11,7 +11,7 @@ export const getServerSideProps = async () => {
   };
 };
 
-const Pets = (props) => {
+const Pets = (props: any) => {
   const { pets } = props;
 
   return (

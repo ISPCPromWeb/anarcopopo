@@ -6,27 +6,51 @@ import { useEffect } from "react";
 
 export const ProductContent = (props: any) => {
   const {
-    content: { name, price },
+    content: { id, name, price, img },
   } = props;
   const { cart, setCart } = useCartContext();
 
-  const handleAddProduct = (event: any) => {
+  const handleAddProductToCart = (event: any) => {
     event.preventDefault();
-    const formData = new FormData(event.target.closest("form"));
+    const form = event.target;
+    const formData = new FormData(form);
     const quantity = Number(formData.get("quantity"));
-    const currentCart = cart;
-    const currentProduct = {
-      name,
-      price,
-      quantity,
-    };
-    const newCart = currentCart.push(currentProduct);
-    setCart(newCart);
-  };
+    const currentProduct = Object.assign(
+      {},
+      {
+        id,
+        name,
+        price,
+        quantity,
+        img,
+      }
+    );
 
-  useEffect(() => {
-    console.log(cart);
-  }, []);
+    if (typeof window !== "undefined") {
+      const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
+      let productExists = false;
+
+      const newCart = currentCart.map((product: any) => {
+        if (currentProduct.name === product.name) {
+          productExists = true;
+          return {
+            ...product,
+            quantity: product.quantity + currentProduct.quantity,
+          };
+        }
+        return product;
+      });
+
+      if (!productExists) {
+        newCart.push(currentProduct);
+      }
+
+      localStorage.setItem("cart", JSON.stringify(newCart));
+      const value = localStorage.getItem("cart");
+      document.cookie = `cart=${value}; path=/;`;
+      setCart(newCart);
+    }
+  };
 
   return (
     <>
@@ -42,7 +66,11 @@ export const ProductContent = (props: any) => {
               </span>
             </div>
           </div>
-          <form id="product_form">
+          <form
+            onSubmit={handleAddProductToCart}
+            encType="multipart/form-data"
+            id="product_form"
+          >
             <label htmlFor="quantity">Cantidad</label>
             <input
               type="number"
@@ -55,10 +83,7 @@ export const ProductContent = (props: any) => {
               min="1"
               aria-label="Cambiar cantidad"
             />
-            <button
-              className={`${styles.btn} btn`}
-              onClick={(e) => handleAddProduct(e)}
-            >
+            <button className={`${styles.btn} btn`} type="submit">
               Agregar al carrito
             </button>
           </form>

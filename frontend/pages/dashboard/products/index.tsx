@@ -13,7 +13,7 @@ export const getServerSideProps = async () => {
   };
 };
 
-const Products = (props) => {
+const Products = (props: any) => {
   const { products } = props;
 
   return (

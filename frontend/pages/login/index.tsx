@@ -1,7 +1,6 @@
-import { authApi, userApi } from "@/api";
+import { authApi } from "@/api";
 import styles from "./index.module.css";
 import { useUserContext } from "@/context";
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const Login = () => {

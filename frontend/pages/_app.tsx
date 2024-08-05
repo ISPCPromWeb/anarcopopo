@@ -7,14 +7,12 @@ import { Providers, useAppContext } from "@/context";
 import { Footer } from "@/components/Footer";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { type } = useAppContext();
-
   return (
     <Providers>
       <BootstrapWrapper>
-        <Header type={type} />
+        <Header />
         <Component {...pageProps} />
-        <Footer type={type} />
+        <Footer />
       </BootstrapWrapper>
     </Providers>
   );

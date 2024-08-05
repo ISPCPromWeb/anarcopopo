@@ -13,7 +13,7 @@ export const getServerSideProps = async () => {
   };
 };
 
-const Clients = (props) => {
+const Clients = (props: any) => {
   const { clients } = props;
   return (
     <DashboardLayout>

@@ -1,13 +1,11 @@
 import styles from "./StoreFilter.module.css";
-// import { productsApi } from "@/api/products";
-import { products as mockedProducts } from "@/constants";
 
 export const StoreFilter = () => {
   return (
     <>
-      <div className={` col-3 p-3`}>
+      <div className={`col-3 p-3`}>
         <button
-          className={` d-block d-md-none btn btn-toggle align-items-center rounded border-0`}
+          className={`d-block d-md-none btn btn-toggle align-items-center rounded border-0`}
           data-bs-toggle="collapse"
           data-bs-target="#filtros-collapse"
           aria-expanded="true"

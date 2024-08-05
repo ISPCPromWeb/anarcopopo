@@ -1,24 +1,33 @@
 import styles from "./index.module.css";
-import { products as mockedProducts } from "@/constants";
-import Link from "next/link";
 import { CartItem } from "@/components/CartItem";
 import { CheckoutButton } from "@/components/CheckoutButton";
 import mercadopago from "mercadopago";
+import cookie from "cookie";
+import { useAppContext, useCartContext, useUserContext } from "@/context";
+import { formattedPrice } from "@/utils";
+import { useEffect } from "react";
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context: any) => {
+  const { req } = context;
+  const cookies = cookie.parse(req.headers.cookie || "");
+  const cart = JSON.parse(cookies.cart);
+
+  const formattedCart = cart?.map((cartItem: any) => {
+    return {
+      title: cartItem.name,
+      unit_price: cartItem.price,
+      quantity: cartItem.quantity,
+    };
+  });
+
   mercadopago.configure({
     access_token: process.env.MEPA_TOKEN || "",
   });
 
   const URL = "https://myvet-three.vercel.app/";
+
   const preference: any = {
-    items: [
-      {
-        title: "prueba",
-        unit_price: 10,
-        quantity: 1,
-      },
-    ],
+    items: formattedCart,
     auto_return: "approved",
     back_urls: {
       success: `${URL}/notify/`,
@@ -36,23 +45,22 @@ export const getServerSideProps = async () => {
   };
 };
 
-const Cart = () => {
-  // const products = await productsApi.getAll;
-  //const products = mockedProducts;
+const Cart = (props: any) => {
+  const { url } = props;
+  const { cart } = useCartContext();
+  const { user } = useUserContext();
+  const { setType } = useAppContext();
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
-  // const Cart = async ({ params }: { params: { id: string } }) => {
-  //   const data = await GET(params.id);
-  //   const [product] = mockedProducts.filter(
-  //     (product) => product.id === Number(params.id)
-  //   );
-  //   console.log(data);
-  //   const formattedPrice = new Intl.NumberFormat("es-AR", {
-  //     style: "currency",
-  //     currency: "ARS",
-  //   }).format(product.price);
+  useEffect(() => {
+    setType("cart");
+  });
 
   return (
-    <>
+    <div className="container justify-content-md-center container-md my-5">
       <div className="row g-5">
         <div className="col-md-12 col-lg-6 order-last ">
           <div className="d-flex justify-content-between align-items-center mb-4">
@@ -61,15 +69,17 @@ const Cart = () => {
             </div>
           </div>
 
-          <CartItem />
+          {cart.map((product, index) => (
+            <CartItem key={index} product={product} />
+          ))}
 
           <ul className="list-group mb-3">
             <li className="list-group-item d-flex justify-content-between py-4">
               <span>Total (ARS)</span>
-              <strong>$20</strong>
+              <strong>{formattedPrice(totalPrice)}</strong>
             </li>
           </ul>
-          <CheckoutButton product={mockedProducts[0]} />
+          <CheckoutButton url={url} />
         </div>
 
         <div className="col-md-12 col-lg-6 ">
@@ -85,6 +95,7 @@ const Cart = () => {
                   className="form-control"
                   id="firstName"
                   placeholder=""
+                  defaultValue={user?.name}
                   required
                 />
                 <div className="invalid-feedback">
@@ -101,6 +112,7 @@ const Cart = () => {
                   className="form-control"
                   id="lastName"
                   placeholder=""
+                  defaultValue={user?.surname}
                   required
                 />
                 <div className="invalid-feedback">
@@ -118,6 +130,7 @@ const Cart = () => {
                   id="dni"
                   placeholder="12345678"
                   pattern="[0-9]{8}"
+                  defaultValue={user?.dni}
                   required
                 />
                 <div className="invalid-feedback">Tu DNI es requerido</div>
@@ -132,6 +145,7 @@ const Cart = () => {
                   className="form-control"
                   id="email"
                   placeholder="you@example.com"
+                  defaultValue={user?.email}
                 />
                 <div className="invalid-feedback">
                   Ingresa tu dirección de email válida.
@@ -147,68 +161,19 @@ const Cart = () => {
                   className="form-control"
                   id="address"
                   placeholder="1234 Main St"
+                  defaultValue={user?.address}
                   required
                 />
                 <div className="invalid-feedback">
                   Por favor introduce tu dirección de envío.
                 </div>
               </div>
-
-              <div className="col-md-4">
-                <label htmlFor="state" className="form-label">
-                  Provincia
-                </label>
-                <select className="form-select" id="state" required>
-                  <option value="">Seleccioná</option>
-                  <option>Córdoba</option>
-                  <option>Capital Federal</option>
-                  <option>Buenos Aires</option>
-                  <option>Santa Fe</option>
-                  <option>Catamarca</option>
-                  <option>Chaco</option>
-                  <option>Chubut</option>
-                  <option>Corrientes</option>
-                  <option>Entre Ríos</option>
-                  <option>Formosa</option>
-                  <option>Jujuy</option>
-                  <option>La Pampa</option>
-                  <option>La Rioja</option>
-                  <option>Mendoza</option>
-                  <option>Misiones</option>
-                  <option>Neuquén</option>
-                  <option>Río Negro</option>
-                  <option>Salta</option>
-                  <option>San Juan</option>
-                  <option>San Luis</option>
-                  <option>Santa Cruz</option>
-                  <option>Santiago del Estero</option>
-                  <option>Tucumán</option>
-                </select>
-                <div className="invalid-feedback">
-                  Selecciona una provincia válida.
-                </div>
-              </div>
-
-              <div className="col-md-3">
-                <label htmlFor="cp" className="form-label">
-                  Código Postal
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="cp"
-                  placeholder=""
-                  required
-                />
-                <div className="invalid-feedback">Código postal requerido.</div>
-              </div>
             </div>
-
             <hr className="my-4" />
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

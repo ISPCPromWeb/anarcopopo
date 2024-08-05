@@ -1,16 +1,27 @@
-// import { productsApi } from "@/api/products";
-import { PHASE_PRODUCTION_SERVER } from "next/dist/shared/lib/constants";
 import styles from "./index.module.css";
-import { products as mockedProducts } from "@/constants";
-import Link from "next/link";
 import { StoreHeader } from "@/components/StoreHeader";
-import { formattedPrice } from "@/utils";
 import { StoreFilter } from "@/components/StoreFilter";
 import { ProductCard } from "@/components/ProductCard";
 import { productsApi } from "@/api";
+import { useAppContext } from "@/context";
+import { useEffect } from "react";
 
-const Store = () => {
-  /* const products = await productsApi.getAll(); */
+export const getServerSideProps = async () => {
+  const products = await productsApi.getAll();
+  return {
+    props: {
+      products,
+    },
+  };
+};
+
+const Store = (props: any) => {
+  const { products } = props;
+  const { setType } = useAppContext();
+
+  useEffect(() => {
+    setType("common");
+  }, [setType]);
 
   return (
     <main id="main" className={styles.main}>
@@ -19,9 +30,9 @@ const Store = () => {
         <StoreFilter />
         <section className={`col-9`}>
           <div className={`${styles.cardsContainer} mb-4`}>
-            {/* {products.map((product: any, index: number) => (
+            {products.map((product: any, index: number) => (
               <ProductCard product={product} key={index} />
-            ))} */}
+            ))}
           </div>
         </section>
       </div>

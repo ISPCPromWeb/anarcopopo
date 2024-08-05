@@ -1,12 +1,9 @@
 import { CartHeader } from "@/components/CartHeader";
 
-const CartLayout = ({ children }: any) => {
+const CartLayout = () => {
   return (
     <>
       <CartHeader />
-      <div className="container justify-content-md-center container-md my-5">
-        {children}
-      </div>
     </>
   );
 };

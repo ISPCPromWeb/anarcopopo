@@ -26,7 +26,11 @@ const CartContext = createContext<CartContextType>(defaultContextValue);
 export const CartProvider: FC<CartContextProviderProps> = ({ children }) => {
   const [cart, setCart] = useState<any>([]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (localStorage.getItem("cart")) {
+      setCart(JSON.parse(localStorage.getItem("cart") || ""));
+    }
+  }, []);
 
   const contextValue = useMemo(
     () => ({

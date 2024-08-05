@@ -5,9 +5,17 @@ import { FeatProducts } from "@/components/FeatProducts";
 import { StoreHeader } from "@/components/StoreHeader";
 import { productsApi } from "@/api";
 
-const Home = () => {
-  /* const products = await productsApi.getAll(); */
-  /* const products = mockedProducts; */
+export const getServerSideProps = async () => {
+  const products = await productsApi.getAll();
+  return {
+    props: {
+      products,
+    },
+  };
+};
+
+const Home = (props: any) => {
+  const { products } = props;
 
   return (
     <main id="main">
@@ -68,7 +76,7 @@ const Home = () => {
         </h2>
       </div>
 
-      <FeatProducts />
+      <FeatProducts products={products} />
 
       <Services />
     </main>
