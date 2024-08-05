@@ -19,7 +19,7 @@ const Contact = () => {
                   permitirá al médico veterinario llevar un mayor control y
                   seguimiento de las consultas y evolución de sus pacientes.
                   Permite llevar un registro de todo el tratamiento prescrito
-                  para cada mascota: Por dudas, consultas, o simplemente para
+                  para cada mascota. Por dudas, consultas, o simplemente para
                   solicitar más información contactanos!!! Te responderemos en
                   un plazo de 24 horas.
                 </p>
