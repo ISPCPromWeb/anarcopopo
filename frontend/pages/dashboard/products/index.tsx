@@ -44,7 +44,7 @@ const Products = (props: any) => {
       {toastText !== "" && <Toast text={toastText} />}
       <DashboardLayout>
         <div className={styles.clientsList}>
-          {user.level === LEVELS.professional && (
+          {user && user.level === LEVELS.professional && (
             <div className="w-100 my-4">
               <Link href={`/dashboard/products/add`}>
                 <ButtonSmall name="Agregar Producto" type="button" />
@@ -86,7 +86,7 @@ const Products = (props: any) => {
                         <span>Sin imagen</span>
                       )}
                     </td>
-                    {user.level === LEVELS.professional && (
+                    {user && user.level === LEVELS.professional && (
                       <td>
                         <Link href={`/dashboard/products/edit/${product.id}`}>
                           <ButtonSmall name="Editar" type="button" />

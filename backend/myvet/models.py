@@ -128,16 +128,6 @@ class Vaccine(models.Model):
 
     def __str__(self):
         return self.type.name
-    
-@receiver(post_save, sender=Vaccine)
-def update_pet_vaccines(sender, instance, **kwargs):
-    pet = instance.pet
-    if pet.vaccines is None or pet.vaccines is []:
-        pet.vaccines = []
-    current_vaccines = pet.vaccines
-    current_vaccines.append(instance.type.name)
-    pet.vaccines = current_vaccines
-    pet.save()
 
 @receiver(post_save, sender=User)
 def create_or_update_client(sender, instance, created, **kwargs):

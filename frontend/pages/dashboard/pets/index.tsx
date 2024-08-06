@@ -20,15 +20,24 @@ export const getServerSideProps = async () => {
   return {
     props: {
       pets,
+      petTypes,
     },
   };
 };
 
 const Pets = (props: any) => {
-  const { pets } = props;
+  const { pets, petTypes } = props;
   const { user } = useUserContext();
   const [toastText, setToastText] = useState("");
-  const renderedPets = user.level === LEVELS.client ? user.pets : pets;
+  const userPets =
+    user &&
+    user.pets.map((pet: any) => {
+      const typeName =
+        petTypes.find((type: any) => type.id === pet.type)?.name || "Unknown";
+      return { ...pet, type: typeName };
+    });
+  const renderedPets = user && user.level === LEVELS.client ? userPets : pets;
+
   const router = useRouter();
   const handleDeletePet = async (id: number) => {
     try {
@@ -47,7 +56,7 @@ const Pets = (props: any) => {
     <DashboardLayout>
       {toastText !== "" && <Toast text={toastText} />}
       <div className={styles.clientsList}>
-        {user.level === LEVELS.professional && (
+        {user && user.level === LEVELS.professional && (
           <div className="w-100 my-4">
             <Link href={`/dashboard/pets/add`}>
               <ButtonSmall name="Agregar Mascota" type="button" />
@@ -77,10 +86,12 @@ const Pets = (props: any) => {
                   <td>{pet.age}</td>
                   <td>
                     {pet.vaccines.map((vaccine: any, index: number) => (
-                      <span key={index}>{vaccine.name}</span>
+                      <span key={index} className="me-2">
+                        {vaccine.name}
+                      </span>
                     ))}
                   </td>
-                  {user.level === LEVELS.professional && (
+                  {user && user.level === LEVELS.professional && (
                     <td className="d-flex gap-2 pe-4 justify-content-end">
                       <Link href={`/dashboard/pets/edit/${pet.id}`}>
                         <ButtonSmall name="Editar" type="button" />

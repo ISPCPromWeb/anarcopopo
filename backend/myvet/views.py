@@ -105,10 +105,10 @@ class Pet_ApiView(APIView):
         pet = get_object_or_404(Pet, id=id)
         serializer = PetSerializer(pet)
         owner = pet.owner
-
+        
         if owner:
             pets = owner.pets or []
-            updated_pets = [p for p in pets if p['id'] != serializer.data['id']]
+            updated_pets = [p for p in pets if p['id'] != pet.id]
             owner.pets = updated_pets
             owner.save()
 
@@ -234,7 +234,18 @@ class Vaccines_ApiView(APIView):
         serializer = VaccineSerializer(data=request.data)
 
         if serializer.is_valid():
-            serializer.save()
+            vaccine = serializer.save()
+            pet = vaccine.pet
+            
+            pet_vaccines = pet.vaccines or []
+            pet_vaccines.append({
+                'id': vaccine.id,
+                'name': vaccine.type.name,
+                'app_date': vaccine.app_date.isoformat(),
+            })
+            pet.vaccines = pet_vaccines
+            pet.save()
+            
             return Response(serializer.data, status=200)
 
         return Response(serializer.errors, status=400)

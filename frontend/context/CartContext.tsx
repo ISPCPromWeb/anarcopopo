@@ -28,7 +28,7 @@ export const CartProvider: FC<CartContextProviderProps> = ({ children }) => {
 
   useEffect(() => {
     if (localStorage.getItem("cart")) {
-      setCart(JSON.parse(localStorage.getItem("cart") || ""));
+      setCart(JSON.parse(localStorage.getItem("cart") || "[]"));
     }
   }, []);
 

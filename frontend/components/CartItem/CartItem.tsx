@@ -1,3 +1,4 @@
+import { API_URL_IMAGE } from "@/api/constants";
 import styles from "./CartItem.module.css";
 import { formattedPrice } from "@/utils";
 
@@ -11,7 +12,7 @@ export const CartItem = (props: any) => {
           <div className="d-flex flex-row align-items-center">
             <div>
               <img
-                src={`http://localhost:8000${product.img}`}
+                src={`${API_URL_IMAGE}${product.img}`}
                 className={`${styles.imgCart} img-fluid rounded-3`}
                 alt="Shopping item"
               />

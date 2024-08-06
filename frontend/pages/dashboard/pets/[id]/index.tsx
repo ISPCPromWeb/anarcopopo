@@ -46,7 +46,12 @@ const Pet = (props: any) => {
             <span>Edad: </span> <span>{pet.age}</span>
           </li>
           <li className="list-group-item">
-            <span>Vacunas aplicadas: </span> <span>{pet.vaccines}</span>
+            <span>Vacunas aplicadas: </span>{" "}
+            {pet.vaccines.map((vaccine: any, index: number) => (
+              <span key={index} className="me-2">
+                {vaccine.name}
+              </span>
+            ))}
           </li>
         </ul>
       </div>
