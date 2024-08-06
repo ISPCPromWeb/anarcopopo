@@ -1,0 +1,50 @@
++-------------------+
+|    ProductType    |
++-------------------+
+| - id: BIGINT      |
+| - name: VARCHAR   |
++-------------------+
+
++-------------------+       +-------------------+
+|      Product      |<------|    ProductType    |
++-------------------+       +-------------------+
+| - id: BIGINT      |       | - id: BIGINT      |
+| - name: VARCHAR   |       | - name: VARCHAR   |
+| - description: VARCHAR    |
+| - quantity: BIGINT        |
+| - price: BIGINT           |
+| - type: BIGINT            |
+| - pet_type: BIGINT        |
+| - img: VARCHAR            |
+| - pub_date: DATE          |
++-------------------+       +-------------------+
+       |                        ^
+       v                        |
++-------------------+       +-------------------+
+|     PetType       |<------|      Product      |
++-------------------+       +-------------------+
+| - id: BIGINT      |       | - id: BIGINT      |
+| - name: VARCHAR   |       | - name: VARCHAR   |
++-------------------+       +-------------------+
+       |                        ^
+       v                        |
++-------------------+       +-------------------+
+|      User         |------>|     Pet           |
++-------------------+       +-------------------+
+| - id: BIGINT      |       | - id: BIGINT      |
+| - type: BIGINT    |       | - name: VARCHAR   |
+| - dni: BIGINT     |       | - type: BIGINT    |
+| - name: VARCHAR   |       | - breed: VARCHAR  |
+| - email: VARCHAR  |       | - age: BIGINT     |
+| - password: CHAR  |       | - vaccines: JSON  |
+| - pet: BIGINT     |       | - pub_date: DATE  |
+| - pub_date: DATE  |
++-------------------+       +-------------------+
+       |                        ^
+       v                        |
++-------------------+       +-------------------+
+|     UserType      |<------|      User         |
++-------------------+       +-------------------+
+| - id: BIGINT      |       | - id: BIGINT      |
+| - name: VARCHAR   |       | - name: VARCHAR   |
++-------------------+       +-------------------+
