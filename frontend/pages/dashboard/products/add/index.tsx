@@ -3,6 +3,8 @@ import styles from "./index.module.css";
 import { petsApi, productsApi } from "@/api";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { ButtonSmall } from "@/components/ButtonSmall";
+import { useState } from "react";
+import { Toast } from "@/components/Toast";
 
 export const getServerSideProps = async () => {
   const petTypes = await petsApi.getTypes();
@@ -17,29 +19,34 @@ export const getServerSideProps = async () => {
 
 const AddProduct = (props: any) => {
   const { petTypes, productTypes } = props;
+  const [toastText, setToastText] = useState("");
   const router = useRouter();
   const handleAddProduct = async (e: any) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    console.log(formData.get("name"));
     try {
       await productsApi.createOne(formData);
+      setToastText("Producto agregado con éxito!");
       router.push("/dashboard/products");
     } catch (error) {
       console.error("Product creation failed", error);
     }
+    setTimeout(() => {
+      setToastText("");
+    }, 2000);
   };
 
   return (
     <DashboardLayout>
+      {toastText !== "" && <Toast text={toastText} />}
       <form
         className="g-3 pt-4 mt-4 mx-4"
         onSubmit={handleAddProduct}
         encType="multipart/form-data"
       >
         <div className="col-md-4">
-          <label htmlFor="nombre" className="form-label">
+          <label htmlFor="name" className="form-label">
             Nombre
           </label>
           <input
@@ -125,13 +132,7 @@ const AddProduct = (props: any) => {
           <label htmlFor="img" className="form-label">
             Imagen
           </label>
-          <input
-            type="file"
-            className="form-control"
-            name="img"
-            id="img"
-            required
-          />
+          <input type="file" className="form-control" name="img" id="img" />
         </div>
         <ButtonSmall type="submit" name="Agregar Producto" />
       </form>

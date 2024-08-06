@@ -3,6 +3,9 @@ import styles from "./index.module.css";
 import { petsApi, userApi } from "@/api";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { ButtonSmall } from "@/components/ButtonSmall";
+import { useEffect, useState } from "react";
+import { LEVELS } from "@/constants";
+import { Toast } from "@/components/Toast";
 
 export const getServerSideProps = async () => {
   const clients = await userApi.getAll();
@@ -18,20 +21,26 @@ export const getServerSideProps = async () => {
 const AddPet = (props: any) => {
   const { clients, petTypes } = props;
   const router = useRouter();
+  const [toastText, setToastText] = useState("");
   const handleAddPet = async (e: any) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     try {
       await petsApi.createOne(formData);
+      setToastText("Mascota agregada con éxito!");
       router.push("/dashboard/pets");
     } catch (error) {
       console.error("Pet creation failed", error);
     }
+    setTimeout(() => {
+      setToastText("");
+    }, 2000);
   };
 
   return (
     <DashboardLayout>
+      {toastText !== "" && <Toast text={toastText} />}
       <div className={styles.clientsList}>
         <form
           className="g-3 pt-4 mt-4 mx-4"

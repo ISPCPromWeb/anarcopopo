@@ -29,7 +29,7 @@ const Pet = (props: any) => {
             <span>Nombre: </span> <span>{pet.name}</span>
           </li>
           <li className="list-group-item">
-            <span>Dueña/o: </span>{" "}
+            <span>Dueña/o: </span>
             <span>
               <Link href={`/dashboard/clients/${user.id}`}>
                 {user.name} {user.surname}

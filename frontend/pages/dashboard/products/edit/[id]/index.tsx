@@ -5,6 +5,8 @@ import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useState } from "react";
+import { Toast } from "@/components/Toast";
+import { API_URL_IMAGE } from "@/api/constants";
 
 export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
@@ -24,7 +26,7 @@ export const getServerSideProps = async (req: any) => {
 const Pet = (props: any) => {
   const { id, product, petTypes, productTypes } = props;
   const [isImageChanging, setIsImageChanging] = useState(false);
-
+  const [toastText, setToastText] = useState("");
   const router = useRouter();
   const handleEditProduct = async (e: any) => {
     e.preventDefault();
@@ -32,14 +34,19 @@ const Pet = (props: any) => {
     const formData = new FormData(form);
     try {
       await productsApi.updateOne(id, formData);
+      setToastText("Producto actualizado con éxito!");
       router.push("/dashboard/products");
     } catch (error) {
       console.error("Product update failed", error);
     }
+    setTimeout(() => {
+      setToastText("");
+    }, 2000);
   };
 
   return (
     <DashboardLayout>
+      {toastText !== "" && <Toast text={toastText} />}
       <div className={styles.clientsList}>
         <form
           className="g-3 pt-4 mt-4 mx-4"
@@ -47,7 +54,7 @@ const Pet = (props: any) => {
           encType="multipart/form-data"
         >
           <div className="col-md-4">
-            <label htmlFor="nombre" className="form-label">
+            <label htmlFor="name" className="form-label">
               Nombre
             </label>
             <input
@@ -138,40 +145,61 @@ const Pet = (props: any) => {
             </select>
           </div>
           <div className="col-md-4">
-            <label htmlFor="img" className="form-label">
-              Imagen
-            </label>
-            {!isImageChanging && (
-              <div className="d-flex">
-                <Image
-                  width={200}
-                  height={200}
-                  src={`http://localhost:8001${product.img}`}
-                  alt=""
-                />
-                <ButtonSmall
-                  callback={() => setIsImageChanging(!isImageChanging)}
-                  type="button"
-                  name="Cambiar Imagen"
-                />
-              </div>
-            )}
-            {isImageChanging && (
-              <div className="d-flex">
-                <input
-                  type="file"
-                  className="form-control"
-                  name="img"
-                  id="img"
-                  required
-                  defaultValue={""}
-                />
-                <ButtonSmall
-                  callback={() => setIsImageChanging(!isImageChanging)}
-                  type="button"
-                  name="Cancelar"
-                />
-              </div>
+            {product.img ? (
+              <>
+                <label htmlFor="img" className="form-label">
+                  Imagen
+                </label>
+                <>
+                  {!isImageChanging ? (
+                    <div className="d-flex">
+                      <Image
+                        width={200}
+                        height={200}
+                        src={`${API_URL_IMAGE}${product.img}`}
+                        alt=""
+                      />
+                      <ButtonSmall
+                        callback={() => setIsImageChanging(!isImageChanging)}
+                        type="button"
+                        name="Cambiar Imagen"
+                      />
+                    </div>
+                  ) : (
+                    <div className="d-flex">
+                      <input
+                        type="file"
+                        className="form-control"
+                        name="img"
+                        id="img"
+                        required
+                        defaultValue={""}
+                      />
+                      <ButtonSmall
+                        callback={() => setIsImageChanging(!isImageChanging)}
+                        type="button"
+                        name="Cancelar"
+                      />
+                    </div>
+                  )}
+                </>
+              </>
+            ) : (
+              <>
+                <label htmlFor="img" className="form-label">
+                  Imagen
+                </label>
+                <div className="d-flex">
+                  <input
+                    type="file"
+                    className="form-control"
+                    name="img"
+                    id="img"
+                    required
+                    defaultValue={""}
+                  />
+                </div>
+              </>
             )}
           </div>
           <ButtonSmall type="submit" name="Guardar" />

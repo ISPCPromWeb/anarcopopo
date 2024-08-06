@@ -3,6 +3,8 @@ import styles from "./index.module.css";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { useRouter } from "next/navigation";
 import { petsApi, vaccinesApi } from "@/api";
+import { useState } from "react";
+import { Toast } from "@/components/Toast";
 
 export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
@@ -20,7 +22,7 @@ export const getServerSideProps = async (req: any) => {
 
 const EditVaccineType = (props: any) => {
   const { id, petTypes, vaccineType } = props;
-
+  const [toastText, setToastText] = useState("");
   const router = useRouter();
   const handleEditVaccineType = async (e: any) => {
     e.preventDefault();
@@ -28,14 +30,19 @@ const EditVaccineType = (props: any) => {
     const formData = new FormData(form);
     try {
       await vaccinesApi.updateType(id, formData);
+      setToastText("Tipo de vacuna actualizado con éxito!");
       router.push("/dashboard/configuration/");
     } catch (error) {
       console.error("Vaccine Type update failed", error);
     }
+    setTimeout(() => {
+      setToastText("");
+    }, 2000);
   };
 
   return (
     <DashboardLayout>
+      {toastText !== "" && <Toast text={toastText} />}
       <div className={styles.clientsList}>
         <form
           className="g-3 pt-4 mt-4 mx-4"

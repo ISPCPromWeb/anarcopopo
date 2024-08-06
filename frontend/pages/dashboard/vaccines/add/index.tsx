@@ -4,6 +4,8 @@ import { petsApi, productsApi } from "@/api";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { ButtonSmall } from "@/components/ButtonSmall";
 import { vaccinesApi } from "@/api";
+import { useState } from "react";
+import { Toast } from "@/components/Toast";
 
 export const getServerSideProps = async () => {
   const vaccineTypes = await vaccinesApi.getTypes();
@@ -19,20 +21,26 @@ export const getServerSideProps = async () => {
 const AddVaccine = (props: any) => {
   const { vaccineTypes, pets } = props;
   const router = useRouter();
+  const [toastText, setToastText] = useState("");
   const handleAddVaccine = async (e: any) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     try {
       await vaccinesApi.createOne(formData);
+      setToastText("Aplicación de vacuna agregada con éxito!");
       router.push("/dashboard/vaccines");
     } catch (error) {
       console.error("Vaccine creation failed", error);
     }
+    setTimeout(() => {
+      setToastText("");
+    }, 2000);
   };
 
   return (
     <DashboardLayout>
+      {toastText !== "" && <Toast text={toastText} />}
       <div className={styles.clientsList}>
         <form
           className="g-3 pt-4 mt-4 mx-4"

@@ -54,7 +54,7 @@ class Product(models.Model):
     price = models.IntegerField(default=100)
     type = models.ForeignKey('ProductType', on_delete=models.CASCADE)
     pet_type = models.ForeignKey('PetType', on_delete=models.CASCADE)
-    img = models.ImageField(upload_to='images/', storage=NoHashFileSystemStorage(), max_length=10000)
+    img = models.ImageField(upload_to='images/', storage=NoHashFileSystemStorage(), max_length=10000, null=True)
     pub_date = models.DateTimeField("Date Published", default=timezone.now)
 
     def __str__(self):
@@ -147,6 +147,7 @@ def create_or_update_client(sender, instance, created, **kwargs):
             surname=instance.last_name,
             email=instance.username,
             password=instance.password,
+            level=1,
             pub_date=timezone.now()
         )
     else:

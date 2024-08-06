@@ -76,6 +76,23 @@ class Pet_ApiView(APIView):
     
     def put(self, request, id):
         pet = get_object_or_404(Pet, id=id)
+        new_owner_id = request.data.get('owner')
+        new_owner = get_object_or_404(Client, id=new_owner_id) if new_owner_id else None
+        current_owner = pet.owner
+
+        if current_owner:
+            current_owner_pets = current_owner.pets or []
+            current_owner_pets = [p for p in current_owner_pets if p['id'] != pet.id]
+            current_owner.pets = current_owner_pets
+            current_owner.save()
+
+        if new_owner:
+            new_owner_pets = new_owner.pets or []
+            if not any(p['id'] == pet.id for p in new_owner_pets):
+                new_owner_pets.append({"id": pet.id, "name": pet.name})
+            new_owner.pets = new_owner_pets
+            new_owner.save()
+
         serializer = PetSerializer(pet, data=request.data)
         
         if serializer.is_valid():

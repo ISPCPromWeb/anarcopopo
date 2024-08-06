@@ -4,6 +4,8 @@ import { Services } from "@/components/Services";
 import { FeatProducts } from "@/components/FeatProducts";
 import { StoreHeader } from "@/components/StoreHeader";
 import { productsApi } from "@/api";
+import { useEffect } from "react";
+import { useAppContext } from "@/context";
 
 export const getServerSideProps = async () => {
   const products = await productsApi.getAll();
@@ -16,6 +18,11 @@ export const getServerSideProps = async () => {
 
 const Home = (props: any) => {
   const { products } = props;
+  const { setType } = useAppContext();
+
+  useEffect(() => {
+    setType("common");
+  }, [setType]);
 
   return (
     <main id="main">

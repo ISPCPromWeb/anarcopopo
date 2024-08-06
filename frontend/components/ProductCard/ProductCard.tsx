@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./ProductCard.module.css";
 import { formattedPrice } from "@/utils";
+import { API_URL_IMAGE } from "@/api/constants";
 
 export const ProductCard = (props: any) => {
   const { product } = props;
@@ -8,7 +9,7 @@ export const ProductCard = (props: any) => {
     <div className={styles.cardWrapper}>
       <img
         className={styles.cardImage}
-        src={`http://localhost:8001${product.img}`}
+        src={`${API_URL_IMAGE}${product.img}`}
         alt=""
       />
       <Link href={`/store/product/${product.id}`} className={styles.cardTitle}>

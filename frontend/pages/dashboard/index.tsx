@@ -5,9 +5,11 @@ import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 
 const Dashboard = () => {
   return (
-    <DashboardLayout>
-      <UserForm />
-    </DashboardLayout>
+    <WithAuth>
+      <DashboardLayout>
+        <UserForm />
+      </DashboardLayout>
+    </WithAuth>
   );
 };
 
