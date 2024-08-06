@@ -105,10 +105,10 @@ class Pet_ApiView(APIView):
         pet = get_object_or_404(Pet, id=id)
         serializer = PetSerializer(pet)
         owner = pet.owner
-
+        
         if owner:
             pets = owner.pets or []
-            updated_pets = [p for p in pets if p['id'] != serializer.data['id']]
+            updated_pets = [p for p in pets if p['id'] != pet.id]
             owner.pets = updated_pets
             owner.save()
 

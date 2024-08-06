@@ -48,7 +48,7 @@ const Pet = (props: any) => {
           <li className="list-group-item">
             <span>Vacunas aplicadas: </span>{" "}
             {pet.vaccines.map((vaccine: any, index: number) => (
-              <span>{vaccine.name}</span>
+              <span className="me-2">{vaccine.name}</span>
             ))}
           </li>
         </ul>
