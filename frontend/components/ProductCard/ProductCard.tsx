@@ -6,7 +6,11 @@ export const ProductCard = (props: any) => {
   const { product } = props;
   return (
     <div className={styles.cardWrapper}>
-      <img className={styles.cardImage} src={product.img} alt="" />
+      <img
+        className={styles.cardImage}
+        src={`http://localhost:8001${product.img}`}
+        alt=""
+      />
       <Link href={`/store/product/${product.id}`} className={styles.cardTitle}>
         {product.name}
       </Link>

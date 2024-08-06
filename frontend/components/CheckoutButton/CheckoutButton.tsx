@@ -1,39 +1,28 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
+import styles from "./CheckoutButton.module.css";
 
 export const CheckoutButton = (props: any) => {
-  const { product } = props;
-  const [url, setUrl] = useState<null | string>(null);
+  const { url } = props;
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const generateLink = async () => {
-      setLoading(true);
-
-      try {
-        const response = await fetch("/cart/api", {
-          method: "POST",
-          body: product,
-        });
-        const { url } = await response.json();
-        setUrl(url);
-      } catch (error) {
-        console.error(error);
-      }
+    setLoading(true);
+    if (url) {
       setLoading(false);
-    };
-
-    generateLink();
-  }, [product]);
+    } else {
+      throw new Error("Invalid URL");
+    }
+  }, [url]);
 
   return (
     <div>
       {loading ? (
-        <button>Cargando</button>
+        <span>Cargando...</span>
       ) : (
         <>
-          <a href={url || ""}>Comprar ahora</a>
+          <a className={`${styles.btn} btn w-100`} href={url || ""}>
+            Comprar ahora
+          </a>
         </>
       )}
     </div>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Pet, Client, ProductType, PetType, Vaccine, VaccineType, Appointment
+from .models import Product, Pet, Client, ProductType, PetType, Vaccine, VaccineType
 from .forms import PetForm, ClientForm
 
 class VaccineInline(admin.TabularInline):
@@ -70,5 +70,3 @@ admin.site.register(Client, ClientAdmin)
 admin.site.register(Pet, PetAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Vaccine, VaccineAdmin)
-
-admin.site.register(Appointment)

@@ -7,10 +7,6 @@ from django.contrib.auth.models import User, AbstractBaseUser, BaseUserManager
 from django.utils import timezone
 from django.core.files.storage import FileSystemStorage
 
-def product_image_upload_path(instance, filename):
-    base_filename, file_extension = os.path.splitext(filename)
-    return f'{base_filename}{file_extension}'
-
 class NoHashFileSystemStorage(FileSystemStorage):
     def get_available_name(self, name, max_length=None):
         # Check if the file name already exists, delete if it does
@@ -58,7 +54,7 @@ class Product(models.Model):
     price = models.IntegerField(default=100)
     type = models.ForeignKey('ProductType', on_delete=models.CASCADE)
     pet_type = models.ForeignKey('PetType', on_delete=models.CASCADE)
-    img = models.ImageField(upload_to=product_image_upload_path, storage=NoHashFileSystemStorage(), max_length=10000)
+    img = models.ImageField(upload_to='images/', storage=NoHashFileSystemStorage(), max_length=10000)
     pub_date = models.DateTimeField("Date Published", default=timezone.now)
 
     def __str__(self):
@@ -132,15 +128,6 @@ class Vaccine(models.Model):
 
     def __str__(self):
         return self.type.name
-    
-class Appointment(models.Model):
-    date = models.DateTimeField("Appointment Date", default=timezone.now)
-    client = models.ForeignKey('Client', on_delete=models.CASCADE)
-    pet = models.ForeignKey('Pet', on_delete=models.CASCADE)
-    pub_date = models.DateTimeField("Date Published", default=timezone.now)
-
-    def __str__(self):
-        return self.client.name
     
 @receiver(post_save, sender=Vaccine)
 def update_pet_vaccines(sender, instance, **kwargs):

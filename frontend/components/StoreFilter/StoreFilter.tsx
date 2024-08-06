@@ -1,23 +1,18 @@
 import styles from "./StoreFilter.module.css";
-// import { productsApi } from "@/api/products";
-import { products as mockedProducts } from "@/constants";
 
 export const StoreFilter = () => {
   return (
     <>
-      <div className={` col-3 p-3`}>
+      <div className={`col-12 col-md-3 p-3`}>
         <button
-          className={` d-block d-md-none btn btn-toggle align-items-center rounded border-0`}
+          className={`d-block btn btn-toggle align-items-center rounded border-0`}
           data-bs-toggle="collapse"
           data-bs-target="#filtros-collapse"
           aria-expanded="true"
         >
-          <svg className="bi pe-none me-2" width="30" height="24">
-            <use xlinkHref="#bootstrap"></use>
-          </svg>
           <h4>Filtros</h4>
         </button>
-        <ul className="list-unstyled ps-0" id="filtros-collapse">
+        <ul className="list-unstyled ps-0 collapse" id="filtros-collapse">
           <li className={`mb-1`}>
             <button
               className={`${styles.lista} btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed`}

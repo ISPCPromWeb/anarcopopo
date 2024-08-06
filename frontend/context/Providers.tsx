@@ -1,5 +1,3 @@
-"use client";
-
 import { AppProvider } from "./AppContext";
 import { UserProvider } from "./UserContext";
 import { CartProvider } from "./CartContext";

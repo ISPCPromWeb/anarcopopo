@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import Pets_ApiView, Pet_ApiView, Client_ApiView, Clients_ApiView, Product_ApiView, Products_ApiView, Vaccines_ApiView, Vaccine_ApiView
+from .views import Pets_ApiView, Pet_ApiView, Client_ApiView, Clients_ApiView, Product_ApiView, Products_ApiView, Vaccines_ApiView, Vaccine_ApiView, PetTypes_ApiView, PetType_ApiView, ProductTypes_ApiView, ProductType_ApiView, VaccineTypes_ApiView, VaccineType_ApiView
 
 urlpatterns = [
     path('pets', Pets_ApiView.as_view()),
@@ -15,6 +15,16 @@ urlpatterns = [
     path('vaccines', Vaccines_ApiView.as_view()),
     path('vaccine/<int:id>', Vaccine_ApiView.as_view()),
 
+    path('petTypes', PetTypes_ApiView.as_view()),
+    path('petType/<int:id>', PetType_ApiView.as_view()),
+
+    path('productTypes', ProductTypes_ApiView.as_view()),
+    path('productType/<int:id>', ProductType_ApiView.as_view()),
+
+    path('vaccineTypes', VaccineTypes_ApiView.as_view()),
+    path('vaccineType/<int:id>', VaccineType_ApiView.as_view()),
+
     path('login', views.custom_login),
     path('logout', views.custom_logout),
+    path('resetPassword', views.reset_password),
 ]

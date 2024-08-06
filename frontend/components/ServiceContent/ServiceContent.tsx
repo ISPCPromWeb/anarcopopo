@@ -1,5 +1,6 @@
 // import { productsApi } from "@/api/products";
 
+import Link from "next/link";
 import { Column } from "../Column";
 import styles from "./ServiceContent.module.css";
 
@@ -28,13 +29,13 @@ export const ServiceContent = (props: any) => {
 
         {anchors &&
           anchors.map((anchor: any, index: number) => (
-            <a
+            <Link
               key={index}
               className={`${styles.vinculos} mx-5 my-6 text-center`}
               href="/login"
             >
               {anchor}
-            </a>
+            </Link>
           ))}
       </div>
     </Column>

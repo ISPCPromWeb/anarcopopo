@@ -1,5 +1,3 @@
-// import { productsApi } from "@/api/products";
-
 import { Column } from "../Column";
 import styles from "./ServiceImage.module.css";
 

@@ -1,14 +1,10 @@
 import Link from "next/link";
 import styles from "./Navigation.module.css";
-import { cookies } from "next/headers";
+import { useUserContext } from "@/context";
+import { useEffect } from "react";
 
 export const Navigation = () => {
-  let user;
-  if (cookies().get("user")) {
-    user = JSON.parse(cookies().get("user")?.value || "");
-  }
-
-  const sessionId = cookies().get("userSession");
+  const { user } = useUserContext();
 
   return (
     <nav className={`${styles.navbar} navbar navbar-expand-lg bg-transparent`}>
@@ -37,6 +33,15 @@ export const Navigation = () => {
             <li className="nav-item">
               <Link
                 className={`${styles.vincnav} nav-link active fw-bold me-4`}
+                href={"/cart"}
+                aria-current="page"
+              >
+                Carrito
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                className={`${styles.vincnav} nav-link active fw-bold me-4`}
                 href={"/store"}
                 aria-current="page"
               >
@@ -47,9 +52,9 @@ export const Navigation = () => {
               <Link
                 className={`${styles.vincnav} nav-link active fw-bold me-4`}
                 aria-current="page"
-                href={sessionId ? "/dashboard" : "/login"}
+                href={user !== null ? "/dashboard" : "/login"}
               >
-                {user ? user.name : `Ingresa`}
+                {user !== null ? user.name : `Ingresa`}
               </Link>
             </li>
           </ul>
