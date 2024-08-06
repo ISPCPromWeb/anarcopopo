@@ -4,6 +4,7 @@ import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { useRouter } from "next/navigation";
 import { petsApi, vaccinesApi } from "@/api";
 import { useState } from "react";
+import { Toast } from "@/components/Toast";
 
 export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
@@ -23,6 +24,7 @@ export const getServerSideProps = async (req: any) => {
 
 const EditVaccine = (props: any) => {
   const { id, pets, vaccine, vaccineTypes } = props;
+  const [toastText, setToastText] = useState("");
   const [newDate, setNewDate] = useState<string | undefined>();
   const router = useRouter();
   const handleEditVaccine = async (e: any) => {
@@ -36,14 +38,19 @@ const EditVaccine = (props: any) => {
     }
     try {
       await vaccinesApi.updateOne(id, formData);
+      setToastText("Aplicación de vacuna actualizada con éxito!");
       router.push("/dashboard/vaccines");
     } catch (error) {
       console.error("Vaccine update failed", error);
     }
+    setTimeout(() => {
+      setToastText("");
+    }, 2000);
   };
 
   return (
     <DashboardLayout>
+      {toastText !== "" && <Toast text={toastText} />}
       <div className={styles.clientsList}>
         <form
           className="g-3 pt-4 mt-4 mx-4"

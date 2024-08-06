@@ -5,6 +5,7 @@ import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useState } from "react";
+import { Toast } from "@/components/Toast";
 
 export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
@@ -24,7 +25,7 @@ export const getServerSideProps = async (req: any) => {
 const Pet = (props: any) => {
   const { id, product, petTypes, productTypes } = props;
   const [isImageChanging, setIsImageChanging] = useState(false);
-
+  const [toastText, setToastText] = useState("");
   const router = useRouter();
   const handleEditProduct = async (e: any) => {
     e.preventDefault();
@@ -32,14 +33,19 @@ const Pet = (props: any) => {
     const formData = new FormData(form);
     try {
       await productsApi.updateOne(id, formData);
+      setToastText("Producto actualizado con éxito!");
       router.push("/dashboard/products");
     } catch (error) {
       console.error("Product update failed", error);
     }
+    setTimeout(() => {
+      setToastText("");
+    }, 2000);
   };
 
   return (
     <DashboardLayout>
+      {toastText !== "" && <Toast text={toastText} />}
       <div className={styles.clientsList}>
         <form
           className="g-3 pt-4 mt-4 mx-4"

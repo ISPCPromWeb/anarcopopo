@@ -4,6 +4,8 @@ import { petsApi, userApi } from "@/api";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { useRouter } from "next/navigation";
 import { userAgent } from "next/server";
+import { useState } from "react";
+import { Toast } from "@/components/Toast";
 
 export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
@@ -22,6 +24,7 @@ export const getServerSideProps = async (req: any) => {
 
 const EditPet = (props: any) => {
   const { id, pet, petTypes, clients } = props;
+  const [toastText, setToastText] = useState("");
   const router = useRouter();
   const handleEditClient = async (e: any) => {
     e.preventDefault();
@@ -29,14 +32,19 @@ const EditPet = (props: any) => {
     const formData = new FormData(form);
     try {
       await petsApi.updateOne(id, formData);
+      setToastText("Mascota actualizada con éxito!");
       router.push("/dashboard/pets");
     } catch (error) {
       console.error("Pet update failed", error);
     }
+    setTimeout(() => {
+      setToastText("");
+    }, 2000);
   };
 
   return (
     <DashboardLayout>
+      {toastText !== "" && <Toast text={toastText} />}
       <div className={styles.clientsList}>
         <form
           className="g-3 pt-4 mt-4 mx-4"

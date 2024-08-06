@@ -17,7 +17,6 @@ export const UserForm = () => {
     formData.set("password", user.password);
     try {
       const updatedUser = await userApi.updateOne(user.id, formData);
-      console.log(updatedUser);
       setToastText("Usuario actualizado con éxito!");
       if (typeof window !== "undefined") {
         localStorage.setItem("user", JSON.stringify(updatedUser));

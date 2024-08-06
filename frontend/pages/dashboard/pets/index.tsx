@@ -4,7 +4,10 @@ import { petsApi } from "@/api";
 import Link from "next/link";
 import { ButtonSmall } from "@/components/ButtonSmall";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useUserContext } from "@/context";
+import { LEVELS } from "@/constants";
+import { useState } from "react";
+import { Toast } from "@/components/Toast";
 
 export const getServerSideProps = async () => {
   const rawPets = await petsApi.getAll();
@@ -23,25 +26,35 @@ export const getServerSideProps = async () => {
 
 const Pets = (props: any) => {
   const { pets } = props;
+  const { user } = useUserContext();
+  const [toastText, setToastText] = useState("");
+  const renderedPets = user.level === LEVELS.client ? user.pets : pets;
   const router = useRouter();
   const handleDeletePet = async (id: number) => {
     try {
       await petsApi.deleteOne(id);
+      setToastText("Mascota eliminada con éxito!");
       router.refresh();
     } catch (error) {
       console.error("Pet deletion failed", error);
     }
+    setTimeout(() => {
+      setToastText("");
+    }, 2000);
   };
 
   return (
     <DashboardLayout>
+      {toastText !== "" && <Toast text={toastText} />}
       <div className={styles.clientsList}>
-        <div className="w-100 my-4">
-          <Link href={`/dashboard/pets/add`}>
-            <ButtonSmall name="Agregar Mascota" type="button" />
-          </Link>
-        </div>
-        {pets.length !== 0 ? (
+        {user.level === LEVELS.professional && (
+          <div className="w-100 my-4">
+            <Link href={`/dashboard/pets/add`}>
+              <ButtonSmall name="Agregar Mascota" type="button" />
+            </Link>
+          </div>
+        )}
+        {renderedPets.length !== 0 ? (
           <table className="table">
             <thead>
               <tr>
@@ -54,7 +67,7 @@ const Pets = (props: any) => {
               </tr>
             </thead>
             <tbody>
-              {pets.map((pet: any, index: number) => (
+              {renderedPets.map((pet: any, index: number) => (
                 <tr key={index}>
                   <td>
                     <Link href={`/dashboard/pets/${pet.id}`}>{pet.name}</Link>
@@ -67,16 +80,19 @@ const Pets = (props: any) => {
                       <span key={index}>{vaccine.name}</span>
                     ))}
                   </td>
-                  <td className="d-flex gap-2 pe-4 justify-content-end">
-                    <Link href={`/dashboard/pets/edit/${pet.id}`}>
-                      <ButtonSmall name="Editar" type="button" />
-                    </Link>
-                    <ButtonSmall
-                      callback={() => handleDeletePet(pet.id)}
-                      type={`button`}
-                      name={`Borrar`}
-                    />
-                  </td>
+                  {user.level === LEVELS.professional && (
+                    <td className="d-flex gap-2 pe-4 justify-content-end">
+                      <Link href={`/dashboard/pets/edit/${pet.id}`}>
+                        <ButtonSmall name="Editar" type="button" />
+                      </Link>
+
+                      <ButtonSmall
+                        callback={() => handleDeletePet(pet.id)}
+                        type={`button`}
+                        name={`Borrar`}
+                      />
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
