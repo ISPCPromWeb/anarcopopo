@@ -51,7 +51,7 @@ export const Sidebar = () => {
                 Perfil
               </Link>
             </li>
-            {user.level === LEVELS.professional && (
+            {user && user.level === LEVELS.professional && (
               <li className={`${styles.navItem} nav-item`}>
                 <Link
                   href={`/dashboard/clients`}
@@ -77,7 +77,7 @@ export const Sidebar = () => {
                 Aplicaciones de Vacunas
               </Link>
             </li>
-            {user.level === LEVELS.professional && (
+            {user && user.level === LEVELS.professional && (
               <li className={`${styles.navItem} nav-item`}>
                 <Link
                   href={`/dashboard/products`}
@@ -87,7 +87,7 @@ export const Sidebar = () => {
                 </Link>
               </li>
             )}
-            {user.level === LEVELS.professional && (
+            {user && user.level === LEVELS.professional && (
               <li className={`${styles.navItem} nav-item`}>
                 <Link
                   href={`/dashboard/configuration`}

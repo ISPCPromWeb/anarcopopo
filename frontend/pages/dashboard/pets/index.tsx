@@ -28,8 +28,7 @@ const Pets = (props: any) => {
   const { pets } = props;
   const { user } = useUserContext();
   const [toastText, setToastText] = useState("");
-  const renderedPets = user.level === LEVELS.client ? user.pets : pets;
-  console.log(renderedPets);
+  const renderedPets = user && user.level === LEVELS.client ? user.pets : pets;
   const router = useRouter();
   const handleDeletePet = async (id: number) => {
     try {
@@ -48,7 +47,7 @@ const Pets = (props: any) => {
     <DashboardLayout>
       {toastText !== "" && <Toast text={toastText} />}
       <div className={styles.clientsList}>
-        {user.level === LEVELS.professional && (
+        {user && user.level === LEVELS.professional && (
           <div className="w-100 my-4">
             <Link href={`/dashboard/pets/add`}>
               <ButtonSmall name="Agregar Mascota" type="button" />
@@ -81,7 +80,7 @@ const Pets = (props: any) => {
                       <span key={index}>{vaccine.name}</span>
                     ))}
                   </td>
-                  {user.level === LEVELS.professional && (
+                  {user && user.level === LEVELS.professional && (
                     <td className="d-flex gap-2 pe-4 justify-content-end">
                       <Link href={`/dashboard/pets/edit/${pet.id}`}>
                         <ButtonSmall name="Editar" type="button" />
