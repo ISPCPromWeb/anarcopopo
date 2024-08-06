@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useState } from "react";
 import { Toast } from "@/components/Toast";
+import { API_URL_IMAGE } from "@/api/constants";
 
 export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
@@ -155,7 +156,7 @@ const Pet = (props: any) => {
                       <Image
                         width={200}
                         height={200}
-                        src={`http://localhost:8001${product.img}`}
+                        src={`${API_URL_IMAGE}${product.img}`}
                         alt=""
                       />
                       <ButtonSmall

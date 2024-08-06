@@ -4,6 +4,7 @@ import { productsApi } from "@/api";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { ButtonSmall } from "@/components/ButtonSmall";
 import Image from "next/image";
+import { API_URL_IMAGE } from "@/api/constants";
 
 export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
@@ -40,7 +41,7 @@ const Product = (props: any) => {
               <Image
                 width={200}
                 height={200}
-                src={`http://localhost:8001${product.img}`}
+                src={`${API_URL_IMAGE}${product.img}`}
                 alt={""}
               />
             ) : (

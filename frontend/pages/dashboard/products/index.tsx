@@ -10,6 +10,7 @@ import { LEVELS } from "@/constants";
 import { useUserContext } from "@/context";
 import { useState } from "react";
 import { Toast } from "@/components/Toast";
+import { API_URL_IMAGE } from "@/api/constants";
 
 export const getServerSideProps = async () => {
   const products = await productsApi.getAll();
@@ -78,7 +79,7 @@ const Products = (props: any) => {
                         <Image
                           width={100}
                           height={100}
-                          src={`http://localhost:8001${product.img}`}
+                          src={`${API_URL_IMAGE}${product.img}`}
                           alt={""}
                         />
                       ) : (
