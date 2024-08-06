@@ -3,9 +3,12 @@ import { useUserContext } from "@/context";
 import { useRouter } from "next/navigation";
 import { ButtonSmall } from "../ButtonSmall";
 import { userApi } from "@/api";
+import { Toast } from "../Toast";
+import { useState } from "react";
 
 export const UserForm = () => {
   const { user, setUser } = useUserContext();
+  const [toastText, setToastText] = useState("");
   const router = useRouter();
   const handleEditClient = async (e: any) => {
     e.preventDefault();
@@ -14,6 +17,7 @@ export const UserForm = () => {
     formData.set("password", user.password);
     try {
       const updatedUser = await userApi.updateOne(user.id, formData);
+      setToastText("Usuario actualizado con éxito!");
       if (typeof window !== "undefined") {
         localStorage.setItem("user", JSON.stringify(updatedUser));
         setUser(updatedUser);
@@ -22,11 +26,15 @@ export const UserForm = () => {
     } catch (error) {
       console.error("Client update failed", error);
     }
+    setTimeout(() => {
+      setToastText("");
+    }, 2000);
   };
 
   return (
-    user !== null && (
+    user && (
       <>
+        {toastText !== "" && <Toast text={toastText} />}
         <h2>Bienvenide, {user.name}</h2>
         <div className="">
           <div className="col-md-12">

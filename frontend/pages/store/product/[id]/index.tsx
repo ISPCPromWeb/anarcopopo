@@ -7,6 +7,7 @@ import { formattedPrice } from "@/utils";
 import { FeatProducts } from "@/components/FeatProducts";
 import { ProductContent } from "@/components/ProductContent";
 import { productsApi } from "@/api";
+import { API_URL_IMAGE } from "@/api/constants";
 
 export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
@@ -34,7 +35,7 @@ const Product = (props: any) => {
               </div>
 
               <Columns color="white" borderRadius="3">
-                <ServiceImage image={`http://localhost:8001${product.img}`} />
+                <ServiceImage image={`${API_URL_IMAGE}${product.img}`} />
                 <ProductContent
                   content={{
                     id: product.id,

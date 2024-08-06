@@ -2,15 +2,16 @@ import { useCartContext } from "@/context";
 import { Column } from "../Column";
 import styles from "./ProductContent.module.css";
 import { formattedPrice } from "@/utils";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ButtonSmall } from "../ButtonSmall";
+import { Toast } from "../Toast";
 
 export const ProductContent = (props: any) => {
   const {
     content: { id, name, price, img },
   } = props;
   const { cart, setCart } = useCartContext();
-
+  const [toastText, setToastText] = useState("");
   const handleAddProductToCart = (event: any) => {
     event.preventDefault();
     const form = event.target;
@@ -50,11 +51,16 @@ export const ProductContent = (props: any) => {
       const value = localStorage.getItem("cart");
       document.cookie = `cart=${value}; path=/;`;
       setCart(newCart);
+      setToastText("Producto agregado!");
     }
+    setTimeout(() => {
+      setToastText("");
+    }, 2000);
   };
 
   return (
     <>
+      {toastText !== "" && <Toast text={toastText} />}
       <Column size={7}>
         <div className="offset-lg-5">
           <h2 className={`${styles.h2Hero}`}>{name}</h2>
