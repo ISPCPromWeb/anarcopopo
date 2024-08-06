@@ -78,7 +78,7 @@ const Configuration = (props: any) => {
       user = JSON.parse(localStorage.getItem("user") || "null");
     }
     if (user.level === LEVELS.client) {
-      router.replace(`/dashbaord`);
+      router.replace(`/dashboard`);
     }
   }, []);
 

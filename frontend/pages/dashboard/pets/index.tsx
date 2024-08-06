@@ -29,6 +29,7 @@ const Pets = (props: any) => {
   const { user } = useUserContext();
   const [toastText, setToastText] = useState("");
   const renderedPets = user.level === LEVELS.client ? user.pets : pets;
+  console.log(renderedPets);
   const router = useRouter();
   const handleDeletePet = async (id: number) => {
     try {

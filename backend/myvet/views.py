@@ -234,7 +234,21 @@ class Vaccines_ApiView(APIView):
         serializer = VaccineSerializer(data=request.data)
 
         if serializer.is_valid():
-            serializer.save()
+            vaccine = serializer.save()
+            pet = vaccine.pet
+
+            if not pet.vaccines:
+                pet.vaccines = []
+
+            new_vaccine_data = {
+                'id': vaccine.id,
+                'type': vaccine.type.id,
+                'type_name': vaccine.type.name,  # Assuming VaccineType has a name field
+                'app_date': vaccine.app_date.isoformat(),
+            }
+            pet.vaccines.append(new_vaccine_data)
+            pet.save()
+
             return Response(serializer.data, status=200)
 
         return Response(serializer.errors, status=400)
