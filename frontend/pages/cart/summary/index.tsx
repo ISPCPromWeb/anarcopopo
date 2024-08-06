@@ -58,6 +58,10 @@ const Summary = () => {
     (total, item) => total + item.price * item.quantity,
     0
   );
+
+  const handleResetCart = () => {
+    localStorage.setItem("cart", JSON.stringify([]));
+  };
   return (
     <div className={styles.wrapper}>
       <h2>Resumen de Compra</h2>
@@ -71,7 +75,11 @@ const Summary = () => {
         </li>
       </ul>
       <Link href={`/`}>
-        <ButtonSmall type="button" name="Ir a la Página Principal" />
+        <ButtonSmall
+          callback={() => handleResetCart()}
+          type="button"
+          name="Ir a la Página Principal"
+        />
       </Link>
     </div>
   );
