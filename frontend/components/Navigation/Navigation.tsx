@@ -52,9 +52,9 @@ export const Navigation = () => {
               <Link
                 className={`${styles.vincnav} nav-link active fw-bold me-4`}
                 aria-current="page"
-                href={user !== null ? "/dashboard" : "/login"}
+                href={user ? "/dashboard" : "/login"}
               >
-                {user !== null ? user.name : `Ingresa`}
+                {user ? user.name : `Ingresa`}
               </Link>
             </li>
           </ul>

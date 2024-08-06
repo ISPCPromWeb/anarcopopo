@@ -147,6 +147,7 @@ def create_or_update_client(sender, instance, created, **kwargs):
             surname=instance.last_name,
             email=instance.username,
             password=instance.password,
+            level=1,
             pub_date=timezone.now()
         )
     else:

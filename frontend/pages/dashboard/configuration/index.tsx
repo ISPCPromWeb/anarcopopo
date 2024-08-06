@@ -6,6 +6,8 @@ import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { ButtonSmall } from "@/components/ButtonSmall";
 
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { LEVELS } from "@/constants";
 
 export const getServerSideProps = async () => {
   const rawVaccineTypes = await vaccinesApi.getTypes();
@@ -55,6 +57,16 @@ const Configuration = (props: any) => {
       console.error("Product Type deletion failed", error);
     }
   };
+
+  useEffect(() => {
+    let user;
+    if (typeof window !== "undefined") {
+      user = JSON.parse(localStorage.getItem("user") || "{}");
+    }
+    if (user.level === LEVELS.client || user) {
+      router.replace(`/`);
+    }
+  }, []);
 
   return (
     <DashboardLayout>

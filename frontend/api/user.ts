@@ -16,7 +16,7 @@ const getOne = async (id: number) => {
     const result = await response.json();
     return result;
   } catch (error) {
-    return [];
+    return null;
   }
 };
 
@@ -30,7 +30,7 @@ const createOne = async (form: FormData) => {
     const result = await response.json();
     return result;
   } catch (error) {
-    return [];
+    return null;
   }
 };
 
@@ -44,7 +44,7 @@ const updateOne = async (id: number, form: FormData) => {
     const result = await response.json();
     return result;
   } catch (error) {
-    return [];
+    return null;
   }
 };
 
@@ -56,7 +56,7 @@ const deleteOne = async (id: number) => {
     const result = await response.json();
     return result;
   } catch (error) {
-    return [];
+    return null;
   }
 };
 
