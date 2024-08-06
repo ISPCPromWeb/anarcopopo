@@ -8,9 +8,16 @@ import { ButtonSmall } from "@/components/ButtonSmall";
 import { useRouter } from "next/navigation";
 
 export const getServerSideProps = async () => {
-  const vaccineTypes = await vaccinesApi.getTypes();
+  const rawVaccineTypes = await vaccinesApi.getTypes();
   const petTypes = await petsApi.getTypes();
   const productTypes = await productsApi.getTypes();
+
+  const vaccineTypes = rawVaccineTypes.map((vaccine: any) => {
+    const typeName =
+      petTypes.find((type: any) => type.id === vaccine.pet_type)?.name ||
+      "Unknown";
+    return { ...vaccine, pet_type: typeName };
+  });
   return {
     props: {
       vaccineTypes,

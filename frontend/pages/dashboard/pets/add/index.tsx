@@ -6,15 +6,17 @@ import { ButtonSmall } from "@/components/ButtonSmall";
 
 export const getServerSideProps = async () => {
   const clients = await userApi.getAll();
+  const petTypes = await petsApi.getTypes();
   return {
     props: {
       clients,
+      petTypes,
     },
   };
 };
 
 const AddPet = (props: any) => {
-  const { clients } = props;
+  const { clients, petTypes } = props;
   const router = useRouter();
   const handleAddPet = async (e: any) => {
     e.preventDefault();
@@ -53,14 +55,14 @@ const AddPet = (props: any) => {
             <label htmlFor="type" className="form-label">
               Tipo
             </label>
-            <input
-              type="text"
-              className="form-control"
-              name="type"
-              id="type"
-              required
-              defaultValue={""}
-            />
+            <select className="form-control" name="type" id="type" required>
+              <option value={0}>Seleccione una opción</option>
+              {petTypes.map((type: any, index: number) => (
+                <option key={index} value={type.id}>
+                  {type.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="col-md-4">
             <label htmlFor="breed" className="form-label">
@@ -92,14 +94,14 @@ const AddPet = (props: any) => {
             <label htmlFor="owner" className="form-label">
               Dueña/o
             </label>
-            <input
-              type="text"
-              className="form-control"
-              name="owner"
-              id="owner"
-              required
-              defaultValue={""}
-            />
+            <select className="form-control" name="owner" id="owner" required>
+              <option value={0}>Seleccione una opción</option>
+              {clients.map((client: any, index: number) => (
+                <option key={index} value={client.id}>
+                  {client.name} {client.surname}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="mb-2">
             <ButtonSmall type="submit" name="Agregar Mascota" />

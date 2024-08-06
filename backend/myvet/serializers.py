@@ -16,6 +16,14 @@ class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
         fields = '__all__'
+    
+    def create(self, validated_data):
+        password = validated_data.pop('password', None)
+        client = Client(**validated_data)
+        if password is not None:
+            client.set_password(password)
+        client.save()
+        return client
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

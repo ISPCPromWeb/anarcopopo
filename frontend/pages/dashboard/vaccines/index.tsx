@@ -8,8 +8,14 @@ import { vaccinesApi } from "@/api/vaccines";
 import { useRouter } from "next/navigation";
 
 export const getServerSideProps = async () => {
-  const vaccines = await vaccinesApi.getAll();
-  console.log(vaccines);
+  const rawVaccines = await vaccinesApi.getAll();
+  const vaccineTypes = await vaccinesApi.getTypes();
+
+  const vaccines = rawVaccines.map((pet: any) => {
+    const typeName =
+      vaccineTypes.find((type: any) => type.id === pet.type)?.name || "Unknown";
+    return { ...pet, type: typeName };
+  });
   return {
     props: {
       vaccines,

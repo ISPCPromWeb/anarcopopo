@@ -60,9 +60,11 @@ const Clients = (props: any) => {
                   <td>{client.dni}</td>
                   <td>
                     {client.pets.map((pet: any, index: number) => (
-                      <Link key={index} href={`/dashboard/pets/${pet.id}`}>
-                        <p>{pet.name}</p>
-                      </Link>
+                      <p>
+                        <Link key={index} href={`/dashboard/pets/${pet.id}`}>
+                          {pet.name}
+                        </Link>
+                      </p>
                     ))}
                   </td>
                   <td className="d-flex gap-2 pe-4 justify-content-end">

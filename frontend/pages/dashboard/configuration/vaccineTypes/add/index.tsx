@@ -3,9 +3,19 @@ import styles from "./index.module.css";
 
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { ButtonSmall } from "@/components/ButtonSmall";
-import { vaccinesApi } from "@/api";
+import { petsApi, vaccinesApi } from "@/api";
 
-const AddVaccineType = () => {
+export const getServerSideProps = async () => {
+  const petTypes = await petsApi.getTypes();
+  return {
+    props: {
+      petTypes,
+    },
+  };
+};
+
+const AddVaccineType = (props: any) => {
+  const { petTypes } = props;
   const router = useRouter();
   const handleAddVaccineType = async (e: any) => {
     e.preventDefault();
@@ -44,14 +54,19 @@ const AddVaccineType = () => {
             <label htmlFor="pet_type" className="form-label">
               Tipo de Mascota
             </label>
-            <input
-              type="text"
+            <select
               className="form-control"
               name="pet_type"
               id="pet_type"
               required
-              defaultValue={""}
-            />
+            >
+              <option value={0}>Seleccione una opción</option>
+              {petTypes.map((type: any, index: number) => (
+                <option key={index} value={type.id}>
+                  {type.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           <ButtonSmall type="submit" name="Agregar Nueva Vacuna" />

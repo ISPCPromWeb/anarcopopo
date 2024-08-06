@@ -8,16 +8,18 @@ export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
   const [pet] = await petsApi.getOne(Number(id));
   const [user] = await userApi.getOne(Number(pet.owner));
+  const [petType] = await petsApi.getType(Number(pet.type));
   return {
     props: {
       pet,
+      petType,
       user,
     },
   };
 };
 
 const Pet = (props: any) => {
-  const { pet, user } = props;
+  const { pet, petType, user } = props;
 
   return (
     <DashboardLayout>
@@ -35,7 +37,7 @@ const Pet = (props: any) => {
             </span>
           </li>
           <li className="list-group-item">
-            <span>Tipo: </span> <span>{pet.type}</span>
+            <span>Tipo: </span> <span>{petType.name}</span>
           </li>
           <li className="list-group-item">
             <span>Raza: </span> <span>{pet.breed}</span>

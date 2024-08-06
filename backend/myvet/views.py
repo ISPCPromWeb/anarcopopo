@@ -34,6 +34,18 @@ def custom_login(request):
 def custom_logout(request):
     logout(request)
     return Response({'message': 'Logout successfully'}, status=200)
+
+@api_view(['POST'])
+def reset_password(request):
+    email = request.POST["email"]
+    password = request.POST["password"]
+
+    user = EmailBackend.authenticate(request, email=email, password=password)
+
+    if user is not None:
+        user.set_password(user.password)
+        user.save()
+    return Response({'message': 'Reset Password successfully'}, status=200)
         
 class Pets_ApiView(APIView):
     def get(self, request):
@@ -74,8 +86,16 @@ class Pet_ApiView(APIView):
         
     def delete(self, request, id):
         pet = get_object_or_404(Pet, id=id)
-        pet.delete()
         serializer = PetSerializer(pet)
+        owner = pet.owner
+
+        if owner:
+            pets = owner.pets or []
+            updated_pets = [p for p in pets if p['id'] != serializer.data['id']]
+            owner.pets = updated_pets
+            owner.save()
+
+        pet.delete()
         return Response(serializer.data, status=200)
     
 class Products_ApiView(APIView):
@@ -132,7 +152,6 @@ class Clients_ApiView(APIView):
 
     def post(self, request):
         serializer = ClientSerializer(data=request.data)
-
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=200)

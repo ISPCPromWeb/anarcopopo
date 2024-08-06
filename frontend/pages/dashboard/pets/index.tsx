@@ -7,7 +7,13 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export const getServerSideProps = async () => {
-  const pets = await petsApi.getAll();
+  const rawPets = await petsApi.getAll();
+  const petTypes = await petsApi.getTypes();
+  const pets = rawPets.map((pet: any) => {
+    const typeName =
+      petTypes.find((type: any) => type.id === pet.type)?.name || "Unknown";
+    return { ...pet, type: typeName };
+  });
   return {
     props: {
       pets,

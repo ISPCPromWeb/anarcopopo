@@ -1,6 +1,6 @@
 import { ButtonSmall } from "@/components/ButtonSmall";
 import styles from "./index.module.css";
-import { productsApi } from "@/api";
+import { petsApi, productsApi } from "@/api";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -9,16 +9,20 @@ import { useState } from "react";
 export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
   const [product] = await productsApi.getOne(Number(id));
+  const petTypes = await petsApi.getTypes();
+  const productTypes = await productsApi.getTypes();
   return {
     props: {
       id,
       product,
+      petTypes,
+      productTypes,
     },
   };
 };
 
 const Pet = (props: any) => {
-  const { id, product } = props;
+  const { id, product, petTypes, productTypes } = props;
   const [isImageChanging, setIsImageChanging] = useState(false);
 
   const router = useRouter();
@@ -98,27 +102,40 @@ const Pet = (props: any) => {
             <label htmlFor="type" className="form-label">
               Tipo de Producto
             </label>
-            <input
-              type="text"
-              className="form-control"
-              name="type"
-              id="type"
-              required
-              defaultValue={product.type}
-            />
+            <select className="form-control" name="type" id="type" required>
+              <option value={0}>Seleccione una opción</option>
+              {productTypes.map((type: any, index: number) => (
+                <option
+                  key={index}
+                  value={type.id}
+                  selected={product.type === type.id}
+                >
+                  {type.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="col-md-4">
             <label htmlFor="pet_type" className="form-label">
               Tipo de Mascota
             </label>
-            <input
-              type="text"
+            <select
               className="form-control"
               name="pet_type"
               id="pet_type"
               required
-              defaultValue={product.pet_type}
-            />
+            >
+              <option value={0}>Seleccione una opción</option>
+              {petTypes.map((type: any, index: number) => (
+                <option
+                  key={index}
+                  value={type.id}
+                  selected={product.pet_type === type.id}
+                >
+                  {type.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="col-md-4">
             <label htmlFor="img" className="form-label">

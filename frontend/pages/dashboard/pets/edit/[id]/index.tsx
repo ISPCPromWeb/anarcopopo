@@ -7,16 +7,18 @@ import { useRouter } from "next/navigation";
 export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
   const [pet] = await petsApi.getOne(Number(id));
+  const [petType] = await petsApi.getType(Number(pet.type));
   return {
     props: {
       id,
       pet,
+      petType,
     },
   };
 };
 
 const EditPet = (props: any) => {
-  const { id, pet } = props;
+  const { id, pet, petType } = props;
   const router = useRouter();
   const handleEditClient = async (e: any) => {
     e.preventDefault();
@@ -62,7 +64,7 @@ const EditPet = (props: any) => {
               name="type"
               id="type"
               placeholder="Perro"
-              defaultValue={pet.type}
+              defaultValue={petType.name}
             />
           </div>
 
