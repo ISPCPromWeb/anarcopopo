@@ -86,7 +86,9 @@ const Pets = (props: any) => {
                   <td>{pet.age}</td>
                   <td>
                     {pet.vaccines.map((vaccine: any, index: number) => (
-                      <span className="me-2">{vaccine.name}</span>
+                      <span key={index} className="me-2">
+                        {vaccine.name}
+                      </span>
                     ))}
                   </td>
                   {user && user.level === LEVELS.professional && (
