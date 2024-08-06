@@ -52,7 +52,7 @@ const Configuration = (props: any) => {
   return (
     <DashboardLayout>
       <div className={styles.clientsList}>
-        <h3>Tipos de Mascota</h3>
+        <h3>Vacunas</h3>
         <div className="w-100 my-4">
           <Link href={`/dashboard/configuration/vaccineTypes/add`}>
             <ButtonSmall name="Agregar Tipo de Vacuna" type="button" />
@@ -64,7 +64,7 @@ const Configuration = (props: any) => {
               <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Tipo de Mascota</th>
-                <th scope="col">Acciones</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -73,17 +73,17 @@ const Configuration = (props: any) => {
                   <td>{vaccineType.name}</td>
                   <td>{vaccineType.pet_type}</td>
 
-                  <td className="d-flex align-items-start">
-                    <ButtonSmall
-                      callback={() => handleDeleteVaccineType(vaccineType.id)}
-                      type={`button`}
-                      name={`Eliminar`}
-                    />
+                  <td className="d-flex gap-2 pe-4 justify-content-end">
                     <Link
                       href={`/dashboard/configuration/vaccineTypes/edit/${vaccineType.id}`}
                     >
                       <ButtonSmall name="Editar" type="button" />
                     </Link>
+                    <ButtonSmall
+                      callback={() => handleDeleteVaccineType(vaccineType.id)}
+                      type={`button`}
+                      name={`Borrar`}
+                    />
                   </td>
                 </tr>
               ))}
@@ -97,18 +97,18 @@ const Configuration = (props: any) => {
       </div>
       <hr></hr>
       <div className={styles.clientsList}>
+        <h3>Tipos de Mascota</h3>
         <div className="w-100 my-4">
           <Link href={`/dashboard/configuration/petTypes/add`}>
             <ButtonSmall name="Agregar Tipo de Mascota" type="button" />
           </Link>
         </div>
         {petTypes.length !== 0 ? (
-          <table className="table">
+          <table className="table ">
             <thead>
               <tr>
                 <th scope="col">Nombre</th>
-
-                <th scope="col">Acciones</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -116,17 +116,17 @@ const Configuration = (props: any) => {
                 <tr key={index}>
                   <td>{petType.name}</td>
 
-                  <td className="d-flex align-items-start">
-                    <ButtonSmall
-                      callback={() => handleDeletePetType(petType.id)}
-                      type={`button`}
-                      name={`Eliminar`}
-                    />
+                  <td className="d-flex gap-2 pe-4 justify-content-end">
                     <Link
                       href={`/dashboard/configuration/petTypes/edit/${petType.id}`}
                     >
                       <ButtonSmall name="Editar" type="button" />
                     </Link>
+                    <ButtonSmall
+                      callback={() => handleDeletePetType(petType.id)}
+                      type={`button`}
+                      name={`Borrar`}
+                    />
                   </td>
                 </tr>
               ))}
@@ -138,15 +138,16 @@ const Configuration = (props: any) => {
           </div>
         )}
       </div>
-
+      <hr></hr>
       <div className={styles.clientsList}>
+        <h3>Tipos de Productos</h3>
         <div className="w-100 my-4">
           <Link href={`/dashboard/configuration/productTypes/add`}>
             <ButtonSmall name="Agregar Tipo de Producto" type="button" />
           </Link>
         </div>
         {productTypes.length !== 0 ? (
-          <table className="table">
+          <table className="table ">
             <thead>
               <tr>
                 <th scope="col">Nombre</th>
@@ -158,17 +159,17 @@ const Configuration = (props: any) => {
                 <tr key={index}>
                   <td>{productType.name}</td>
 
-                  <td className="d-flex align-items-start">
-                    <ButtonSmall
-                      callback={() => handleDeleteProductType(productType.id)}
-                      type={`button`}
-                      name={`Eliminar`}
-                    />
+                  <td className="d-flex gap-2 pe-4 justify-content-end">
                     <Link
                       href={`/dashboard/configuration/productTypes/edit/${productType.id}`}
                     >
                       <ButtonSmall name="Editar" type="button" />
                     </Link>
+                    <ButtonSmall
+                      callback={() => handleDeleteProductType(productType.id)}
+                      type={`button`}
+                      name={`Borrar`}
+                    />
                   </td>
                 </tr>
               ))}

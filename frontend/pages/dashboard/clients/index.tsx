@@ -36,7 +36,7 @@ const Clients = (props: any) => {
           </Link>
         </div>
         {clients.length !== 0 ? (
-          <table className="table">
+          <table className="table table-responsive">
             <thead>
               <tr>
                 <th scope="col">Nombre</th>
@@ -44,7 +44,7 @@ const Clients = (props: any) => {
                 <th scope="col">Email</th>
                 <th scope="col">DNI</th>
                 <th scope="col">Mascotas</th>
-                <th scope="col">Acciones</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -61,15 +61,18 @@ const Clients = (props: any) => {
                   <td>
                     {client.pets.map((pet: any, index: number) => (
                       <Link key={index} href={`/dashboard/pets/${pet.id}`}>
-                        {pet.name}
+                        <p>{pet.name}</p>
                       </Link>
                     ))}
                   </td>
-                  <td>
+                  <td className="d-flex gap-2 pe-4 justify-content-end">
+                    <Link href={`/dashboard/clients/edit/${client.id}`}>
+                      <ButtonSmall name="Editar" type="button" />
+                    </Link>
                     <ButtonSmall
                       callback={() => handleDeleteUser(client.id)}
                       type={`button`}
-                      name={`Eliminar`}
+                      name={`Borrar`}
                     />
                   </td>
                 </tr>

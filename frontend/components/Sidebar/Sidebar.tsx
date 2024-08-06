@@ -71,7 +71,7 @@ export const Sidebar = () => {
                 href={`/dashboard/vaccines`}
                 className={`${styles.vincnav} nav-link`}
               >
-                Vacunas
+                Aplicaciones de Vacunas
               </Link>
             </li>
             <li className={`${styles.navItem} nav-item`}>

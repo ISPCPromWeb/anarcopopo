@@ -68,10 +68,13 @@ const Products = (props: any) => {
                     />
                   </td>
                   <td>
+                    <Link href={`/dashboard/products/edit/${product.id}`}>
+                      <ButtonSmall name="Editar" type="button" />
+                    </Link>
                     <ButtonSmall
                       callback={() => handleDeleteProduct(product.id)}
                       type={`button`}
-                      name={`Eliminar`}
+                      name={`Borrar`}
                     />
                   </td>
                 </tr>

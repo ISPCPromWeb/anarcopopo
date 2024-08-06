@@ -28,40 +28,39 @@ const AddVaccine = () => {
           encType="multipart/form-data"
         >
           <div className="col-md-4">
-            <label htmlFor="nombre" className="form-label">
-              Tipo
+            <label htmlFor="type" className="form-label">
+              Nombre de la Vacuna Aplicada
             </label>
             <input
               type="text"
               className="form-control"
-              name="name"
-              id="name"
+              name="type"
+              id="type"
               required
               defaultValue={""}
             />
           </div>
           <div className="col-md-4">
-            <label htmlFor="description" className="form-label">
-              Fecha
+            <label htmlFor="app_date" className="form-label">
+              Fecha de Aplicación
             </label>
             <input
-              type="text"
+              type="datetime-local"
               className="form-control"
-              name="description"
-              id="description"
-              required
+              name="app_date"
+              id="app_date"
               defaultValue={""}
             />
           </div>
           <div className="col-md-4">
-            <label htmlFor="quantity" className="form-label">
+            <label htmlFor="pet" className="form-label">
               Mascota
             </label>
             <input
               type="text"
               className="form-control"
-              name="quantity"
-              id="quantity"
+              name="pet"
+              id="pet"
               required
               defaultValue={""}
             />

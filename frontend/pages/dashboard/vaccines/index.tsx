@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 
 export const getServerSideProps = async () => {
   const vaccines = await vaccinesApi.getAll();
+  console.log(vaccines);
   return {
     props: {
       vaccines,
@@ -54,10 +55,13 @@ const Vaccines = (props: any) => {
                   <td>{vaccine.app_date}</td>
                   <td>{vaccine.pet}</td>
                   <td>
+                    <Link href={`/dashboard/vaccines/edit/${vaccine.id}`}>
+                      <ButtonSmall name="Editar" type="button" />
+                    </Link>
                     <ButtonSmall
                       callback={() => handleDeleteVaccine(vaccine.id)}
                       type={`button`}
-                      name={`Eliminar`}
+                      name={`Borrar`}
                     />
                   </td>
                 </tr>

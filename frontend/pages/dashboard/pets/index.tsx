@@ -44,7 +44,7 @@ const Pets = (props: any) => {
                 <th scope="col">Raza</th>
                 <th scope="col">Edad</th>
                 <th scope="col">Vacunas</th>
-                <th scope="col">Acciones</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -61,11 +61,14 @@ const Pets = (props: any) => {
                       <span key={index}>{vaccine.name}</span>
                     ))}
                   </td>
-                  <td>
+                  <td className="d-flex gap-2 pe-4 justify-content-end">
+                    <Link href={`/dashboard/pets/edit/${pet.id}`}>
+                      <ButtonSmall name="Editar" type="button" />
+                    </Link>
                     <ButtonSmall
                       callback={() => handleDeletePet(pet.id)}
                       type={`button`}
-                      name={`Eliminar`}
+                      name={`Borrar`}
                     />
                   </td>
                 </tr>

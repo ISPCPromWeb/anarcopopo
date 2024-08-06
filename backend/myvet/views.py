@@ -187,11 +187,10 @@ class Client_ApiView(APIView):
 class Vaccines_ApiView(APIView):
     def get(self, request):
         vaccine_type = request.query_params.get('vaccineType', None)
-        if vaccine_type is None:
+        if vaccine_type is not None:
             data = Vaccine.objects.filter(type=vaccine_type)
         else:
             data = Vaccine.objects.all()
-                
         serializer = VaccineSerializer(data, many=True)
         return Response(serializer.data)
 

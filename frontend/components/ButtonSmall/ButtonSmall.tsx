@@ -9,7 +9,7 @@ export const ButtonSmall = (props: ButtonSmallProps) => {
   const { name, type, callback } = props;
   return (
     <div
-      className={`${styles.contButton} d-flex d-md-block justify-content-center container-fluid`}
+      className={`${styles.contButton} d-flex d-md-block justify-content-center`}
     >
       <button
         onClick={callback}
