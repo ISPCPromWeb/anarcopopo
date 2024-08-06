@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./index.module.css";
-import { productsApi } from "@/api";
+import { petsApi, productsApi } from "@/api";
 import Image from "next/image";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { ButtonSmall } from "@/components/ButtonSmall";
@@ -10,11 +10,15 @@ import { useRouter } from "next/navigation";
 export const getServerSideProps = async () => {
   const rawVaccines = await vaccinesApi.getAll();
   const vaccineTypes = await vaccinesApi.getTypes();
+  const pets = await petsApi.getAll();
 
-  const vaccines = rawVaccines.map((pet: any) => {
+  const vaccines = rawVaccines.map((vaccine: any) => {
     const typeName =
-      vaccineTypes.find((type: any) => type.id === pet.type)?.name || "Unknown";
-    return { ...pet, type: typeName };
+      vaccineTypes.find((type: any) => type.id === vaccine.type)?.name ||
+      "Unknown";
+    const petName =
+      pets.find((pet: any) => pet.id === vaccine.pet)?.name || "Unknown";
+    return { ...vaccine, type: typeName, pet: petName };
   });
   return {
     props: {

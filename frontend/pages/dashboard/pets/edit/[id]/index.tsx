@@ -1,24 +1,27 @@
 import { ButtonSmall } from "@/components/ButtonSmall";
 import styles from "./index.module.css";
-import { petsApi } from "@/api";
+import { petsApi, userApi } from "@/api";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { useRouter } from "next/navigation";
+import { userAgent } from "next/server";
 
 export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
   const [pet] = await petsApi.getOne(Number(id));
-  const [petType] = await petsApi.getType(Number(pet.type));
+  const petTypes = await petsApi.getTypes();
+  const clients = await userApi.getAll();
   return {
     props: {
       id,
       pet,
-      petType,
+      petTypes,
+      clients,
     },
   };
 };
 
 const EditPet = (props: any) => {
-  const { id, pet, petType } = props;
+  const { id, pet, petTypes, clients } = props;
   const router = useRouter();
   const handleEditClient = async (e: any) => {
     e.preventDefault();
@@ -41,7 +44,7 @@ const EditPet = (props: any) => {
           encType="multipart/form-data"
         >
           <div className="col-md-4">
-            <label htmlFor="nombre" className="form-label">
+            <label htmlFor="name" className="form-label">
               Nombre
             </label>
             <input
@@ -58,14 +61,18 @@ const EditPet = (props: any) => {
             <label htmlFor="type" className="form-label">
               Tipo
             </label>
-            <input
-              type="text"
-              className="form-control"
-              name="type"
-              id="type"
-              placeholder="Perro"
-              defaultValue={petType.name}
-            />
+            <select className="form-control" name="type" id="type" required>
+              <option value={0}>Seleccione una opción</option>
+              {petTypes.map((type: any, index: number) => (
+                <option
+                  key={index}
+                  value={type.id}
+                  selected={pet.type === type.id}
+                >
+                  {type.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="col-md-3">
@@ -82,7 +89,23 @@ const EditPet = (props: any) => {
               defaultValue={pet.age}
             />
           </div>
-
+          <div className="col-md-4 mb-2">
+            <label htmlFor="owner" className="form-label">
+              Dueña/o
+            </label>
+            <select className="form-control" name="owner" id="owner" required>
+              <option value={0}>Seleccione una opción</option>
+              {clients.map((client: any, index: number) => (
+                <option
+                  key={index}
+                  value={client.id}
+                  selected={pet.owner === client.id}
+                >
+                  {client.name} {client.surname}
+                </option>
+              ))}
+            </select>
+          </div>
           <div className="col-12 pt-4 mt-4">
             <ButtonSmall type="submit" name="Guardar" />
           </div>

@@ -47,7 +47,7 @@ const Pet = (props: any) => {
           encType="multipart/form-data"
         >
           <div className="col-md-4">
-            <label htmlFor="nombre" className="form-label">
+            <label htmlFor="name" className="form-label">
               Nombre
             </label>
             <input
@@ -138,40 +138,61 @@ const Pet = (props: any) => {
             </select>
           </div>
           <div className="col-md-4">
-            <label htmlFor="img" className="form-label">
-              Imagen
-            </label>
-            {!isImageChanging && (
-              <div className="d-flex">
-                <Image
-                  width={200}
-                  height={200}
-                  src={`http://localhost:8001${product.img}`}
-                  alt=""
-                />
-                <ButtonSmall
-                  callback={() => setIsImageChanging(!isImageChanging)}
-                  type="button"
-                  name="Cambiar Imagen"
-                />
-              </div>
-            )}
-            {isImageChanging && (
-              <div className="d-flex">
-                <input
-                  type="file"
-                  className="form-control"
-                  name="img"
-                  id="img"
-                  required
-                  defaultValue={""}
-                />
-                <ButtonSmall
-                  callback={() => setIsImageChanging(!isImageChanging)}
-                  type="button"
-                  name="Cancelar"
-                />
-              </div>
+            {product.img ? (
+              <>
+                <label htmlFor="img" className="form-label">
+                  Imagen
+                </label>
+                <>
+                  {!isImageChanging ? (
+                    <div className="d-flex">
+                      <Image
+                        width={200}
+                        height={200}
+                        src={`http://localhost:8001${product.img}`}
+                        alt=""
+                      />
+                      <ButtonSmall
+                        callback={() => setIsImageChanging(!isImageChanging)}
+                        type="button"
+                        name="Cambiar Imagen"
+                      />
+                    </div>
+                  ) : (
+                    <div className="d-flex">
+                      <input
+                        type="file"
+                        className="form-control"
+                        name="img"
+                        id="img"
+                        required
+                        defaultValue={""}
+                      />
+                      <ButtonSmall
+                        callback={() => setIsImageChanging(!isImageChanging)}
+                        type="button"
+                        name="Cancelar"
+                      />
+                    </div>
+                  )}
+                </>
+              </>
+            ) : (
+              <>
+                <label htmlFor="img" className="form-label">
+                  Imagen
+                </label>
+                <div className="d-flex">
+                  <input
+                    type="file"
+                    className="form-control"
+                    name="img"
+                    id="img"
+                    required
+                    defaultValue={""}
+                  />
+                </div>
+              </>
             )}
           </div>
           <ButtonSmall type="submit" name="Guardar" />

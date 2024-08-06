@@ -39,7 +39,7 @@ const AddProduct = (props: any) => {
         encType="multipart/form-data"
       >
         <div className="col-md-4">
-          <label htmlFor="nombre" className="form-label">
+          <label htmlFor="name" className="form-label">
             Nombre
           </label>
           <input
@@ -125,13 +125,7 @@ const AddProduct = (props: any) => {
           <label htmlFor="img" className="form-label">
             Imagen
           </label>
-          <input
-            type="file"
-            className="form-control"
-            name="img"
-            id="img"
-            required
-          />
+          <input type="file" className="form-control" name="img" id="img" />
         </div>
         <ButtonSmall type="submit" name="Agregar Producto" />
       </form>

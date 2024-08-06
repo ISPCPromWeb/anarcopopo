@@ -54,7 +54,7 @@ class Product(models.Model):
     price = models.IntegerField(default=100)
     type = models.ForeignKey('ProductType', on_delete=models.CASCADE)
     pet_type = models.ForeignKey('PetType', on_delete=models.CASCADE)
-    img = models.ImageField(upload_to='images/', storage=NoHashFileSystemStorage(), max_length=10000)
+    img = models.ImageField(upload_to='images/', storage=NoHashFileSystemStorage(), max_length=10000, null=True)
     pub_date = models.DateTimeField("Date Published", default=timezone.now)
 
     def __str__(self):

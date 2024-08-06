@@ -60,12 +60,16 @@ const Products = (props: any) => {
                   <td>{product.quantity}</td>
                   <td>{product.price}</td>
                   <td>
-                    <Image
-                      width={100}
-                      height={100}
-                      src={`http://localhost:8001${product.img}`}
-                      alt={product.name}
-                    />
+                    {product.img ? (
+                      <Image
+                        width={100}
+                        height={100}
+                        src={`http://localhost:8001${product.img}`}
+                        alt={""}
+                      />
+                    ) : (
+                      <span>Sin imagen</span>
+                    )}
                   </td>
                   <td>
                     <Link href={`/dashboard/products/edit/${product.id}`}>

@@ -158,7 +158,7 @@ const Configuration = (props: any) => {
             <thead>
               <tr>
                 <th scope="col">Nombre</th>
-                <th scope="col">Acciones</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>

@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 import { productsApi } from "@/api";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { ButtonSmall } from "@/components/ButtonSmall";
+import Image from "next/image";
 
 export const getServerSideProps = async (req: any) => {
   const { id } = req.params;
@@ -35,7 +36,16 @@ const Product = (props: any) => {
           </li>
           <li className="list-group-item">
             <span>Image: </span>{" "}
-            <img src={`http://localhost:8000${product.img}`} />
+            {product.img ? (
+              <Image
+                width={200}
+                height={200}
+                src={`http://localhost:8001${product.img}`}
+                alt={""}
+              />
+            ) : (
+              <span>Sin imagen</span>
+            )}
           </li>
         </ul>
       </div>
