@@ -1,5 +1,9 @@
 # MyVet
 
+My Vet es un sistema de Gestión Integral desarrollado pensando exclusivamente en las necesidades de las veterinarias. Es un sistema de gestión de historias clínicas para veterinarias, manteniendo un registro actualizado de los clientes y sus mascotas. La automatización de las historias clínicas permitirá al médico veterinario llevar un mayor control y seguimiento de las consultas y evolución de sus pacientes. Permite tanbièn, llevar un registro de todas las vacunas aplicadas. En un futuro podrá disponer de su agenda para otorgar turnos a sus clientes. Como bonus, cuenta con una tienda virtual lista para expandir tu negocio y cartera de clientes, pudiendo administrar sus ventas, agregar nuevos productos y eventualmente, ampliar su oferta.
+
+Para las personas dueñas de mascotas, My Vet tambièn es un centro de información sobre sus mascotas, contando con su información, vacunas aplicadas y en un futuro la posibilidad de reservar turnos con los especialistas elegidos. Además, puede adquirir alimentos y accesorios para su mascota desde cualquier dispositivo, disfrutando de un amplio catálogo de productos.
+
 ## Django Setup
 
 ### Setup virtual environment
