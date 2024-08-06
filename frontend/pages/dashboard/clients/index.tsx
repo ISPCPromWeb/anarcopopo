@@ -69,7 +69,7 @@ const Clients = (props: any) => {
                     <td>{client.dni}</td>
                     <td>
                       {client.pets.map((pet: any, index: number) => (
-                        <p>
+                        <p key={index}>
                           <Link key={index} href={`/dashboard/pets/${pet.id}`}>
                             {pet.name}
                           </Link>
