@@ -20,15 +20,24 @@ export const getServerSideProps = async () => {
   return {
     props: {
       pets,
+      petTypes,
     },
   };
 };
 
 const Pets = (props: any) => {
-  const { pets } = props;
+  const { pets, petTypes } = props;
   const { user } = useUserContext();
   const [toastText, setToastText] = useState("");
-  const renderedPets = user && user.level === LEVELS.client ? user.pets : pets;
+  const userPets =
+    user &&
+    user.pets.map((pet: any) => {
+      const typeName =
+        petTypes.find((type: any) => type.id === pet.type)?.name || "Unknown";
+      return { ...pet, type: typeName };
+    });
+  const renderedPets = user && user.level === LEVELS.client ? userPets : pets;
+
   const router = useRouter();
   const handleDeletePet = async (id: number) => {
     try {
