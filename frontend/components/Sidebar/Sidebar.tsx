@@ -3,9 +3,10 @@ import styles from "./Sidebar.module.css";
 import { useRouter } from "next/navigation";
 import { authApi } from "@/api";
 import { useUserContext } from "@/context";
+import { LEVELS } from "@/constants";
 
 export const Sidebar = () => {
-  const { setUser } = useUserContext();
+  const { user, setUser } = useUserContext();
   const router = useRouter();
   const handleLogout = async (e: any) => {
     e.preventDefault();
@@ -50,14 +51,16 @@ export const Sidebar = () => {
                 Perfil
               </Link>
             </li>
-            <li className={`${styles.navItem} nav-item`}>
-              <Link
-                href={`/dashboard/clients`}
-                className={`${styles.vincnav} nav-link`}
-              >
-                Clientes
-              </Link>
-            </li>
+            {user && user.level === LEVELS.professional && (
+              <li className={`${styles.navItem} nav-item`}>
+                <Link
+                  href={`/dashboard/clients`}
+                  className={`${styles.vincnav} nav-link`}
+                >
+                  Clientes
+                </Link>
+              </li>
+            )}
             <li className={`${styles.navItem} nav-item`}>
               <Link
                 href={`/dashboard/pets`}
@@ -74,22 +77,26 @@ export const Sidebar = () => {
                 Aplicaciones de Vacunas
               </Link>
             </li>
-            <li className={`${styles.navItem} nav-item`}>
-              <Link
-                href={`/dashboard/products`}
-                className={`${styles.vincnav} nav-link`}
-              >
-                Productos
-              </Link>
-            </li>
-            <li className={`${styles.navItem} nav-item`}>
-              <Link
-                href={`/dashboard/configuration`}
-                className={`${styles.vincnav} nav-link`}
-              >
-                Configuración
-              </Link>
-            </li>
+            {user && user.level === LEVELS.professional && (
+              <li className={`${styles.navItem} nav-item`}>
+                <Link
+                  href={`/dashboard/products`}
+                  className={`${styles.vincnav} nav-link`}
+                >
+                  Productos
+                </Link>
+              </li>
+            )}
+            {user && user.level === LEVELS.professional && (
+              <li className={`${styles.navItem} nav-item`}>
+                <Link
+                  href={`/dashboard/configuration`}
+                  className={`${styles.vincnav} nav-link`}
+                >
+                  Configuración
+                </Link>
+              </li>
+            )}
             <hr />
             <form onSubmit={handleLogout} encType="multipart/form-data">
               <button

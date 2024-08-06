@@ -28,7 +28,7 @@ export const getServerSideProps = async () => {
 const Vaccines = (props: any) => {
   const { rawVaccines, vaccineTypes, pets } = props;
   const { user } = useUserContext();
-  const renderedPets = user.level === LEVELS.client ? user.pets : pets;
+  const renderedPets = user && user.level === LEVELS.client ? user.pets : pets;
   const [toastText, setToastText] = useState("");
   const vaccines = rawVaccines.map((vaccine: any) => {
     const typeName =
@@ -58,7 +58,7 @@ const Vaccines = (props: any) => {
     <DashboardLayout>
       {toastText !== "" && <Toast text={toastText} />}
       <div className={styles.clientsList}>
-        {user.level === LEVELS.professional && (
+        {user && user.level === LEVELS.professional && (
           <div className="w-100 my-4">
             <Link href={`/dashboard/vaccines/add`}>
               <ButtonSmall name="Agregar Aplicación de Vacuna" type="button" />

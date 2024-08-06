@@ -5,7 +5,7 @@ import { FeatProducts } from "@/components/FeatProducts";
 import { StoreHeader } from "@/components/StoreHeader";
 import { productsApi } from "@/api";
 import { useEffect } from "react";
-import { useAppContext } from "@/context";
+import { useAppContext, useCartContext } from "@/context";
 
 export const getServerSideProps = async () => {
   const products = await productsApi.getAll();
@@ -19,9 +19,13 @@ export const getServerSideProps = async () => {
 const Home = (props: any) => {
   const { products } = props;
   const { setType } = useAppContext();
+  const { cart } = useCartContext();
 
   useEffect(() => {
     setType("common");
+    if (cart.length === 0) {
+      localStorage.setItem("cart", JSON.stringify([]));
+    }
   }, [setType]);
 
   return (
