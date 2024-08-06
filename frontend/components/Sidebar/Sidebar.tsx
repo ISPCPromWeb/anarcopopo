@@ -82,6 +82,14 @@ export const Sidebar = () => {
                 Productos
               </Link>
             </li>
+            <li className={`${styles.navItem} nav-item`}>
+              <Link
+                href={`/dashboard/configuration`}
+                className={`${styles.vincnav} nav-link`}
+              >
+                Configuración
+              </Link>
+            </li>
             <hr />
             <form onSubmit={handleLogout} encType="multipart/form-data">
               <button

@@ -278,11 +278,11 @@ class ProductTypes_ApiView(APIView):
         else:
             data = ProductType.objects.filter(Q(name__icontains=value))
                 
-        serializer = ProductSerializer(data, many=True)
+        serializer = ProductTypeSerializer(data, many=True)
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = ProductSerializer(data=request.data)
+        serializer = ProductTypeSerializer(data=request.data)
 
         if serializer.is_valid():
             serializer.save()

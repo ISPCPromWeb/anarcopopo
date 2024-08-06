@@ -4,6 +4,7 @@ import { petsApi } from "@/api";
 import Link from "next/link";
 import { ButtonSmall } from "@/components/ButtonSmall";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export const getServerSideProps = async () => {
   const pets = await petsApi.getAll();
@@ -16,7 +17,6 @@ export const getServerSideProps = async () => {
 
 const Pets = (props: any) => {
   const { pets } = props;
-
   const router = useRouter();
   const handleDeletePet = async (id: number) => {
     try {

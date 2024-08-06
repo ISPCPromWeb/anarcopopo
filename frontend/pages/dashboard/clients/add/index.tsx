@@ -11,7 +11,13 @@ const AddClient = () => {
     const form = e.target;
     const formData = new FormData(form);
     try {
+      const password = formData.get("dni");
+      if (password) {
+        formData.set("password", password.toString());
+      }
+
       await userApi.createOne(formData);
+
       router.push("/dashboard/clients");
     } catch (error) {
       console.error("Client creation failed", error);

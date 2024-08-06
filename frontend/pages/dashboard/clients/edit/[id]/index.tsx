@@ -24,6 +24,7 @@ const EditClient = (props: any) => {
     const form = e.target;
     const formData = new FormData(form);
     try {
+      formData.set("password", user.password);
       await userApi.updateOne(id, formData);
       router.push("/dashboard/clients");
     } catch (error) {

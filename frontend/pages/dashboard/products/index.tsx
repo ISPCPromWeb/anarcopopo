@@ -4,6 +4,7 @@ import { productsApi } from "@/api";
 import Image from "next/image";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { ButtonSmall } from "@/components/ButtonSmall";
+import { useRouter } from "next/navigation";
 
 export const getServerSideProps = async () => {
   const products = await productsApi.getAll();
@@ -16,6 +17,16 @@ export const getServerSideProps = async () => {
 
 const Products = (props: any) => {
   const { products } = props;
+
+  const router = useRouter();
+  const handleDeleteProduct = async (id: number) => {
+    try {
+      await productsApi.deleteOne(id);
+      router.refresh();
+    } catch (error) {
+      console.error("Product deletion failed", error);
+    }
+  };
 
   return (
     <DashboardLayout>
@@ -34,6 +45,7 @@ const Products = (props: any) => {
                 <th scope="col">Disponible</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Imagen</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -53,6 +65,13 @@ const Products = (props: any) => {
                       height={100}
                       src={`http://localhost:8001${product.img}`}
                       alt={product.name}
+                    />
+                  </td>
+                  <td>
+                    <ButtonSmall
+                      callback={() => handleDeleteProduct(product.id)}
+                      type={`button`}
+                      name={`Eliminar`}
                     />
                   </td>
                 </tr>

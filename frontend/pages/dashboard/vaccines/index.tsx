@@ -5,6 +5,7 @@ import Image from "next/image";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { ButtonSmall } from "@/components/ButtonSmall";
 import { vaccinesApi } from "@/api/vaccines";
+import { useRouter } from "next/navigation";
 
 export const getServerSideProps = async () => {
   const vaccines = await vaccinesApi.getAll();
@@ -17,6 +18,16 @@ export const getServerSideProps = async () => {
 
 const Vaccines = (props: any) => {
   const { vaccines } = props;
+
+  const router = useRouter();
+  const handleDeleteVaccine = async (id: number) => {
+    try {
+      await vaccinesApi.deleteOne(id);
+      router.refresh();
+    } catch (error) {
+      console.error("Vaccine deletion failed", error);
+    }
+  };
 
   return (
     <DashboardLayout>
@@ -33,6 +44,7 @@ const Vaccines = (props: any) => {
                 <th scope="col">Tipo</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Mascota</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -41,6 +53,13 @@ const Vaccines = (props: any) => {
                   <td>{vaccine.type}</td>
                   <td>{vaccine.app_date}</td>
                   <td>{vaccine.pet}</td>
+                  <td>
+                    <ButtonSmall
+                      callback={() => handleDeleteVaccine(vaccine.id)}
+                      type={`button`}
+                      name={`Eliminar`}
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>
